@@ -162,8 +162,10 @@
                     <b>Android</b> Applications for their day to day business
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn small text link
-                      ><v-icon left>mdi-link</v-icon> Link</v-btn
+                    <a href="https://mawatersapp.web.app/"
+                      ><v-btn small text link
+                        ><v-icon left>mdi-link</v-icon> Link</v-btn
+                      ></a
                     >
                   </v-card-actions>
                 </v-card>
@@ -171,11 +173,11 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <v-card-actions>
+        <!-- <v-card-actions>
           <v-btn block text outlined rounded to="/resume"
             >Resume <v-icon right>mdi-link</v-icon></v-btn
           >
-        </v-card-actions>
+        </v-card-actions> -->
       </v-card>
 
       <v-card class="project" id="project">
@@ -206,10 +208,10 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
+                    <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
-                    <v-btn text link small
+                    > -->
+                    <v-btn text link small to="/"
                       ><v-icon left>mdi-eye</v-icon> live</v-btn
                     >
                   </v-card-actions>
@@ -231,12 +233,16 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
+                    <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
+                    > -->
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.xmusicplayer.xcel"
                     >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -256,9 +262,9 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
+                    <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
+                    > -->
                   </v-card-actions>
                   <span class="dev-mode">under development</span>
                 </v-card>
@@ -290,9 +296,11 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://mawatersapp.web.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                   <span class="dev-mode">under development</span>
                 </v-card>
@@ -345,9 +353,15 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://github.com/Xceldeveloper/socials">
+                      <v-btn> <v-icon left>mdi-github</v-icon> github</v-btn>
+                    </a>
+
+                    <a href="https://xcelsocials.netlify.app/home">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                   <span class="dev-mode">under development</span>
                 </v-card>
@@ -378,12 +392,17 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://github.com/Xceldeveloper/web-videoplayer">
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+
+                    <a href="https://xcelvideoplayer-web.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -410,12 +429,16 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://github.com/Xceldeveloper/web-audioplayer">
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a href="https://xcelaudioplayer-web.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -444,9 +467,11 @@
                         ><v-icon left>mdi-github</v-icon> github</v-btn
                       ></a
                     >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://xceldeveloper-web-texteditor.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -466,12 +491,16 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://github.com/Xceldeveloper/web-quiz-app">
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a href="https://xcelquiz.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -489,12 +518,18 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
+                    <a
+                      href="https://github.com/Xceldeveloper/web-gpa-calculator"
                     >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a href="https://xcelgpacalculator.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -526,9 +561,11 @@
                         ><v-icon left>mdi-github</v-icon> github</v-btn
                       ></a
                     >
-                    <v-btn text link small
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
+                    <a href="https://xceldeveloper-webcam.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
