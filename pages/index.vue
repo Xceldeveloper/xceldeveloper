@@ -116,6 +116,8 @@
               <v-btn block text outlined rounded @click="openNewPage('/resume')"
             ><v-icon left>mdi-account</v-icon> Resume
           </v-btn>
+
+
            </v-card-actions> -->
      
         </div>
@@ -679,7 +681,8 @@ export default {
     margin-top: 200px;
     width: 90%;
     max-width: 850px;
-    height: 600px;
+   
+   height: 600px;
     background-color: #101010;
     position: relative;
   }
