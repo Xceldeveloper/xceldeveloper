@@ -6,58 +6,20 @@
           <v-spacer></v-spacer>
           <v-btn text small >Download <v-icon right>mdi-download</v-icon></v-btn>
       </v-toolbar>
-      <canvas id="resume-wrapper">
-      
-  </canvas>
+      <div id="resume-wrapper">
+      hello
+  </div>
   </div>
 </template>
 
 <script>
-const pdf = require('pdfjs')
+
 export default {
   data(){
       return{
-        pdf: "http://mozilla.github.io/pdf.js/examples/learning/helloworld.pdf"
+        reume:require("~/static/resumex.pdf")
       }
-  },
-   mounted(){
-      this.initPDF();
-   },
-     methods:{
-         initPDF(){
-           // Asynchronous download PDF
-PDFJS.getDocument(this.pdf)
-  .then((pdf)=> {
-    return pdf.getPage(1);
-  })
-  .then((page)=> {
-    // Set scale (zoom) level
-    var scale = 1.5;
-
-    // Get viewport (dimensions)
-    var viewport = page.getViewport(scale);
-
-    // Get canvas#the-canvas
-    var canvas = document.getElementById('resume-wrapper');
-
-    // Fetch canvas' 2d context
-    var context = canvas.getContext('2d');
-
-    // Set dimensions to Canvas
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    // Prepare object needed by render method
-    var renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-
-    // Render PDF page
-    page.render(renderContext);
-  })
-         }
-     }
+  }
 }
 </script>
 
@@ -70,7 +32,8 @@ PDFJS.getDocument(this.pdf)
 #resume-wrapper{
     width: 100%;
     height:calc(100vh - 47.8px);
-    
+    background-color: #fff;
+    color: #000;
     overflow: auto;
 }
 </style>
