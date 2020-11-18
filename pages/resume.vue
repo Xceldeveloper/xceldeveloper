@@ -7,17 +7,21 @@
           <v-btn text small >Download <v-icon right>mdi-download</v-icon></v-btn>
       </v-toolbar>
       <div id="resume-wrapper">
-      hello
+     <pdf :src="resume"></pdf>
   </div>
   </div>
 </template>
 
 <script>
+import pdf from 'vue-pdf'
 
 export default {
+    components: {
+    pdf
+  },
   data(){
       return{
-        reume:require("~/static/resumex.pdf")
+        resume:require("~/static/resumex.pdf")
       }
   }
 }
