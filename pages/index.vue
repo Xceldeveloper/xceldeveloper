@@ -218,9 +218,11 @@
                     <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
-                    <v-btn text link small to="/"
+                  <a href="/">
+                    <v-btn text link small 
                       ><v-icon left>mdi-eye</v-icon> live</v-btn
                     >
+                  </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -631,7 +633,7 @@
           </div>
 
           <span class="full-year"
-            >xceldeveloper {{ new Date().getFullYear() }}</span
+            ><v-icon right>mdi-copyright</v-icon>  xceldeveloper {{ new Date().getFullYear() }}</span
           >
         </v-row>
       </div>
