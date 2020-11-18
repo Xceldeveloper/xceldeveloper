@@ -110,7 +110,19 @@
               <v-icon left>mdi-language-dart</v-icon> Dart
             </v-chip>
           </div>
+          
+          
+           <v-card-actions>
+              <v-btn block text outlined rounded @click="openNewPage('/resume')"
+            ><v-icon left>mdi-account</v-icon> Resume
+          </v-btn>
+           </v-card-actions>
+     
         </div>
+
+               
+       
+    
       </v-card>
 
       <v-card class="work" id="work">
@@ -173,11 +185,6 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <!-- <v-card-actions>
-          <v-btn block text outlined rounded to="/resume"
-            >Resume <v-icon right>mdi-link</v-icon></v-btn
-          >
-        </v-card-actions> -->
       </v-card>
 
       <v-card class="project" id="project">
@@ -633,13 +640,18 @@
 </template>
 <script>
 import device_mixin from '~/mixins/device_mixin.js'
+import navigation_mixin from '~/mixins/navigation_mixin.js'
+
 export default {
-  mixins: [device_mixin],
+  mixins: [device_mixin, navigation_mixin],
   data() {
     return {
       avatar: require('~/static/icon.jpg'),
     }
   },
+  mounted(){
+  
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -665,7 +677,7 @@ export default {
     margin-top: 200px;
     width: 90%;
     max-width: 850px;
-    height: 600px;
+    height: 700px;
     background-color: #101010;
     position: relative;
   }
