@@ -211,9 +211,9 @@
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-nuxt</v-icon> Vuetify
                     </v-chip>
-                    <v-chip link outlined small style="margin: 5px auto">
+                    <!-- <v-chip link outlined small style="margin: 5px auto">
                       <v-icon left small>mdi-firebase</v-icon> Firebase
-                    </v-chip>
+                    </v-chip> -->
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
