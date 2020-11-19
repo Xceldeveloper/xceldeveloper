@@ -77,9 +77,9 @@
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-materializecss</v-icon> Materialiizecss
             </v-chip>
-            <v-chip link outlined style="margin: 5px auto">
+            <!-- <v-chip link outlined style="margin: 5px auto">
               <v-icon>mdi-flutter</v-icon> Flutter
-            </v-chip>
+            </v-chip> -->
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-django</v-icon> Django
             </v-chip>
@@ -106,9 +106,9 @@
               <v-icon left>mdi-language-python</v-icon> Python
             </v-chip>
 
-            <v-chip link outlined style="margin: 5px auto">
+            <!-- <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-language-dart</v-icon> Dart
-            </v-chip>
+            </v-chip> -->
           </div>
           
           
