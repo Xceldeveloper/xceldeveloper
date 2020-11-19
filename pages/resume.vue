@@ -16,7 +16,9 @@
       >
     </v-toolbar>
     <div id="resume-wrapper">
-      <pdf ref="pdf_viewer" :src="resume"></pdf>
+      <pdf ref="pdf_viewer" :page="1" :src="resume"></pdf>
+      <span class="xdivider"></span>
+       <pdf ref="pdf_viewer" :page="2" :src="resume"></pdf>
     </div>
   </div>
 </template>
@@ -38,6 +40,8 @@ export default {
   mounted() {
     var dwnloader = document.getElementById('downloader')
     dwnloader.download = 'overcomeremiator_resume'
+
+    
   },
   methods: {},
 }
@@ -52,7 +56,7 @@ export default {
 #resume-wrapper {
   width: 100%;
   height: calc(100vh - 47.8px);
-  background-color: #fff;
+  background-color: #000;
   color: #000;
   overflow: auto;
 }
@@ -77,5 +81,11 @@ a {
     border: 1px solid #7c7b7b;
     border-radius: 1px;
   }
+}
+
+.xdivider{
+  display: block;
+  width: 100%;
+  height:3px;
 }
 </style>
