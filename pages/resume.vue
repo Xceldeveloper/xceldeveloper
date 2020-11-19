@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      resume: require('~/static/myresume.pdf'),
+      resume: require('~/static/resume.pdf'),
     }
   },
   mounted() {
