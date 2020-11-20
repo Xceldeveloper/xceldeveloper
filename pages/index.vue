@@ -672,7 +672,7 @@ export default {
     margin-top: 200px;
     width: 90%;
     max-width: 850px;
-    height: 750px;
+    height: 700px;
     background-color: #101010;
     position: relative;
   }
