@@ -110,21 +110,13 @@
               <v-icon left>mdi-language-dart</v-icon> Dart
             </v-chip> -->
           </div>
-          
-          
-           <!-- <v-card-actions>
-              <v-btn block text outlined rounded @click="openNewPage('/resume')"
-            ><v-icon left>mdi-account</v-icon> Resume
-          </v-btn>
 
-
-           </v-card-actions> -->
-     
+          <v-card-actions>
+            <v-btn block text outlined rounded @click="openNewPage('/resume')"
+              ><v-icon left>mdi-account</v-icon> Resume
+            </v-btn>
+          </v-card-actions>
         </div>
-
-               
-       
-    
       </v-card>
 
       <v-card class="work" id="work">
@@ -220,11 +212,11 @@
                     <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
-                  <a href="/">
-                    <v-btn text link small 
-                      ><v-icon left>mdi-eye</v-icon> live</v-btn
-                    >
-                  </a>
+                    <a href="/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
                 </v-card>
               </v-hover>
@@ -635,7 +627,8 @@
           </div>
 
           <span class="full-year"
-            ><v-icon right>mdi-copyright</v-icon>  xceldeveloper {{ new Date().getFullYear() }}</span
+            ><v-icon right>mdi-copyright</v-icon> xceldeveloper
+            {{ new Date().getFullYear() }}</span
           >
         </v-row>
       </div>
@@ -653,9 +646,7 @@ export default {
       avatar: require('~/static/icon.jpg'),
     }
   },
-  mounted(){
-  
-  }
+  mounted() {},
 }
 </script>
 <style lang="scss" scoped>

@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      resume: require('~/static/resume.pdf'),
+      resume: require('~/static/xceldeveloper_resume.pdf'),
     }
   },
   mounted() {
