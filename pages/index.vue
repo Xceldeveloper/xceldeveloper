@@ -240,7 +240,7 @@
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
                     <a
-                      href="https://play.google.com/store/apps/details?id=com.xmusicplayer.xcel"
+                      href="https://appgrooves.com/publisher/Xceldeveloper/xceldeveloper"
                     >
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
