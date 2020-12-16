@@ -8,8 +8,8 @@
 export default {
   mounted() {
     //polifix for persisent scrollbar
-    let eHtml = document.getElementsByTagName('html')[0]
-    eHtml.style.overflowY = 'hidden'
+    // let eHtml = document.getElementsByTagName('html')[0]
+    // eHtml.style.overflowY = 'hidden'
   },
   computed: {
     Router() {
@@ -34,5 +34,23 @@ export default {
 <style lang="scss" scoped>
 html {
   overflow-y: auto;
+}
+
+@media screen and (min-width: 767px) {
+  html::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: rgb(17, 17, 17);
+  }
+
+  html::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(17, 17, 17);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background-color: rgb(17, 17, 17);
+    border: 1px solid #7c7b7b;
+    border-radius: 1px;
+  }
 }
 </style>

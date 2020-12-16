@@ -1,16 +1,18 @@
 <template>
   <div id="wrapperx">
     <v-toolbar color="transparent" dense>
-      <v-btn icon @click="navBack"><v-icon>mdi-chevron-left</v-icon></v-btn>
-      <v-toolbar-title>Resume</v-toolbar-title>
+      <v-btn data-aos="fade-left" icon @click="navBack"
+        ><v-icon>mdi-chevron-left</v-icon></v-btn
+      >
+      <v-toolbar-title data-aos="fade-left">Resume</v-toolbar-title>
       <v-spacer></v-spacer>
       <a id="downloader" :href="resume">
-        <v-btn text small
+        <v-btn text small data-aos="fade-left"
           ><span v-if="!isMobile">Download</span>
           <v-icon right>mdi-download</v-icon></v-btn
         >
       </a>
-      <v-btn text small @click="$refs.pdf_viewer.print()"
+      <v-btn text small @click="$refs.pdf_viewer.print()" data-aos="fade-left"
         ><span v-if="!isMobile">Print</span>
         <v-icon right>mdi-printer</v-icon></v-btn
       >
@@ -18,7 +20,7 @@
     <div id="resume-wrapper">
       <pdf ref="pdf_viewer" :page="1" :src="resume"></pdf>
       <span class="xdivider"></span>
-       <pdf ref="pdf_viewer" :page="2" :src="resume"></pdf>
+      <pdf ref="pdf_viewer" :page="2" :src="resume"></pdf>
     </div>
   </div>
 </template>
@@ -40,8 +42,6 @@ export default {
   mounted() {
     var dwnloader = document.getElementById('downloader')
     dwnloader.download = 'overcomeremiator_resume'
-
-    
   },
   methods: {},
 }
@@ -83,9 +83,9 @@ a {
   }
 }
 
-.xdivider{
+.xdivider {
   display: block;
   width: 100%;
-  height:3px;
+  height: 3px;
 }
 </style>

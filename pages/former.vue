@@ -1,43 +1,39 @@
 <template>
   <div id="wrapper">
-    <!-- navbar-->
+    <v-app-bar absolute color="#121212" elevation="0" dense>
+      <v-toolbar-title>Xceldeveloper</v-toolbar-title>
 
-    <div class="nav-wrapper">
-      <v-app-bar color="#121212" elevation="0" dense>
-        <v-toolbar-title data-aos="zoom-in">Xceldeveloper</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <a href="#profile">
+        <v-btn text rounded>
+          <span v-if="!isMobile">Me</span>
+          <v-icon v-else>mdi-account</v-icon>
+        </v-btn>
+      </a>
+      <a href="#work" v-if="!isMobile">
+        <v-btn text rounded>
+          <span v-if="!isMobile">Work</span>
+          <v-icon v-else>mdi-graph</v-icon>
+        </v-btn>
+      </a>
+      <a href="#project">
+        <v-btn text rounded>
+          <span v-if="!isMobile">Projects</span>
+          <v-icon v-else>mdi-view-comfy</v-icon>
+        </v-btn>
+      </a>
+      <a href="#contact">
+        <v-btn text rounded>
+          <span v-if="!isMobile">Contact</span>
+          <v-icon v-else>mdi-chat</v-icon>
+        </v-btn>
+      </a>
+    </v-app-bar>
 
-        <v-spacer></v-spacer>
-        <a href="#profile">
-          <v-btn text rounded data-aos="fade-left">
-            <span v-if="!isMobile">Me</span>
-            <v-icon v-else>mdi-account</v-icon>
-          </v-btn>
-        </a>
-        <a href="#work" v-if="!isMobile">
-          <v-btn text rounded data-aos="fade-left">
-            <span v-if="!isMobile">Work</span>
-            <v-icon v-else>mdi-graph</v-icon>
-          </v-btn>
-        </a>
-        <a href="#project" data-aos="fade-left">
-          <v-btn text rounded>
-            <span v-if="!isMobile">Projects</span>
-            <v-icon v-else>mdi-view-comfy</v-icon>
-          </v-btn>
-        </a>
-        <a href="#contact" data-aos="fade-left">
-          <v-btn text rounded>
-            <span v-if="!isMobile">Contact</span>
-            <v-icon v-else>mdi-chat</v-icon>
-          </v-btn>
-        </a>
-      </v-app-bar>
-    </div>
-
-    <div id="wrappery">
+    <v-main>
       <v-card class="profile">
         <div class="details-wrapper">
-          <img data-aos="zoom-in" id="profile" src="~/static/icon.jpg" alt="logo" />
+          <img id="profile" src="~/static/icon.jpg" alt="logo" />
 
           <span class="name"> Overcomer Emiator </span>
 
@@ -116,7 +112,7 @@
           </div>
 
           <v-card-actions>
-            <v-btn block data-aos="flip-up" text outlined rounded @click="openNewPage('/resume')"
+            <v-btn block text outlined rounded @click="openNewPage('/resume')"
               ><v-icon left>mdi-account</v-icon> Resume
             </v-btn>
           </v-card-actions>
@@ -128,7 +124,7 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Internship </v-card-title>
@@ -141,7 +137,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>FrontEnd Engineer </v-card-title>
@@ -161,7 +157,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>FullStack Engineer </v-card-title>
@@ -181,24 +177,6 @@
                 </v-card>
               </v-hover>
             </v-col>
-             <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
-              <v-hover v-slot:default="{ hover }" close-delay="200">
-                <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>Hackathon </v-card-title>
-                  <v-card-subtitle>2020</v-card-subtitle>
-                  <v-card-text>
-                    Team Lead at Saucecode2020 Hackathon Competetion
-                  </v-card-text>
-                  <v-card-actions>
-                    <a href="https://arcadialive.netlify.app/"
-                      ><v-btn small text link
-                        ><v-icon left>mdi-link</v-icon> Link</v-btn
-                      ></a
-                    >
-                  </v-card-actions>
-                </v-card>
-              </v-hover>
-            </v-col>
           </v-row>
         </v-card-text>
       </v-card>
@@ -210,7 +188,7 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Xceldeveloper</v-card-title>
@@ -244,7 +222,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>XcelMusic </v-card-title>
@@ -273,7 +251,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>XcelVideo </v-card-title>
@@ -296,7 +274,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>MAwaters webapp </v-card-title>
@@ -332,7 +310,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>MAwaters Androidapp </v-card-title>
@@ -351,7 +329,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Project Amber </v-card-title>
@@ -393,7 +371,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Video player </v-card-title>
@@ -433,7 +411,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Audio player </v-card-title>
@@ -469,7 +447,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Text Editor </v-card-title>
@@ -502,7 +480,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Automated Quiz </v-card-title>
@@ -531,7 +509,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>GPA Calculator</v-card-title>
@@ -560,7 +538,7 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col :cols="isMobile ? 12 : 6">
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Video Camera </v-card-title>
@@ -598,67 +576,65 @@
           </v-row>
         </v-card-text>
       </v-card>
-      <br />
-    </div>
 
-    <div class="footerx">
-      <v-row class="fill-height ma-0" align="center" justify="center">
-        <div class="contact-wrapper" id="contact" data-aos="zoom-in">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <a v-on="on" href="mailto:xceldeveloper@gmail.com"
-                ><v-btn large icon><v-icon>mdi-gmail</v-icon></v-btn></a
-              >
-            </template>
-            <span>xceldeveloper@gmail.com</span>
-          </v-tooltip>
+      <div class="footerx">
+        <v-row class="fill-height ma-0" align="center" justify="center">
+          <div class="contact-wrapper" id="contact">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a v-on="on" href="mailto:xceldeveloper@gmail.com"
+                  ><v-btn large icon><v-icon>mdi-gmail</v-icon></v-btn></a
+                >
+              </template>
+              <span>xceldeveloper@gmail.com</span>
+            </v-tooltip>
 
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <a v-on="on" href="https://twitter.com/xceldeveloper"
-                ><v-btn large icon><v-icon>mdi-twitter</v-icon></v-btn></a
-              >
-            </template>
-            <span>xceldeveloper</span>
-          </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a v-on="on" href="https://twitter.com/xceldeveloper"
+                  ><v-btn large icon><v-icon>mdi-twitter</v-icon></v-btn></a
+                >
+              </template>
+              <span>xceldeveloper</span>
+            </v-tooltip>
 
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <a v-on="on" href="https://instagram.com/xceldeveloper"
-                ><v-btn large icon><v-icon>mdi-instagram</v-icon></v-btn></a
-              >
-            </template>
-            <span>xceldeveloper</span>
-          </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a v-on="on" href="https://instagram.com/xceldeveloper"
+                  ><v-btn large icon><v-icon>mdi-instagram</v-icon></v-btn></a
+                >
+              </template>
+              <span>xceldeveloper</span>
+            </v-tooltip>
 
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <a v-on="on" href="https://github.com/xceldeveloper"
-                ><v-btn large icon><v-icon>mdi-github</v-icon></v-btn></a
-              >
-            </template>
-            <span>xceldeveloper</span>
-          </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a v-on="on" href="https://github.com/xceldeveloper"
+                  ><v-btn large icon><v-icon>mdi-github</v-icon></v-btn></a
+                >
+              </template>
+              <span>xceldeveloper</span>
+            </v-tooltip>
 
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <a v-on="on" href="https://wa.me/2348158696460"
-                ><v-btn large icon><v-icon>mdi-whatsapp</v-icon></v-btn></a
-              >
-            </template>
-            <span>+2348158696460</span>
-          </v-tooltip>
-        </div>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a v-on="on" href="https://wa.me/2348158696460"
+                  ><v-btn large icon><v-icon>mdi-whatsapp</v-icon></v-btn></a
+                >
+              </template>
+              <span>+2348158696460</span>
+            </v-tooltip>
+          </div>
 
-        <span class="full-year"
-          ><v-icon right>mdi-copyright</v-icon> xceldeveloper
-          {{ new Date().getFullYear() }}</span
-        >
-      </v-row>
-    </div>
+          <span class="full-year"
+            ><v-icon right>mdi-copyright</v-icon> xceldeveloper
+            {{ new Date().getFullYear() }}</span
+          >
+        </v-row>
+      </div>
+    </v-main>
   </div>
 </template>
-
 <script>
 import device_mixin from '~/mixins/device_mixin.js'
 import navigation_mixin from '~/mixins/navigation_mixin.js'
@@ -673,90 +649,7 @@ export default {
   mounted() {},
 }
 </script>
-
 <style lang="scss" scoped>
-#wrapper {
-  width: 100%;
-  height: 100vh;
-  background-color: transparent;
-}
-
-#wrappery {
-  width: 100%;
-  background-color: #121212;
-  // min-height: calc(100vh - 50px);
-  height: auto;
-  margin: 50px 0px 0px 0px; //faker for navbar so animtion can work
-}
-
-.nav-wrapper {
-  padding: 0px;
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  z-index: 100;
-  top: 0px;
-  padding: 0px;
-  margin: 0px;
-  height: 50px;
-}
-
-.footerx {
-  width: 100%;
-  height: auto;
-  padding: 50px 0px;
-  background-color: #101010;
-}
-
-.contact-wrapper {
-  border: 1px solid #fff;
-  padding: 3px 10px;
-  border-radius: 30px;
-}
-
-.full-year {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin: 20px auto;
-}
-
-a {
-  text-decoration: none;
-}
-
-.details-wrapper .name {
-  display: block;
-  width: 100%;
-  font-size: 20px;
-  font-weight: block;
-  font-family: sans-serif;
-  text-align: center;
-  margin: 25px auto;
-}
-
-.short-info {
-  word-spacing: 0px;
-}
-
-.short-info b {
-  color: #fff;
-}
-
-.box {
-  height: auto;
-  background-color: #121212;
-}
-
-.dev-mode {
-  color: #eeddee;
-  font-size: 12px;
-  display: block;
-  width: 100%;
-  text-align: right;
-  padding: 5px;
-}
-
 @media screen and (min-width: 767px) {
   *::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -823,7 +716,134 @@ a {
   }
 }
 
+#wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: #121212;
+}
+
+.details-wrapper .name {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  font-weight: block;
+  font-family: sans-serif;
+  text-align: center;
+  margin: 25px auto;
+}
+
+.short-info {
+  word-spacing: 0px;
+}
+
+.short-info b {
+  color: #fff;
+}
+
+.box {
+  height: auto;
+  background-color: #121212;
+}
+
+.dev-mode {
+  color: #eeddee;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 5px;
+}
+
+.footerx {
+  width: 100%;
+  height: auto;
+  padding: 50px 0px;
+  background-color: #101010;
+}
+
+.contact-wrapper {
+  border: 1px solid #fff;
+  padding: 3px 10px;
+  border-radius: 30px;
+}
+
+.full-year {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 20px auto;
+}
+
+a {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile {
+    margin: 50px auto;
+    margin-top: 60px;
+    width: 99%;
+    height: auto;
+    padding: 5px;
+    background-color: #101010;
+  }
+
+  .project,
+  .work {
+    margin: 50px auto;
+    margin-top: 50px;
+    width: 99%;
+    max-width: 850px;
+    height: auto;
+    background-color: #101010;
+  }
+
+  .details-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .profile img {
+    display: block;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0px 2px 3px rgba(255, 255, 255, 0.6);
+  }
+
+  .type-of-developer,
+  .short-info,
+  .skills,
+  .languages {
+    text-align: center;
+    display: block;
+    margin: 30px auto;
+    width: 95%;
+    word-spacing: 3px;
+    color: rgb(201, 201, 201);
+  }
+}
+
+/*for iphone X and others needs to come last or it would confilct with laptop screen*/
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  *::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: rgb(17, 17, 17);
+  }
+
+  *::-webkit-scrollbar {
+    width: 0px;
+    background-color: rgb(17, 17, 17);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(17, 17, 17);
+    border: 1px solid #7c7b7b;
+    border-radius: 1px;
+  }
+
   .profile {
     margin: 50px auto;
     margin-top: 60px;
