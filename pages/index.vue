@@ -37,7 +37,12 @@
     <div id="wrappery">
       <v-card class="profile">
         <div class="details-wrapper">
-          <img data-aos="zoom-in" id="profile" src="~/static/icon.jpg" alt="logo" />
+          <img
+            data-aos="zoom-in"
+            id="profile"
+            src="~/static/icon.jpg"
+            alt="logo"
+          />
 
           <span class="name"> Overcomer Emiator </span>
 
@@ -116,7 +121,13 @@
           </div>
 
           <v-card-actions>
-            <v-btn block data-aos="flip-up" text outlined rounded @click="openNewPage('/resume')"
+            <v-btn
+              block
+              data-aos="flip-up"
+              text
+              outlined
+              rounded
+              @click="openNewPage('/resume')"
               ><v-icon left>mdi-account</v-icon> Resume
             </v-btn>
           </v-card-actions>
@@ -128,7 +139,10 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Internship </v-card-title>
@@ -141,7 +155,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>FrontEnd Engineer </v-card-title>
@@ -161,7 +178,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>FullStack Engineer </v-card-title>
@@ -181,7 +201,10 @@
                 </v-card>
               </v-hover>
             </v-col>
-             <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Hackathon </v-card-title>
@@ -210,7 +233,10 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Xceldeveloper</v-card-title>
@@ -244,7 +270,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>XcelMusic </v-card-title>
@@ -273,7 +302,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>XcelVideo </v-card-title>
@@ -296,7 +328,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>MAwaters webapp </v-card-title>
@@ -332,7 +367,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>MAwaters Androidapp </v-card-title>
@@ -351,7 +389,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Project Amber </v-card-title>
@@ -393,7 +434,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Video player </v-card-title>
@@ -433,7 +477,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Audio player </v-card-title>
@@ -469,7 +516,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Text Editor </v-card-title>
@@ -502,7 +552,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Automated Quiz </v-card-title>
@@ -531,7 +584,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-right'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>GPA Calculator</v-card-title>
@@ -560,7 +616,10 @@
               </v-hover>
             </v-col>
 
-            <v-col :cols="isMobile ? 12 : 6" :data-aos="isMobile ? 'fade-up' : 'fade-left'">
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Video Camera </v-card-title>
@@ -620,6 +679,17 @@
               >
             </template>
             <span>xceldeveloper</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <a
+                v-on="on"
+                href="https://linkedin.com/in/overcomer-emiator-5573141b2"
+                ><v-btn large icon><v-icon>mdi-linkedin</v-icon></v-btn></a
+              >
+            </template>
+            <span>Overcomer Emiator</span>
           </v-tooltip>
 
           <v-tooltip bottom>
