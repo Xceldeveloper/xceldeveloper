@@ -10,7 +10,7 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - xceldeveloper',
-    title: 'Fullstack developer',
+    title: 'Overcomer Emiator - Fullstack developer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
