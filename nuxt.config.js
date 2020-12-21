@@ -9,8 +9,8 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - xceldeveloper',
-    title: 'Overcomer Emiator - Fullstack developer',
+    titleTemplate: '%s ',
+    title: 'Overcomer Emiator - Passionate Developer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -48,7 +48,28 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyAtcGelZ0OOFvAiTCyc4iSIAP02TLSbTsc",
+          authDomain: "xceldeveloper-app.firebaseapp.com",
+          projectId: "xceldeveloper-app",
+          storageBucket: "xceldeveloper-app.appspot.com",
+          messagingSenderId: "789069451228",
+          appId: "1:789069451228:web:ffeda2a912eddafa504919",
+          measurementId: "G-8Z75SHZL4M"
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      }
+    ]
   ],
+
+  firebase: {
+    // options
+ },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
