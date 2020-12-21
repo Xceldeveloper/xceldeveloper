@@ -41,7 +41,6 @@
             data-aos="zoom-in"
             id="profile"
             src="~/static/icon.jpg"
-            alt="logo"
           />
 
           <span class="name"> Overcomer Emiator </span>
