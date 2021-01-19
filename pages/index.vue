@@ -59,8 +59,11 @@
             I design simple beautiful software Applications ranging from
             <b>Websites</b>, <b>Blogs</b> to <b>Android</b> Apps using a variety
             software Technologies such as <b>Nuxt/Vuejs</b> , <b>JQuery</b>,
-            <b>Nativescript</b>, <b>Django</b>.
-            <p>I love talking about tech related topics</p>
+            <b>Nativescript</b>, <b>Django</b> and wth <b>Flutter</b> soon.
+            <p>I can work in teams to build meaniful and productive softwares, I also have
+              the ability to work with minimal supervision as i have the ability to tackle 
+              problems by myself.
+            </p>
           </div>
 
           <div class="skills">
@@ -86,6 +89,14 @@
             </v-chip> -->
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-django</v-icon> Django
+            </v-chip>
+
+             <v-chip link outlined style="margin: 5px auto">
+              <v-icon left>mdi-flutter</v-icon> Flutter
+            </v-chip>
+
+               <v-chip link outlined style="margin: 5px auto">
+              <v-icon left>mdi-tailwind-css</v-icon> Tailwindcss
             </v-chip>
           </div>
 
@@ -134,9 +145,31 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col
+                     <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="200">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>Tarbai </v-card-title>
+                  <v-card-subtitle>2021</v-card-subtitle>
+                  <v-card-text>
+                    Building Tarbai for a Parcel Delivery Company...
+                  </v-card-text>
+                   <v-card-actions>
+                    <a href="https://tarbai.com">
+                      <v-btn small text link
+                        ><v-icon left>mdi-link</v-icon> Link</v-btn
+                      >
+                    </a>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </v-col>
+
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -152,14 +185,14 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>FrontEnd Engineer </v-card-title>
                   <v-card-subtitle>2020</v-card-subtitle>
                   <v-card-text>
-                    Am a Frontend Developer working at 2GFields... working in a
+                   I am a Frontend Developer contracting at 2GFields... working in a
                     division called Pord
                   </v-card-text>
                   <v-card-actions>
@@ -175,7 +208,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -198,14 +231,14 @@
             </v-col>
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-up'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Hackathon </v-card-title>
                   <v-card-subtitle>2020</v-card-subtitle>
                   <v-card-text>
-                    Team Lead at Saucecode2020 Hackathon Competetion
+                    Team Lead at Saucecode2020 Hackathon Competition
                   </v-card-text>
                   <v-card-actions>
                     <a href="https://arcadialive.netlify.app/"
