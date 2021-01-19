@@ -61,7 +61,8 @@ export default {
           measurementId: "G-8Z75SHZL4M"
         },
         services: {
-          auth: true // Just as example. Can be any other service.
+          auth: true, // Just as example. Can be any other service.
+          analytics:true
         }
       }
     ]
