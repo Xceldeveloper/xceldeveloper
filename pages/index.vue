@@ -37,11 +37,7 @@
     <div id="wrappery">
       <v-card class="profile">
         <div class="details-wrapper">
-          <img
-            data-aos="zoom-in"
-            id="profile"
-            src="~/static/icon.jpg"
-          />
+          <img data-aos="zoom-in" id="profile" src="~/static/icon.jpg" />
 
           <span class="name"> Overcomer Emiator </span>
 
@@ -269,30 +265,36 @@
               </v-hover>
             </v-col>
 
-                  <v-col
+            <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Vue-device-detector-js</v-card-title>
-                  <v-card-text>A vue wrapper library for device-detector-js </v-card-text>
+                  <v-card-text
+                    >A vue wrapper library for device-detector-js
+                  </v-card-text>
                   <v-card-subtitle>
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-vuejs</v-icon> Vuejs
                     </v-chip>
-                     <v-chip small link outlined style="margin: 5px auto">
+                    <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-npm</v-icon> Npm
                     </v-chip>
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                  <a href="https://github.com/xceldeveloper/vue-device-detector-js">
-                      <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
+                    <a
+                      href="https://github.com/xceldeveloper/vue-device-detector-js"
                     >
-                  </a>
-                    <a href="https://www.npmjs.com/package/vue-device-detector-js">
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a
+                      href="https://www.npmjs.com/package/vue-device-detector-js"
+                    >
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
                       >
@@ -340,22 +342,31 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>XcelVideo </v-card-title>
+                  <v-card-title>Project Lucia </v-card-title>
                   <v-card-text>
-                    Cool Android Music Player with nice features...
+                    A minimal beautiful Vuejs Landng page..
                   </v-card-text>
                   <v-card-subtitle>
                     <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-language-kotlin</v-icon> Kotlin
+                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      Glitch
                     </v-chip>
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                    <!-- <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
-                    > -->
+                    <a href="https://glitch.com/edit/#!/vue-intern">
+                      <v-btn small text link
+                        ><v-icon left>mdi-code-tags</v-icon> Code</v-btn
+                      >
+                    </a>
+                    <a href="https://vue-intern.glitch.me/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
                   </v-card-actions>
-                  <span class="dev-mode">under development</span>
                 </v-card>
               </v-hover>
             </v-col>
