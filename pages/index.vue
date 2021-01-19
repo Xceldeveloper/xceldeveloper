@@ -724,14 +724,14 @@
             <span>Overcomer Emiator</span>
           </v-tooltip>
 
-          <v-tooltip bottom>
+          <!-- <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <a v-on="on" href="https://instagram.com/xceldeveloper"
                 ><v-btn large icon><v-icon>mdi-instagram</v-icon></v-btn></a
               >
             </template>
             <span>xceldeveloper</span>
-          </v-tooltip>
+          </v-tooltip> -->
 
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
