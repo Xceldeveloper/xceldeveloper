@@ -925,7 +925,7 @@ a {
     margin-top: 200px;
     width: 90%;
     max-width: 850px;
-    height: 700px;
+    height: 730px;
     background-color: #101010;
     position: relative;
   }
