@@ -404,7 +404,7 @@
               </v-hover>
             </v-col>
 
-            <v-col
+            <!-- <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
@@ -463,7 +463,7 @@
                   <span class="dev-mode">under development</span>
                 </v-card>
               </v-hover>
-            </v-col>
+            </v-col> -->
 
             <v-col
               :cols="isMobile ? 12 : 6"
