@@ -711,6 +711,9 @@
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-vuejs</v-icon>Vue
                     </v-chip>
+                      <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-nuxt</v-icon>Nuxt
+                    </v-chip>
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
