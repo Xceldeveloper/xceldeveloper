@@ -126,7 +126,7 @@
             </v-chip> -->
           </div>
 
-          <v-card-actions>
+          <!-- <v-card-actions>
             <v-btn
               block
               data-aos="flip-up"
@@ -136,7 +136,7 @@
               @click="openNewPage('/resume')"
               ><v-icon left>mdi-account</v-icon> Resume
             </v-btn>
-          </v-card-actions>
+          </v-card-actions> -->
         </div>
       </v-card>
 
