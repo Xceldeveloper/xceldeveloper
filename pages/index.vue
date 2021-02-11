@@ -60,9 +60,10 @@
             <b>Websites</b>, <b>Blogs</b> to <b>Android</b> Apps using a variety
             software Technologies such as <b>Nuxt/Vuejs</b> , <b>JQuery</b>,
             <b>Nativescript</b>, <b>Django</b> and wth <b>Flutter</b> soon.
-            <p>I can work in teams to build meaniful and productive softwares, I also have
-              the ability to work with minimal supervision as i have the ability to tackle 
-              problems by myself.
+            <p>
+              I can work in teams to build meaniful and productive softwares, I
+              also have the ability to work with minimal supervision as i have
+              the ability to tackle problems by myself.
             </p>
           </div>
 
@@ -75,7 +76,7 @@
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-vuetify</v-icon> Vuetify
             </v-chip>
-    <v-chip link outlined style="margin: 5px auto">
+            <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-nodejs</v-icon> Nodejs
             </v-chip>
 
@@ -89,7 +90,6 @@
               <v-icon left>mdi-materializecss</v-icon> Materialiizecss
             </v-chip>
 
-           
             <v-chip link outlined style="margin: 5px auto">
               <v-icon>mdi-flutter</v-icon> Flutter
             </v-chip>
@@ -97,11 +97,11 @@
               <v-icon left>mdi-django</v-icon> Django
             </v-chip>
 
-             <v-chip link outlined style="margin: 5px auto">
+            <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-flutter</v-icon> Flutter
             </v-chip>
 
-               <v-chip link outlined style="margin: 5px auto">
+            <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-tailwind-css</v-icon> Tailwindcss
             </v-chip>
           </div>
@@ -132,7 +132,7 @@
             </v-chip> -->
           </div>
 
-          <!-- <v-card-actions>
+          <v-card-actions>
             <v-btn
               block
               data-aos="flip-up"
@@ -142,7 +142,7 @@
               @click="openNewPage('/resume')"
               ><v-icon left>mdi-account</v-icon> Resume
             </v-btn>
-          </v-card-actions> -->
+          </v-card-actions>
         </div>
       </v-card>
 
@@ -151,7 +151,7 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-                     <v-col
+            <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
@@ -162,7 +162,7 @@
                   <v-card-text>
                     Building Tarbai for a Parcel Delivery Company...
                   </v-card-text>
-                   <v-card-actions>
+                  <v-card-actions>
                     <a href="https://tarbai.com">
                       <v-btn small text link
                         ><v-icon left>mdi-link</v-icon> Link</v-btn
@@ -198,8 +198,8 @@
                   <v-card-title>FrontEnd Engineer </v-card-title>
                   <v-card-subtitle>2020</v-card-subtitle>
                   <v-card-text>
-                   I am a Frontend Developer contracting at 2GFields... working in a
-                    division called Pord
+                    I am a Frontend Developer contracting at 2GFields... working
+                    in a division called Pord
                   </v-card-text>
                   <v-card-actions>
                     <a href="https://pord.com.ng">
@@ -343,7 +343,7 @@
               </v-hover>
             </v-col>
 
-              <v-col
+            <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
@@ -351,7 +351,7 @@
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>XcelMart </v-card-title>
                   <v-card-text>
-                   A mini online store for a small business
+                    A mini online store for a small business
                   </v-card-text>
                   <v-card-subtitle>
                     <v-chip small link outlined style="margin: 5px auto">
@@ -363,16 +363,14 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                   <a
+                    <a
                       href="https://github.com/Xceldeveloper/xcel-mart-frontend"
                     >
                       <v-btn small text link
                         ><v-icon left>mdi-github</v-icon> github</v-btn
                       >
                     </a>
-                    <a
-                      href="https://xcelmart.netlify.app"
-                    >
+                    <a href="https://xcelmart.netlify.app">
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
                       >
@@ -385,6 +383,43 @@
             <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="200">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>XcelDictionary </v-card-title>
+                  <v-card-text>
+                    A simple dictionary webapp with speech to text support
+                  </v-card-text>
+                  <v-card-subtitle>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-nuxt</v-icon> Nuxtjs
+                    </v-chip>
+                  </v-card-subtitle>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <a
+                      href="https://github.com/Xceldeveloper/xceldictionary-web"
+                    >
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a href="https://xceldictionary.netlify.app/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </v-col>
+
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -402,9 +437,7 @@
                     <!-- <v-btn small text link
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
-                    <a
-                      href="https://apk.center/com.xmusicplayer.xcel.html"
-                    >
+                    <a href="https://apk.center/com.xmusicplayer.xcel.html">
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
                       >
@@ -416,7 +449,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -451,7 +484,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -496,7 +529,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -539,7 +572,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -578,7 +611,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -614,7 +647,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -646,7 +679,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-up'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -656,7 +689,7 @@
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-vuejs</v-icon>Vue
                     </v-chip>
-                      <v-chip small link outlined style="margin: 5px auto">
+                    <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-nuxt</v-icon>Nuxt
                     </v-chip>
                   </v-card-subtitle>

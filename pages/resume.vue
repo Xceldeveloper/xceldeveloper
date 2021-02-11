@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      resume: require('~/static/xceldeveloper_resume.pdf'),
+      resume: require('~/static/overcomer-emiator-resume.pdf'),
     }
   },
   mounted() {
