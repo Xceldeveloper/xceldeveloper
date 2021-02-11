@@ -449,67 +449,6 @@
               </v-hover>
             </v-col>
 
-            <!-- <v-col
-              :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
-            >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
-                <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>MAwaters webapp </v-card-title>
-                  <v-card-text> A Website for a Client Company... </v-card-text>
-                  <v-card-subtitle>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
-                    </v-chip>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-nuxt</v-icon> Nuxtjs
-                    </v-chip>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-nuxt</v-icon> Vuetify
-                    </v-chip>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-database</v-icon> Postgresql
-                    </v-chip>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-digital-ocean</v-icon> Digital
-                      Ocean
-                    </v-chip>
-                  </v-card-subtitle>
-                  <v-divider></v-divider>
-                  <v-card-actions>
-                    <a href="https://mawatersapp.web.app/">
-                      <v-btn text link small
-                        ><v-icon left>mdi-eye</v-icon> live</v-btn
-                      >
-                    </a>
-                  </v-card-actions>
-                  <span class="dev-mode">under development</span>
-                </v-card>
-              </v-hover>
-            </v-col>
-
-            <v-col
-              :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
-            >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
-                <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>MAwaters Androidapp </v-card-title>
-                  <v-card-text>
-                    An Android App for a Client Company...
-                  </v-card-text>
-                  <v-card-subtitle>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-language-kotlin</v-icon> Kotlin
-                    </v-chip>
-                  </v-card-subtitle>
-                  <v-divider></v-divider>
-                  <v-card-actions> </v-card-actions>
-                  <span class="dev-mode">under development</span>
-                </v-card>
-              </v-hover>
-            </v-col> -->
-
             <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
