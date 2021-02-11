@@ -31,6 +31,12 @@ import device_mixin from '~/mixins/device_mixin.js'
 import navigation_mixin from '~/mixins/navigation_mixin.js'
 export default {
   mixins: [device_mixin, navigation_mixin],
+  head() {
+    const title = 'Resume'
+    return {
+      title,
+    }
+  },
   components: {
     pdf,
   },
