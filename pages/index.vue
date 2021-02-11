@@ -75,6 +75,10 @@
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-vuetify</v-icon> Vuetify
             </v-chip>
+    <v-chip link outlined style="margin: 5px auto">
+              <v-icon left>mdi-nodejs</v-icon> Nodejs
+            </v-chip>
+
             <v-chip outlined style="margin: 5px auto">
               <v-icon left>mdi-nativescript</v-icon> Nativescript
             </v-chip>
@@ -84,9 +88,11 @@
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-materializecss</v-icon> Materialiizecss
             </v-chip>
-            <!-- <v-chip link outlined style="margin: 5px auto">
+
+           
+            <v-chip link outlined style="margin: 5px auto">
               <v-icon>mdi-flutter</v-icon> Flutter
-            </v-chip> -->
+            </v-chip>
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-django</v-icon> Django
             </v-chip>
@@ -397,7 +403,7 @@
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
                     <a
-                      href="https://appgrooves.com/publisher/Xceldeveloper/xceldeveloper"
+                      href="https://apk.center/com.xmusicplayer.xcel.html"
                     >
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
