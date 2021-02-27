@@ -158,7 +158,7 @@
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Tarbai </v-card-title>
-                  <v-card-subtitle>2021</v-card-subtitle>
+                  <v-card-subtitle><b>Frontend Developer</b> - 2021</v-card-subtitle>
                   <v-card-text>
                     Building Tarbai for a Parcel Delivery Company...
                   </v-card-text>
@@ -179,11 +179,10 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>Internship </v-card-title>
-                  <v-card-subtitle>2019</v-card-subtitle>
+                  <v-card-title>Ambrose Alli University ICT Dept </v-card-title>
+                  <v-card-subtitle><b>Internship</b> - 2019</v-card-subtitle>
                   <v-card-text>
-                    I did my Internship at Ambrose Ali University ICT
-                    Department...
+                    Intern at The Department of Information and Telecomunication Ambrose Alli University for a period of 6 months
                   </v-card-text>
                 </v-card>
               </v-hover>
@@ -195,8 +194,8 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>FrontEnd Engineer </v-card-title>
-                  <v-card-subtitle>2020</v-card-subtitle>
+                  <v-card-title>2GFields </v-card-title>
+                  <v-card-subtitle> <b>Per-time Frontend Developer</b> -  presently</v-card-subtitle>
                   <v-card-text>
                     I am a Frontend Developer contracting at 2GFields... working
                     in a division called Pord
@@ -218,15 +217,13 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>FullStack Engineer </v-card-title>
-                  <v-card-subtitle>2020</v-card-subtitle>
+                  <v-card-title>Scelloo </v-card-title>
+                  <v-card-subtitle><b>Frontend Developer</b> - presently</v-card-subtitle>
                   <v-card-text>
-                    Senior Software Engineer at MAwaters Enterprise helping to
-                    <b>Build</b> and <b>Manage</b> their <b>Website</b> and
-                    <b>Android</b> Applications for their day to day business
+                   I am a frontend developer  at Scelloo a Saas company.
                   </v-card-text>
                   <v-card-actions>
-                    <a href="https://mawatersapp.web.app/"
+                    <a href="https://scelloo.com/"
                       ><v-btn small text link
                         ><v-icon left>mdi-link</v-icon> Link</v-btn
                       ></a
@@ -241,7 +238,7 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>Hackathon </v-card-title>
+                  <v-card-title>Saucecode2020 </v-card-title>
                   <v-card-subtitle>2020</v-card-subtitle>
                   <v-card-text>
                     Team Lead at Saucecode2020 Hackathon Competition
@@ -269,7 +266,7 @@
           <v-row align="center" justify="center">
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
