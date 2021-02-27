@@ -274,7 +274,7 @@
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Xceldeveloper</v-card-title>
-                  <v-card-text> My Website... </v-card-text>
+                  <v-card-text> This Portfolio Website... </v-card-text>
                   <v-card-subtitle>
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-vuejs</v-icon> Vuejs
@@ -295,6 +295,45 @@
                       ><v-icon left>mdi-github</v-icon> github</v-btn
                     > -->
                     <a href="/">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </v-col>
+
+             <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="200">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>Gitpord</v-card-title>
+                  <v-card-text>Github profile page respositries tab clone with all data been dynamic which is 
+                    offcourse powered by github api
+                     </v-card-text>
+                  <v-card-subtitle>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-nuxt</v-icon> Nuxtjs
+                    </v-chip>
+
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-web</v-icon> REST
+                    </v-chip>
+                  </v-card-subtitle>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                   <a href="https://github.com/Xceldeveloper/gitpord">
+                      <v-btn small text link
+                      ><v-icon left>mdi-github</v-icon> github</v-btn
+                    >
+                   </a>
+                    <a href="https://xcelgit.netlify.app/?username=xceldeveloper">
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
                       >
@@ -679,7 +718,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-up'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
