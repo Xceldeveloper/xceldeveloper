@@ -9,7 +9,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s ',
+    titleTemplate: '',
     title: 'Overcomer Emiator - Passionate Developer',
     meta: [
       { charset: 'utf-8' },
