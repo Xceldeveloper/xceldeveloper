@@ -43,20 +43,20 @@
 
           <span class="type-of-developer">
             <v-chip link outlined style="margin: 5px auto">
-              Frontend Developer
+              Web Developer
             </v-chip>
 
             <v-chip link outlined style="margin: 5px auto">
-              Backend Developer
+              Mobile Developer
             </v-chip>
 
             <v-chip link outlined style="margin: 5px auto">
-              Android Developer
+              Open Source Contributor
             </v-chip>
           </span>
 
           <div class="short-info">
-            I design simple beautiful software Applications ranging from
+            <!-- I design simple beautiful software Applications ranging from
             <b>Websites</b>, <b>Blogs</b> to <b>Android</b> Apps using a variety
             software Technologies such as <b>Nuxt/Vuejs</b> , <b>JQuery</b>,
             <b>Nativescript</b>, <b>Django</b> and wth <b>Flutter</b> soon.
@@ -64,6 +64,22 @@
               I can work in teams to build meaniful and productive softwares, I
               also have the ability to work with minimal supervision as i have
               the ability to tackle problems by myself.
+            </p> -->
+
+            <p>
+              Hi, I am a passionate developer with good experience designing
+              Webapps, Blogs, Android Apps, Opensource Projects, etc utilizing
+              varieties of Software Technologies which include
+              <b
+                >Vuejs, Nuxt, Flutter, Nodejs, Django, JQuery, Tailwindcss,
+                Scss, Git</b
+              >
+            </p>
+            <p>
+              I have experience working remotely building meaningful and
+              productive software with also the ability to work with minimal
+              supervision as I have the zeal to tackle any problems I might
+              encounter independently to achieve the desired result.
             </p>
           </div>
 
@@ -80,15 +96,15 @@
               <v-icon left>mdi-nodejs</v-icon> Nodejs
             </v-chip>
 
-            <v-chip outlined style="margin: 5px auto">
-              <v-icon left>mdi-nativescript</v-icon> Nativescript
-            </v-chip>
             <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-jquery</v-icon> JQuery
             </v-chip>
+
             <v-chip link outlined style="margin: 5px auto">
-              <v-icon left>mdi-materializecss</v-icon> Materialiizecss
+              <v-icon left>mdi-git</v-icon> Git
             </v-chip>
+
+            <br />
 
             <v-chip link outlined style="margin: 5px auto">
               <v-icon>mdi-flutter</v-icon> Flutter
@@ -112,10 +128,6 @@
             </v-chip>
 
             <v-chip link outlined style="margin: 5px auto">
-              <v-icon left>mdi-language-typescript</v-icon> Typescript
-            </v-chip>
-
-            <v-chip link outlined style="margin: 5px auto">
               <v-icon left>mdi-language-java</v-icon> Java
             </v-chip>
 
@@ -127,9 +139,13 @@
               <v-icon left>mdi-language-python</v-icon> Python
             </v-chip>
 
-            <!-- <v-chip link outlined style="margin: 5px auto">
-              <v-icon left>mdi-language-dart</v-icon> Dart
-            </v-chip> -->
+            <v-chip link outlined style="margin: 5px auto">
+              <v-icon left>mdi-code-braces-box</v-icon> Dart
+            </v-chip>
+
+            <v-chip link outlined style="margin: 5px auto">
+              <v-icon left>mdi-language-typescript</v-icon> Typescript
+            </v-chip>
           </div>
 
           <v-card-actions>
@@ -151,7 +167,7 @@
         <v-divider></v-divider>
         <v-card-text>
           <v-row align="center" justify="center">
-            <v-col
+            <!-- <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
@@ -171,6 +187,23 @@
                   </v-card-actions>
                 </v-card>
               </v-hover>
+            </v-col> -->
+
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="200">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>Ambrose Alli University ICT Dept </v-card-title>
+                  <v-card-subtitle><b>Internship</b> - 2019</v-card-subtitle>
+                  <v-card-text>
+                    Intern at The Department of Information and
+                    Telecommunication Ambrose Alli University for a period of 6
+                    months
+                  </v-card-text>
+                </v-card>
+              </v-hover>
             </v-col>
 
             <v-col
@@ -179,26 +212,13 @@
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>Ambrose Alli University ICT Dept </v-card-title>
-                  <v-card-subtitle><b>Internship</b> - 2019</v-card-subtitle>
-                  <v-card-text>
-                    Intern at The Department of Information and Telecomunication Ambrose Alli University for a period of 6 months
-                  </v-card-text>
-                </v-card>
-              </v-hover>
-            </v-col>
-
-            <v-col
-              :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
-            >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
-                <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>2GFields </v-card-title>
-                  <v-card-subtitle> <b>Per-time Frontend Developer</b> -  presently</v-card-subtitle>
+                  <v-card-subtitle>
+                    <b>Per-time Frontend Developer</b> - 2020</v-card-subtitle
+                  >
                   <v-card-text>
-                    I am a Frontend Developer contracting at 2GFields... working
-                    in a division called Pord
+                    Per time Developer at 2GFields (Software Company) as a
+                    Frontend Developer working on Pord
                   </v-card-text>
                   <v-card-actions>
                     <a href="https://pord.com.ng">
@@ -213,14 +233,17 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-up'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Scelloo </v-card-title>
-                  <v-card-subtitle><b>Frontend Developer</b> - presently</v-card-subtitle>
+                  <v-card-subtitle
+                    ><b>Frontend Developer</b> - 2021</v-card-subtitle
+                  >
                   <v-card-text>
-                   I am a frontend developer  at Scelloo a Saas company.
+                    Frontend Developer at Scelloo (SaaS Company) exercising my
+                    Vuejs and Tailwindcss skills in building it's Software
                   </v-card-text>
                   <v-card-actions>
                     <a href="https://scelloo.com/"
@@ -232,7 +255,8 @@
                 </v-card>
               </v-hover>
             </v-col>
-            <v-col
+
+            <!-- <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-up'"
             >
@@ -252,7 +276,7 @@
                   </v-card-actions>
                 </v-card>
               </v-hover>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-card-text>
       </v-card>
@@ -266,9 +290,92 @@
           <v-row align="center" justify="center">
             <v-col
               :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="400">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>Vue-device-detector-js</v-card-title>
+                  <v-card-text>
+                    vuejs plugin for the client device detection
+                  </v-card-text>
+                  <v-card-subtitle>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-npm</v-icon> Npm
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-plug</v-icon> vue plugin
+                    </v-chip>
+                  </v-card-subtitle>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <a
+                      href="https://github.com/xceldeveloper/vue-device-detector-js"
+                    >
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a
+                      href="https://www.npmjs.com/package/vue-device-detector-js"
+                    >
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </v-col>
+
+            <v-col
+              :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
+              <v-hover v-slot:default="{ hover }" close-delay="400">
+                <v-card class="box" :elevation="hover ? 16 : 2">
+                  <v-card-title>Vue-theme-manager</v-card-title>
+                  <v-card-text
+                    >A vuejs plugin for Managing theme(s) colors in the whole of
+                    your Vue web app. It has support for Vue 2 and Vue 3
+                  </v-card-text>
+                  <v-card-subtitle>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-npm</v-icon> Npm
+                    </v-chip>
+                    <v-chip small link outlined style="margin: 5px auto">
+                      <v-icon left small>mdi-plugin</v-icon> vue plugin
+                    </v-chip>
+                  </v-card-subtitle>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <a
+                      href="https://github.com/Xceldeveloper/vue-theme-manager"
+                    >
+                      <v-btn small text link
+                        ><v-icon left>mdi-github</v-icon> github</v-btn
+                      >
+                    </a>
+                    <a href="https://www.npmjs.com/package/vue-theme-manager">
+                      <v-btn text link small
+                        ><v-icon left>mdi-eye</v-icon> live</v-btn
+                      >
+                    </a>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
+            </v-col>
+
+            <v-col
+              :cols="isMobile ? 12 : 6"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+            >
+              <v-hover v-slot:default="{ hover }" close-delay="800">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Xceldeveloper</v-card-title>
                   <v-card-text> This Portfolio Website... </v-card-text>
@@ -301,16 +408,17 @@
               </v-hover>
             </v-col>
 
-             <v-col
+            <v-col
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
+              <v-hover v-slot:default="{ hover }" close-delay="800">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Gitpord</v-card-title>
-                  <v-card-text>Github profile page respositries tab clone with all data been dynamic which is 
-                    offcourse powered by github api
-                     </v-card-text>
+                  <v-card-text
+                    >Github profile page respositries tab clone with all data
+                    been dynamic which is offcourse powered by github api
+                  </v-card-text>
                   <v-card-subtitle>
                     <v-chip small link outlined style="margin: 5px auto">
                       <v-icon left small>mdi-vuejs</v-icon> Vuejs
@@ -325,50 +433,13 @@
                   </v-card-subtitle>
                   <v-divider></v-divider>
                   <v-card-actions>
-                   <a href="https://github.com/Xceldeveloper/gitpord">
-                      <v-btn small text link
-                      ><v-icon left>mdi-github</v-icon> github</v-btn
-                    >
-                   </a>
-                    <a href="https://xcelgit.netlify.app/?username=xceldeveloper">
-                      <v-btn text link small
-                        ><v-icon left>mdi-eye</v-icon> live</v-btn
-                      >
-                    </a>
-                  </v-card-actions>
-                </v-card>
-              </v-hover>
-            </v-col>
-
-            <v-col
-              :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
-            >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
-                <v-card class="box" :elevation="hover ? 16 : 2">
-                  <v-card-title>Vue-device-detector-js</v-card-title>
-                  <v-card-text
-                    >A vue wrapper library for device-detector-js
-                  </v-card-text>
-                  <v-card-subtitle>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-vuejs</v-icon> Vuejs
-                    </v-chip>
-                    <v-chip small link outlined style="margin: 5px auto">
-                      <v-icon left small>mdi-npm</v-icon> Npm
-                    </v-chip>
-                  </v-card-subtitle>
-                  <v-divider></v-divider>
-                  <v-card-actions>
-                    <a
-                      href="https://github.com/xceldeveloper/vue-device-detector-js"
-                    >
+                    <a href="https://github.com/Xceldeveloper/gitpord">
                       <v-btn small text link
                         ><v-icon left>mdi-github</v-icon> github</v-btn
                       >
                     </a>
                     <a
-                      href="https://www.npmjs.com/package/vue-device-detector-js"
+                      href="https://xcelgit.netlify.app/?username=xceldeveloper"
                     >
                       <v-btn text link small
                         ><v-icon left>mdi-eye</v-icon> live</v-btn
@@ -455,7 +526,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -485,7 +556,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -522,7 +593,7 @@
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
+              <v-hover v-slot:default="{ hover }" close-delay="800">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Project Amber </v-card-title>
                   <v-card-text>
@@ -567,7 +638,7 @@
               :cols="isMobile ? 12 : 6"
               :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
-              <v-hover v-slot:default="{ hover }" close-delay="200">
+              <v-hover v-slot:default="{ hover }" close-delay="800">
                 <v-card class="box" :elevation="hover ? 16 : 2">
                   <v-card-title>Web Video player </v-card-title>
                   <v-card-text>
@@ -608,7 +679,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -647,7 +718,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-left'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -715,7 +786,7 @@
 
             <v-col
               :cols="isMobile ? 12 : 6"
-              :data-aos="isMobile ? 'fade-up' : 'fade-up'"
+              :data-aos="isMobile ? 'fade-up' : 'fade-right'"
             >
               <v-hover v-slot:default="{ hover }" close-delay="200">
                 <v-card class="box" :elevation="hover ? 16 : 2">
@@ -867,6 +938,12 @@ import navigation_mixin from '~/mixins/navigation_mixin.js'
 
 export default {
   mixins: [device_mixin, navigation_mixin],
+  head() {
+    const title = 'Overcomer Emiator'
+    return {
+      title,
+    }
+  },
   data() {
     return {
       avatar: require('~/static/icon.jpg'),
@@ -981,7 +1058,7 @@ a {
     margin-top: 200px;
     width: 90%;
     max-width: 850px;
-    height: 730px;
+    height: 850px;
     background-color: #101010;
     position: relative;
   }
