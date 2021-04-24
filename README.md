@@ -7,7 +7,7 @@ I am Overcomer Emiator, a web and mobile app developer, ingenious and a passiona
 
 ---
 
-### 📱 Contact [ ](#welcome-badges-4-readmemd-profile)
+## 📱 Contact [ ](#welcome-badges-4-readmemd-profile)
 
 [![Twitter Badge](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/xceldeveloper)
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/overcomer-emiator-5573141b2/)
@@ -15,7 +15,7 @@ I am Overcomer Emiator, a web and mobile app developer, ingenious and a passiona
 [![Whatsapp Badge](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://www.linkedin.com/in/braydon-coyer/)
 
 
-### Languages
+## Languages
 <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="30" height="30"/> <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original.svg" alt="Java" width="30" height="30"/> <img src="https://github.com/devicons/devicon/blob/master/icons/dart/dart-original.svg" alt="Dart" width="30" height="30"/> <img src="https://github.com/devicons/devicon/blob/master/icons/kotlin/kotlin-original.svg" alt="Kotlin" width="30" height="30"/> <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" alt="python" width="30" height="30"/><img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg" alt="CSS" width="30" height="30" />
 <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" alt="HTML" width="30" height="30"/> 
 
@@ -34,8 +34,7 @@ src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="30" h
 
 
 
-### 🧰 Tools
-[]
+## 🧰 Tools
 <img src="https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg" alt="vscode" width="30" height="30"/><img src="https://github.com/devicons/devicon/blob/master/icons/npm/npm-original-wordmark.svg" alt="npm" width="40" height="40"/>
 <img src="https://cdn.worldvectorlogo.com/logos/notion-2.svg" alt="notion" width="30" height="30"/>
 <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" alt="git" width="40" height="45"/>
