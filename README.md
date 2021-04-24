@@ -1,8 +1,8 @@
 [![Xceldeveloper's GitHub Banner](./assets/overcomerheaderj.jpg)](https://xceldeveloper.com)
 
----
 
-## Hello <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px">,
+
+# Hello <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="40px">,
 I am Overcomer Emiator, a web and mobile app developer, ingenious and a passionate developer at heart with acute feel for proper architecture.I have worked with numerous technologies to develop many kind of web applications as solo projects or working professionally for Companies and Individuals. I enjoy researching modern technologies and finest approach to work out problems and i can work with teams, solo or as the case may be with limited to no guidance.
 
 
