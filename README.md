@@ -1,5 +1,5 @@
 [![Xceldeveloper's GitHub Banner](./assets/overcomerheaderj.jpg)](https://xceldeveloper.com)
-### Hi <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px">there.
+### Hi <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px">there,
 I am Overcomer Emiator, a web and mobile app developer, ingenious and a passionate developer at heart with acute feel for proper architecture.I have worked with numerous technologies to develop many kind of web applications as solo projects or working professionally for Companies and Individuals. I enjoy researching modern technologies and finest approach to work out problems and i can work with teams, solo or as the case may be with limited to no guidance.
 
 
@@ -47,6 +47,6 @@ src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="30" h
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xceldeveloper&hide=java,html,css&theme=radical)](https://github.com/xceldeveloper/github-readme-stats) 
 
 
-[![Xceldeveloper's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats) [![Xceldeveloper's  GitHub stats](https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
+[![Xceldeveloper's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats)   [![Xceldeveloper's  GitHub stats](https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
 
 
