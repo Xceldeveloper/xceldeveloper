@@ -35,6 +35,7 @@ src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="30" h
 
 
 ### 🧰 Tools
+[]
 <img src="https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg" alt="vscode" width="30" height="30"/><img src="https://github.com/devicons/devicon/blob/master/icons/npm/npm-original-wordmark.svg" alt="npm" width="40" height="40"/>
 <img src="https://cdn.worldvectorlogo.com/logos/notion-2.svg" alt="notion" width="30" height="30"/>
 <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" alt="git" width="40" height="45"/>
@@ -48,6 +49,6 @@ src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="30" h
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xceldeveloper&hide=java,html,css&theme=radical)](https://github.com/xceldeveloper/github-readme-stats) 
 
 
-[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats)[![Catalin's  GitHub stats] (https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
+[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats) [![Catalin's  GitHub stats](https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
 
 
