@@ -55,7 +55,7 @@ src="https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg" alt="vscode
 ## My gitHub stats
 [![Sparkline](https://stars.medv.io/Naereen/badges.svg)](https://stars.medv.io/Naereen/badges)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xceldeveloper&hide=java,html,css&theme=radical)](https://github.com/xceldeveloper/github-readme-stats) 
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xceldeveloper&hide=html,css&theme=radical)](https://github.com/xceldeveloper/github-readme-stats) 
 
 
 [![Xceldeveloper's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats)   [![Xceldeveloper's  GitHub stats](https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
