@@ -1,4 +1,4 @@
-[![Xceldeveloper's GitHub Banner](./assets/overcomerheaderj.jpg)](https://xceldeveloper.com)
+[![Xceldeveloper's GitHub Banner](./assets/xceldeveloper-cover.jpg)](https://xceldeveloper.com)
 
 
 
