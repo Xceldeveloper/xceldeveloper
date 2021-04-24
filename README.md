@@ -48,6 +48,6 @@ src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" width="30" h
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xceldeveloper&hide=java,html,css&theme=radical)](https://github.com/xceldeveloper/github-readme-stats) 
 
 
-[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats)[![Catalin's  GitHub stats](https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
+[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=xceldeveloper&theme=radical)](https://github.com/xceldeveloper/github-readme-streak-stats)[![Catalin's  GitHub stats] (https://github-readme-stats.vercel.app/api?username=xceldeveloper&theme=radical)](https://github.com/sceldeveloper/github-readme-stats)
 
 
