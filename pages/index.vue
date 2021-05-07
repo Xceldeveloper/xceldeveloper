@@ -1,82 +1,121 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title pb-20">xceldeveloper</h1>
-      <div class="links">
-        <v-text-field
-          name="name"
-          label="label"
-          v-model="wow"
-          id="id"
-        ></v-text-field>
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="wrapper">
+    
+    <app-header :focus="focusHeader ? false : true" :views="views" />
+    <main-cover @hidden="canFocus"/>
+     <div id="over-lap">
+            <div id="over-wrap">
+               <div id="badges" class=" grid grid-cols-3">
+                 <div class="badge-class">
+                   <div style="width:100%;text-align:center;display:block"><v-icon>mdi-web</v-icon> </div> <br>
+                   <div>Web Developer</div>
+                   </div>
+                 <div class="badge-class ">App Developer <v-icon>mdi-app</v-icon>
 
-      <v-btn color="primary">text</v-btn>
-    </div>
+                 </div>
+                 <div class="badge-class">
+                    <span><v-icon>mdi-git</v-icon></span> <br>
+                  <span> Open Source Contributor</span></div>
+               </div>
+            </div>
+          </div>
+
+                <about @visible="whichView('about',$event)"/>
+                <br>
+                <project @visible="whichView('project',$event)"/>
+        
+
+          
+
+
+
+ 
+
+    <div id="box"></div>
   </div>
 </template>
 
 <script>
+import about from '~/components/about.vue';
+import project from '~/components/projects.vue';
+import appHeader from '~/components/header.vue';
+import mainCover from '~/components/main-cover.vue';
+
 export default {
+  components:{appHeader,mainCover,about,project},
   data() {
     return {
-      wow: "ssss",
+      focusHeader:false,
+      views:{
+        about:false,
+        project:false,
+        resume:false
+      }
     };
   },
+  methods:{
+    canFocus(val){
+      this.focusHeader = val;
+    },
+    whichView(view,res){
+     switch(view){
+       case 'about':
+         this.views.about = res;
+         break;
+       case 'project':
+         this.views.project = res;
+         break;
+     }
+    }
+  }
 };
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
+
+*{
+  color:#fff;
 }
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+#over-lap {
+  width: 100%;
+  position: relative;
+  height: 120px;
+  z-index: 100;
+}
+
+#over-wrap{
+ position: absolute;
+  top: -60px;
+  height: 120px;
+  width: 100%;
+}
+
+#badges{
+  margin: auto;
+  height: 100%;
+  border-radius: 80px;
+  background-color: #000;
+  width: 60%;
+  max-width: 800px;
+  box-shadow: 0px 0px 10px #000;
+  visibility: hidden;
+}
+
+
+#box{
+  height: 200vh;
+  width: 100%;
+}
+
+.badge-class{
   text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  height: 100%;
+  line-height: 20px;
 }
 </style>

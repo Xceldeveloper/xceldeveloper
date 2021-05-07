@@ -1,0 +1,81 @@
+
+.vue-typer {
+    /* Styles for the vue-typer container
+       e.g. font-family, font-size  */
+   
+    .custom.char {
+      /* Styles for each character
+         e.g. color, background-color */
+   
+      &.typed {
+        /* Styles specific to typed characters
+           i.e. characters to the left of the caret */
+      }
+      &.selected {
+        /* Styles specific to selected characters
+           i.e. characters to the right of the caret while VueTyper's
+                'eraseStyle' is set to a selection-based style */
+      }
+      &.erased {
+        /* Styles specific to erased characters
+           i.e. characters to the right of the caret while VueTyper's
+                'eraseStyle' is set to a non-selection-based style */
+      }
+    }
+   
+    .custom.caret {
+      /* Styles for the caret
+         e.g. background-color, animation, display */
+   
+      &.pre-type {
+        /* Styles for the caret when it is idle before typing
+           i.e. before a string starts being typed, during 'preTypeDelay' */
+      }
+      &.pre-erase {
+        /* Styles for the caret when it is idle before erasing
+           i.e. before a string starts being erased, during 'preEraseDelay' */
+      }
+      &.idle {
+        /* Styles for the caret when it is idle, but VueTyper has not yet completed typing
+           i.e. when 'pre-type' or 'pre-erase' is set, but not 'complete' */
+      }
+      &.typing {
+        /* Styles for the caret while VueTyper is typing
+           i.e. when the caret is moving forwards */
+           color: #fff;
+      }
+      &.selecting {
+        /* Styles for the caret while VueTyper is selecting
+           i.e. when the caret is moving backwards and 'eraseStyle' is
+           set to a selection-based style */
+           color: red;
+      }
+      &.erasing {
+        /* Styles for the caret while VueTyper is erasing
+           i.e. when the caret is moving backwards and 'eraseStyle' is
+           set to a non-selection-based style */
+           color: blue;
+      }
+      &.complete {
+        /* Styles for the idle caret when VueTyper has finished all typing/erasing */
+        color: #000;
+      }
+    }
+
+    .vue-typer {
+        font-family: monospace;
+      }
+      
+      .vue-typer .custom.char {
+        color: #D4D4BD;
+        background-color: #1E1E1E;
+      }
+      .vue-typer .custom.char.selected {
+        background-color: #264F78;
+      }
+      
+      .vue-typer .custom.caret {
+        width: 10px;
+        background-color: #3F51B5;
+      }
+  }
