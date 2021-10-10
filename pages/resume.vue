@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      resume: require('~/static/overcomer-emiator-resume.pdf'),
+      resume: require('~/static/Overcomer-Emiator.pdf-1.pdf'),
     }
   },
   mounted() {
