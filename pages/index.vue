@@ -12,10 +12,10 @@
         style="brder: 1px solid yellow"
       >
 
-        <div class="w-full text-center text-lg-left">
+        <div class="w-full text-center text-md-left">
 
           <img
-            class="md:w-52 w-36 h-36 md:h-52 block mx-auto ma-lg-0 rounded-full logo"
+            class="md:w-52 w-36 h-36 md:h-52 block mx-auto ma-md-0 rounded-full logo"
             src="/icon.jpg"
             alt=""
           />
@@ -126,41 +126,40 @@
 
           <div>
 
-            <nuxt-link class="  text-center" to="/work">
+            <nuxt-link class="text-center" to="/work">
 
+              <i class="md:hidden">
 
-              <i    class=" md:hidden">
-                     <v-btn
-                large
-                icon
-                 @click="tab = 1"
-             
-                :color="tab != 1 ? 'grey' : '#fff'"
-                elevation="0"
-              >
+                <v-btn
+                  large
+                  icon
+                  @click="tab = 1"
+                  :color="tab != 1 ? 'grey' : '#fff'"
+                  elevation="0"
+                >
 
-                <v-icon>mdi-brief-case</v-icon>
+                  <v-icon>mdi-view-comfy</v-icon>
 
-              </v-btn>
+                </v-btn>
+
               </i>
 
-              <bb  class="hidden md:block">
+              <span class="hidden md:block">
+
                 <v-btn
-                large
-                outlined
-                block
-                rounded
-                elevation="0"
-                link
-                @click="tab = 1"
-               
-                :color="tab != 1 ? 'grey' : '#fff'"
-              >
-                 Work
-              </v-btn>
-              </bb>
+                  large
+                  outlined
+                  block
+                  rounded
+                  elevation="0"
+                  link
+                  @click="tab = 1"
+                  :color="tab != 1 ? 'grey' : '#fff'"
+                >
+                   Work
+                </v-btn>
 
-
+              </span>
 
             </nuxt-link>
 
@@ -173,11 +172,25 @@
               target="_blank"
             >
 
-              <v-btn text elevation="0" block color="grey" rounded large>
-                 Resume
-                <v-icon right>mdi-arrow-top-right-thick</v-icon>
+              <i class="md:hidden">
 
-              </v-btn>
+                <v-btn large icon rounded color="grey" elevation="0">
+
+                  <v-icon>mdi-arrow-top-right-thick</v-icon>
+
+                </v-btn>
+
+              </i>
+
+              <span class="hidden md:block">
+
+                <v-btn text elevation="0" block color="grey" rounded large>
+                   Resume
+                  <v-icon right>mdi-arrow-top-right-thick</v-icon>
+
+                </v-btn>
+
+              </span>
 
             </a>
 
