@@ -90,44 +90,58 @@
 
       <div class="grid grid-cols-3 gap-10">
 
-        <v-btn
-          large
-          text
-          @click="tab = 0"
-          :color="tab != 0 ? 'grey' : '#fff'"
-          elevation="0"
-          rounded
-        >
+        <div class="  text-center">
+           <nuxt-link class="block" to="/">
 
-          <v-icon>mdi-account</v-icon>
+          <v-btn
+            large icon
+        
+            @click="tab = 0"
+            :color="tab != 0 ? 'grey' : '#fff'"
+            elevation="0"
+          >
 
-        </v-btn>
+            <v-icon>mdi-account</v-icon>
 
-        <v-btn
-          large
-          outlined
-          elevation="0"
-          @click="tab = 1"
-          :color="tab != 1 ? 'grey' : '#fff'"
-          rounded
-        >
-           Work
-        </v-btn>
+          </v-btn>
 
-        <a
+        </nuxt-link>
+        </div>
+
+       <div >
+          <nuxt-link class="block text-center" to="/work">
+
+          <v-btn
+            large
+            outlined block rounded
+            elevation="0" link
+            @click="tab = 1"
+            :color="tab != 1 ? 'grey' : '#fff'"
+          >
+             Work
+          </v-btn>
+
+        </nuxt-link>
+       </div>
+
+     <div >
+          <a
           href="http://https://my.indeed.com/p/overcomere-my85kbn"
           target="_blank"
         >
 
-          <v-btn text elevation="0" color="grey" rounded large>
+          <v-btn text elevation="0" block color="grey" rounded large>
              Resume
             <v-icon right>mdi-arrow-top-right-thick</v-icon>
 
           </v-btn>
 
         </a>
+     </div>
 
       </div>
+
+      <nuxt-child />
 
     </div>
 
