@@ -1,84 +1,96 @@
 <template>
 
-  <div class="page p-14 gap-10 grid grid-cols-2">
+  <div
+    class="page pa-md-14 pa-6 gap-10 flex flex-col lg:flex-row"
+    style="borer: 1px solid blue"
+  >
 
-    <div class="flex items-center">
+    <div class="flex-1 h-full">
 
-      <div class="w-full">
+      <div
+        class="w-full h-full flex items-center"
+        style="brder: 1px solid yellow"
+      >
 
-        <img class="w-52 h-52 rounded-full logo" src="/icon.jpg" alt="" />
+        <div class="w-full text-center text-lg-left">
 
-        <span class="block text-white text-4xl mt-5">Overcomer Emiator</span>
+          <img
+            class="md:w-52 w-36 h-36 md:h-52 block mx-auto ma-lg-0 rounded-full logo"
+            src="/icon.jpg"
+            alt=""
+          />
 
-        <span class="text-gray-400 block font-semibold"> {{dd}} </span>
+          <span class="block text-white text-2xl md:text-4xl mt-5">
+             Overcomer Emiator
+          </span>
 
-        <span class="block tracking-wider text-left text-gray-400 my-5">
+          <span class="text-gray-400 block font-semibold"> {{dd}} </span>
 
-          <vue-typed-js
-            :startDelay="3000"
-            :typeSpeed="30"
-            cursorChar=" _"
-            :strings="[
-              `  Hi, I am a passionate developer with good experience designing Webapps,
+          <span class="block tracking-wider text-gray-400 my-5">
+
+            <vue-typed-js
+              :startDelay="3000"
+              :typeSpeed="30"
+              cursorChar=" _"
+              :strings="[
+                `  Hi, I am a passionate developer with good experience designing Webapps,
           Blogs, Android Apps, Opensource Projects etc utilizing varieties of Software
-          Technologies which include Vuejs, Nuxt, Flutter, Nodejs, Django, JQuery,
-          Tailwindcss, Scss, Git I have experience working remotely building meaningful
-          and productive software with also the ability to work with minimal supervision
-          as I have the zeal to tackle any problems I might encounter independently
-          to achieve the desired result`,
-            ]"
-          >
+          Technologies which include Vuejs, Nuxt, Flutter, Nodejs, Django, JQuery`,
+              ]"
+            >
 
-            <span class="typing" id="quote-x"></span>
+              <span class="typing" id="quote-x"></span>
 
-          </vue-typed-js>
+            </vue-typed-js>
 
-        </span>
+          </span>
 
-        <div class="">
+          <div class="">
 
-          <a href="https://twitter.com/xceldeveloper" target="_blank">
+            <a href="https://twitter.com/xceldeveloper" target="_blank">
 
-            <v-btn icon>
+              <v-btn icon>
 
-              <v-icon>mdi-twitter</v-icon>
+                <v-icon>mdi-twitter</v-icon>
 
-            </v-btn>
+              </v-btn>
 
-          </a>
+            </a>
 
-          <a
-            href="https://www.linkedin.com/in/overcomer-emiator-5573141b2"
-            target="_blank"
-          >
+            <a
+              href="https://www.linkedin.com/in/overcomer-emiator-5573141b2"
+              target="_blank"
+            >
 
-            <v-btn icon>
+              <v-btn icon>
 
-              <v-icon>mdi-linkedin</v-icon>
+                <v-icon>mdi-linkedin</v-icon>
 
-            </v-btn>
+              </v-btn>
 
-          </a>
+            </a>
 
-          <a href="mailto:xceldeveloper@gmail.com" target="_blank">
+            <a href="mailto:xceldeveloper@gmail.com" target="_blank">
 
-            <v-btn icon>
+              <v-btn icon>
 
-              <v-icon>mdi-gmail</v-icon>
+                <v-icon>mdi-gmail</v-icon>
 
-            </v-btn>
+              </v-btn>
 
-          </a>
+            </a>
 
-          <a href="https://github.com/xceldeveloper" target="_blank">
+            <a href="https://github.com/xceldeveloper" target="_blank">
 
-            <v-btn icon>
+              <v-btn icon>
 
-              <v-icon>mdi-github</v-icon>
+                <v-icon>mdi-github</v-icon>
 
-            </v-btn>
+              </v-btn>
 
-          </a>
+            </a>
+
+          </div>
 
         </div>
 
@@ -86,62 +98,96 @@
 
     </div>
 
-    <div>
+    <div class="flex-1" style="borer: 1px solid blue">
 
-      <div class="grid grid-cols-3 gap-10">
+      <div class="flex flex-col h-full w-full">
 
-        <div class="  text-center">
-           <nuxt-link class="block" to="/">
+        <div class="grid grid-cols-3 gap-10">
 
-          <v-btn
-            large icon
-        
-            @click="tab = 0"
-            :color="tab != 0 ? 'grey' : '#fff'"
-            elevation="0"
-          >
+          <div class="text-center">
 
-            <v-icon>mdi-account</v-icon>
+            <nuxt-link class="block" to="/">
 
-          </v-btn>
+              <v-btn
+                large
+                icon
+                @click="tab = 0"
+                :color="tab != 0 ? 'grey' : '#fff'"
+                elevation="0"
+              >
 
-        </nuxt-link>
+                <v-icon>mdi-account</v-icon>
+
+              </v-btn>
+
+            </nuxt-link>
+
+          </div>
+
+          <div>
+
+            <nuxt-link class="  text-center" to="/work">
+
+
+              <i    class=" md:hidden">
+                     <v-btn
+                large
+                icon
+                 @click="tab = 1"
+             
+                :color="tab != 1 ? 'grey' : '#fff'"
+                elevation="0"
+              >
+
+                <v-icon>mdi-brief-case</v-icon>
+
+              </v-btn>
+              </i>
+
+              <bb  class="hidden md:block">
+                <v-btn
+                large
+                outlined
+                block
+                rounded
+                elevation="0"
+                link
+                @click="tab = 1"
+               
+                :color="tab != 1 ? 'grey' : '#fff'"
+              >
+                 Work
+              </v-btn>
+              </bb>
+
+
+
+            </nuxt-link>
+
+          </div>
+
+          <div>
+
+            <a
+              href="https://my.indeed.com/p/overcomere-my85kbn"
+              target="_blank"
+            >
+
+              <v-btn text elevation="0" block color="grey" rounded large>
+                 Resume
+                <v-icon right>mdi-arrow-top-right-thick</v-icon>
+
+              </v-btn>
+
+            </a>
+
+          </div>
+
         </div>
 
-       <div >
-          <nuxt-link class="block text-center" to="/work">
-
-          <v-btn
-            large
-            outlined block rounded
-            elevation="0" link
-            @click="tab = 1"
-            :color="tab != 1 ? 'grey' : '#fff'"
-          >
-             Work
-          </v-btn>
-
-        </nuxt-link>
-       </div>
-
-     <div >
-          <a
-          href="http://https://my.indeed.com/p/overcomere-my85kbn"
-          target="_blank"
-        >
-
-          <v-btn text elevation="0" block color="grey" rounded large>
-             Resume
-            <v-icon right>mdi-arrow-top-right-thick</v-icon>
-
-          </v-btn>
-
-        </a>
-     </div>
+        <nuxt-child />
 
       </div>
-
-      <nuxt-child />
 
     </div>
 

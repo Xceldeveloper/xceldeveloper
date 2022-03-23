@@ -1,6 +1,7 @@
 <template>
-  <div class=" text-red-500">
+  <div class="home">
       Home
+
   </div>
 </template>
 
@@ -10,6 +11,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>  
+.home{
+    boder: 1px solid red;
+    height: 100%;
+    overflow: auto;
+}
 </style>
