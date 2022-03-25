@@ -1,6 +1,6 @@
 <template>
 
-  <div class="home items-center flex-wrap justify-center">
+  <div class="home flex items-center   justify-center">
 
     <img
       class="iconx"
@@ -62,11 +62,11 @@
       alt="Figma"
     />
 
-    <img
+    <!-- <img
       class="iconx"
       src="https://brandeps.com/icon-download/F/Flutter-icon-vector-02.svg"
       alt="Flutter"
-    />
+    /> -->
 
     <img
       class="iconx"
@@ -141,7 +141,6 @@ export default {
   boder: 1px solid red;
   height: 100%;
   overflow: hidden;
-  display: flex;
 }
 
 svg {

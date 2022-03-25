@@ -15,18 +15,18 @@
         <div class="w-full text-center text-md-left">
 
           <img
-            class="md:w-52 w-36 h-36 md:h-52 block mx-auto ma-md-0 rounded-full logo"
+            class=" md:w-44 w-36 h-36 md:h-44 block mx-auto ma-md-0 rounded-full logo"
             src="/icon.jpg"
             alt=""
           />
 
-          <span class="block text-white text-2xl md:text-4xl mt-5">
+          <span class="block  text-white text-2xl md:text-4xl mt-10">
              Overcomer Emiator
           </span>
 
-          <span class="text-gray-400 block font-semibold"> {{dd}} </span>
+          <span class="text-gray-400 block text-lg font-semibold"> {{dd}} </span>
 
-          <span class="block tracking-wider text-gray-400 my-5">
+          <span class="block max-w-lg mx-auto  mx-lg-0 tracking-wider text-gray-400 my-5">
 
             <vue-typed-js
               :startDelay="3000"
@@ -212,7 +212,7 @@
 export default {
   data() {
     return {
-      dd: "<A Passionate Programmer/>",
+      dd: "<Xceldeveloper/>",
       tab: 0,
     };
   },
