@@ -24,7 +24,7 @@
              Overcomer Emiator
           </span>
 
-          <span class="text-gray-400 block text-lg font-semibold"> {{dd}} </span>
+          <span class="text-gray-400 block text-lg font-semibold mt-2"> {{dd}} </span>
 
           <span class="block max-w-lg mx-auto  mx-lg-0 tracking-wider text-gray-400 my-5">
 
