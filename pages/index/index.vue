@@ -1,99 +1,39 @@
 <template>
+  <div class="home flex items-center justify-center">
+    <img class="iconx" src="/logos/nuxtjs.svg" alt="Nuxtjs" />
 
-  <div class="home flex items-center   justify-center">
+    <img class="iconx" src="/logos/vuejs.svg" alt="VueJS" />
 
-    <img
-      class="iconx"
-      src="https://nuxtjs.org/design-kit/colored-logo.svg"
-      alt="Nuxtjs"
-    />
+    <img class="iconx" src="/logos/scss.svg" alt="SCSS" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/logo-download/V/Vue-JS-logo-vector-01.svg"
-      alt="VueJS"
-    />
+    <img class="iconx" src="/logos/tailwindcss.svg" alt="Tailwindcss" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/logo-download/S/Sass-logo-vector-01.svg"
-      alt="SCSS"
-    />
+    <img class="iconx" src="/logos/vuetify.svg" alt="Vuetify" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/icon-download/T/Tailwindcss-icon-vector-01.svg"
-      alt="Tailwindcss"
-    />
+    <img class="iconx" src="/logos/git.png" alt="Git" />
 
-    <img
-      class="iconx"
-      src="https://cdn.worldvectorlogo.com/logos/vuetify.svg"
-      alt="Vuetify"
-    />
+    <img class="iconx" src="/logos/vscode.png" alt="Vscode" />
 
-    <img
-      class="iconx"
-      src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"
-      alt="Git"
-    />
+    <!-- <img class="iconx" src="/favicon.png" alt="Vuetify" /> -->
 
-    <img
-      class="iconx"
-      src="https://code.visualstudio.com/assets/images/code-stable.png"
-      alt="Vscode"
-    />
+    <img class="iconx" src="/logos/npm.svg" alt="NPM" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/logo-download/N/Npm-logo-vector-01.svg"
-      alt="NPM"
-    />
+    <img class="iconx" src="/logos/yarn.svg" alt="yarn" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/logo-download/Y/Yarn-logo-vector-01.svg"
-      alt="yarn"
-    />
+    <img class="iconx" src="/logos/figma.svg" alt="Figma" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/logo-download/F/Figma-logo-vector-01.svg"
-      alt="Figma"
-    />
+    <img class="iconx" src="/logos/flutter.svg" alt="Flutter" />
 
-    <!-- <img
-      class="iconx"
-      src="https://brandeps.com/icon-download/F/Flutter-icon-vector-02.svg"
-      alt="Flutter"
-    /> -->
+    <img class="iconx" src="/logos/github.svg" alt="Github" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/icon-download/G/Github-icon-vector-22.svg"
-      alt="Github"
-    />
+    <img class="iconx" src="/logos/jest.png" alt="Jest" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/icon-download/B/Bitbucket-icon-vector-04.svg"
-      alt="Bitbucket"
-    />
+    <img class="iconx" src="/logos/bitbucket.svg" alt="Bitbucket" />
 
-    <img
-      class="iconx"
-      src="https://brandeps.com/icon-download/N/Notion-icon-vector-01.svg"
-      alt="Notion"
-    />
+    <img class="iconx" src="/logos/notion.svg" alt="Notion" />
 
-    <img
-      class="iconx"
-      src="https://asset.brandfetch.io/idU6lzwMYA/idMaCKxlWy.svg"
-      alt="Clickup"
-    />
-
+    <img class="iconx" src="/logos/clickup.svg" alt="Clickup" />
   </div>
-
 </template>
 
 <script>

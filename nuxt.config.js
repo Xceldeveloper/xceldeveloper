@@ -18,7 +18,7 @@ export default {
         name: "Overcomer Emiator | xceldeveloper - A passionate programmer",
         content: "Overcomer Emiator | xceldeveloper - A passionate programmer",
       },
-      {name: 'theme-color', content: '#5257f5'},
+      {name: 'theme-color', content: '#131111'},
 
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }],
@@ -29,7 +29,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: "~/plugins/aos.js", mode: "client" },
+ //   { src: "~/plugins/aos.js", mode: "client" },
     { src: "~/plugins/typer.js", mode: "client" },
   ],
 

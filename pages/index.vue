@@ -10,7 +10,7 @@
       >
         <div class="w-full text-center text-md-left">
           <img
-            class="md:w-44 w-36 h-36 md:h-44 block mx-auto ma-md-0 rounded-full logo"
+            class="md:w-44 w-36 object-cover h-36 md:h-44 block mx-auto ma-md-0 rounded-full logo"
             src="/logo.jpg"
             alt=""
           />
@@ -27,7 +27,7 @@
             class="block max-w-lg mx-auto mx-lg-0 tracking-wider text-gray-400 my-5"
           >
             <vue-typed-js
-              :startDelay="3000"
+              :startDelay="2000"
               :typeSpeed="30"
               cursorChar=" _"
               :strings="[
@@ -70,7 +70,7 @@
 
             <a
               class="hidden md:inline-block"
-              href="https://github.com/xceldeveloper"
+              href="https://my.indeed.com/p/overcomere-my85kbn"
               target="_blank"
             >
               <v-btn text elevation="0" color="grey" rounded small>
