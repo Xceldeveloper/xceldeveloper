@@ -50,7 +50,7 @@
             </ul>
           </div>
           <div id="name-cover" class="">
-            <img id="avatar" src="~assets/images/icon.jpg" alt="" />
+            <img id="avatar" src="/logo.jpg" alt="" />
             <div>
               <vue-typed-js
                 :showCursor="false"

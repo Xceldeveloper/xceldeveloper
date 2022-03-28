@@ -1,6 +1,6 @@
 <template>
   <v-app-bar class="header" :color="focus ? '#000' : 'transparent'" :elevation="focus ? 5 : 0">
-     <img id="avatar" src="~assets/images/icon.jpg" alt="" />
+     <img id="avatar" src="/logo.jpg" alt="" />
 
      <v-toolbar-title v-if="focus">Xceldeveloper</v-toolbar-title>
     <v-spacer></v-spacer> 

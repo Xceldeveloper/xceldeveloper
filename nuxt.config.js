@@ -9,17 +9,19 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Overcomer Emiator - A passionate programmer",
+    title: "Overcomer Emiator | xceldeveloper - A passionate programmer",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        hid: "Overcomer Emiator - A passionate programmer",
-        name: "Overcomer Emiator - A passionate programmer",
-        content: "Overcomer Emiator - A passionate programmer",
+        hid: "Overcomer Emiator | xceldeveloper - A passionate programmer",
+        name: "Overcomer Emiator | xceldeveloper - A passionate programmer",
+        content: "Overcomer Emiator | xceldeveloper - A passionate programmer",
       },
+      {name: 'theme-color', content: '#5257f5'},
+
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/icon.jpg" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

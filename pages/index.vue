@@ -11,7 +11,7 @@
         <div class="w-full text-center text-md-left">
           <img
             class="md:w-44 w-36 h-36 md:h-44 block mx-auto ma-md-0 rounded-full logo"
-            src="/icon.jpg"
+            src="/logo.jpg"
             alt=""
           />
 
@@ -67,11 +67,27 @@
                 <v-icon>mdi-github</v-icon>
               </v-btn>
             </a>
+
+            <a
+              class="hidden md:inline-block"
+              href="https://github.com/xceldeveloper"
+              target="_blank"
+            >
+              <v-btn text elevation="0" color="grey" rounded small>
+                Resume
+                <v-icon right>mdi-arrow-top-right-thick</v-icon>
+              </v-btn>
+            </a>
           </div>
           <div class="mt-4 md:hidden flex justify-center">
-           <a href="https://my.indeed.com/p/overcomere-my85kbn" target="_blank">
-            <v-btn elevation="1" dark color="#000" fab >  <v-icon >mdi-arrow-top-right-thick</v-icon></v-btn>
-           </a>
+            <a
+              href="https://my.indeed.com/p/overcomere-my85kbn"
+              target="_blank"
+            >
+              <v-btn elevation="1" dark color="#000" fab>
+                <v-icon>mdi-arrow-top-right-thick</v-icon></v-btn
+              >
+            </a>
           </div>
         </div>
       </div>
@@ -79,7 +95,7 @@
 
     <div class="flex-1 hidden md:block" style="borer: 1px solid blue">
       <div class="flex flex-col h-full w-full">
-        <div class="grid grid-cols-3 gap-10">
+        <!-- <div class="grid grid-cols-3 gap-10">
           <div class="text-center">
             <nuxt-link class="block" to="/">
               <v-btn
@@ -144,7 +160,7 @@
               </span>
             </a>
           </div>
-        </div>
+        </div> -->
 
         <nuxt-child />
       </div>
