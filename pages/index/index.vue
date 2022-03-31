@@ -105,7 +105,7 @@ circle {
   &:hover {
     -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
     filter: grayscale(0%);
-    cursor: crosshair;
+    cursor: pointer;
   }
 }
 </style>

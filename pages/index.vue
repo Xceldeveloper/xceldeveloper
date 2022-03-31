@@ -1,6 +1,6 @@
 <template>
   <div
-    class="page pa-md-14 pa-6 gap-10 flex flex-col lg:flex-row"
+    class="page pa-md-12 pa-6 gap-10 flex flex-col lg:flex-row"
     style="borer: 1px solid blue"
   >
     <div class="flex-1 h-full">
@@ -10,30 +10,42 @@
       >
         <div class="w-full text-center text-md-left">
           <img
-            class="md:w-44 w-36 object-cover h-36 md:h-44 block mx-auto ma-md-0 rounded-full logo"
+            class="md:w-40 w-36 object-cover h-36 md:h-40 block mx-auto ma-md-0 rounded-full logo"
             src="/logo.jpg"
             alt=""
           />
 
-          <span class="block text-white text-2xl md:text-4xl mt-6 mt-md-10">
+          <span class="block text-white text-2xl md:text-4xl mt-6 mt-md-8">
             Overcomer Emiator
           </span>
 
-          <span class="text-gray-400 block text-lg font-semibold mt-1 mb-6">
+          <span class="text-gray-400 block text-lg font-semibold mt-1 mb-4">
             {{ dd }}
           </span>
 
           <span
-            class="block max-w-lg mx-auto mx-lg-0 tracking-wider text-gray-400 my-5"
+            class="block max-w-lg mx-auto mx-lg-0 tracking-wider text-gray-400 my-3"
           >
             <vue-typed-js
               :startDelay="2000"
               :typeSpeed="30"
               cursorChar=" _"
               :strings="[
-                `  Hi, I am a passionate developer with good experience designing Webapps,
-          Blogs, Android Apps, Opensource Projects etc utilizing varieties of Software
-          Technologies which include Vuejs, Nuxt, Flutter, Nodejs, Django, JQuery`,
+                ` 
+                
+        <p>
+                         Overcomer Emiator is a software developer a passionate programmer with very good experience building applications for the web.
+                          He has worked on numerous of
+web projects be it for individuals or co-corporate entities.
+</p>        
+
+
+
+ <p>He is a technophile and loves music very much, when he is not working he is either checking out the latest
+advancement in tech, watching a movie, or playing games. He is a strong-willed individual.
+And one thing he would love to do is set leave a mark before...</p>
+
+`,
               ]"
             >
               <span class="typing" id="quote-x"></span>
