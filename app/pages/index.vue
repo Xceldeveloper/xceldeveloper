@@ -23,12 +23,12 @@ const showScrollIndicator = computed(
 );
 
 useHead({
-  title: "Overcomer Emiator - Founder & Engineering Leader",
+  title: "Overcomer Emiator",
   meta: [
     {
       name: "description",
       content:
-        "Founder of Sleekware. Building intentional software for ambitious businesses. Currently leading frontend engineering at Piggyvest.",
+        "Overcomer Emiator — builder and solution architect. Founder of Sleekware.",
     },
   ],
 });
@@ -70,32 +70,17 @@ const calculateContentOffset = () => {
     // Check if content needs scrolling (content taller than container)
     const needsScroll = sectionHeight > availableHeight * 0.8;
 
-    console.log("Content measurement:", {
-      sectionHeight,
-      availableHeight,
-      needsScroll,
-      currentSection: currentSection.value,
-    });
-
     if (needsScroll) {
       // Long content: Eye-level alignment (10% below image top)
       const imageTopRelativeToBody = photoRect.top - bodyRect.top;
-      const eyeLevelOffset = imageTopRelativeToBody + photoRect.height * 0.1; // 10% down from image top
+      const eyeLevelOffset = imageTopRelativeToBody + photoRect.height * 0.1;
 
       contentOffset.value = eyeLevelOffset;
       shouldCenterAlign.value = false;
-
-      console.log("Eye-level alignment:", {
-        imageTop: imageTopRelativeToBody,
-        eyeLevelOffset,
-        imageHeight: photoRect.height,
-      });
     } else {
-      // Short content: Center alignment (no offset needed, CSS handles it)
+      // Short content: Center alignment (CSS handles it)
       contentOffset.value = 0;
       shouldCenterAlign.value = true;
-
-      console.log("Center alignment applied");
     }
 
     // Hold splash long enough for brand mark to land, then lift curtain
@@ -110,18 +95,7 @@ const calculateContentOffset = () => {
 // Wheel event handler
 let isScrolling = false;
 const handleWheel = (e: WheelEvent) => {
-  console.log("Wheel event fired:", {
-    isScrolling,
-    isDesktop: isDesktop.value,
-    deltaY: e.deltaY,
-  });
-
   if (isScrolling || !isDesktop.value || isSectionTransitioning.value) {
-    console.log("Wheel blocked:", {
-      isScrolling,
-      isDesktop: isDesktop.value,
-      transitioning: isSectionTransitioning.value,
-    });
     return;
   }
 
@@ -133,40 +107,28 @@ const handleWheel = (e: WheelEvent) => {
   const scrollHeight = contentContainer.scrollHeight;
   const clientHeight = contentContainer.clientHeight;
   const isAtTop = scrollTop === 0;
-  const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1; // Allow 1px tolerance
-
-  console.log("Scroll position:", {
-    scrollTop,
-    scrollHeight,
-    clientHeight,
-    isAtTop,
-    isAtBottom,
-    deltaY: e.deltaY,
-  });
+  const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1;
 
   // Only switch sections when at scroll boundaries
   let shouldSwitch = false;
-  let targetSection: "bio" | "experience" = currentSection.value;
+  let targetSection: Section = currentSection.value;
+  const currentIndex = sections.indexOf(currentSection.value);
 
   if (e.deltaY > 0) {
-    // Scrolling DOWN
-    if (isAtBottom && currentSection.value === "bio") {
-      // At bottom of bio, switch to experience
+    // Scrolling DOWN — next section when at bottom
+    if (isAtBottom && currentIndex < sections.length - 1) {
       shouldSwitch = true;
-      targetSection = "experience";
+      targetSection = sections[currentIndex + 1];
     }
   } else if (e.deltaY < 0) {
-    // Scrolling UP
-    if (isAtTop && currentSection.value === "experience") {
-      // At top of experience, switch to bio
+    // Scrolling UP — previous section when at top
+    if (isAtTop && currentIndex > 0) {
       shouldSwitch = true;
-      targetSection = "bio";
+      targetSection = sections[currentIndex - 1];
     }
   }
 
   if (!shouldSwitch) {
-    // Let the content scroll naturally
-    console.log("Scrolling within section, not switching");
     return;
   }
 
@@ -176,16 +138,13 @@ const handleWheel = (e: WheelEvent) => {
   // Switch section after a brief moment (during fade-out)
   setTimeout(() => {
     currentSection.value = targetSection;
-  }, 200); // Switch during fade-out
-
-  console.log("Switching to:", targetSection);
+  }, 200);
 
   // Set debounce AFTER switching
   isScrolling = true;
   setTimeout(() => {
     isScrolling = false;
-    console.log("Debounce released, ready for next scroll");
-  }, 800); // Longer debounce to allow full transition
+  }, 800);
 };
 
 onMounted(() => {
@@ -245,14 +204,8 @@ onMounted(() => {
   // Set up ResizeObserver to watch for content size changes
   const contentContainer = document.querySelector(".body-left__content");
   if (contentContainer) {
-    resizeObserver = new ResizeObserver((entries) => {
-      // Debounce: only recalculate if size actually changed
-      for (const entry of entries) {
-        if (entry.contentBoxSize) {
-          console.log("Content size changed, recalculating...");
-          calculateContentOffset(); // No loader on content resize
-        }
-      }
+    resizeObserver = new ResizeObserver(() => {
+      calculateContentOffset();
     });
     resizeObserver.observe(contentContainer);
   }
@@ -260,15 +213,14 @@ onMounted(() => {
   // Recalculate on resize (no loader)
   const mediaQuery = window.matchMedia("(min-width: 1025px)");
   mediaQuery.addEventListener("change", () => {
-    calculateContentOffset(); // No loader on screen size change
+    calculateContentOffset();
   });
   window.addEventListener("resize", () => {
-    calculateContentOffset(); // No loader on window resize
+    calculateContentOffset();
   });
 
   // Attach wheel event listener
   window.addEventListener("wheel", handleWheel, { passive: true });
-  console.log("Wheel listener attached, isDesktop:", isDesktop.value);
 
   onBeforeUnmount(() => {
     window.clearTimeout(splashFallback);
@@ -579,13 +531,6 @@ $image-max-width: 420px; // Reduced from 500px
       opacity: 1;
     }
   }
-}
-
-.header__name {
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0;
 }
 
 // ============================================

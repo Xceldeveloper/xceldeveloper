@@ -54,14 +54,16 @@ const { bioSegments } = useBioContent();
             target="_blank"
             rel="noopener"
             class="social-link"
+            aria-label="GitHub"
           >
             <Icon name="lucide:github" />
           </a>
           <a
-            href="https://twitter.com/xceldeveloper"
+            href="https://x.com/ovemiator"
             target="_blank"
             rel="noopener"
             class="social-link"
+            aria-label="X"
           >
             <Icon name="simple-icons:x" />
           </a>
@@ -138,10 +140,6 @@ const { bioSegments } = useBioContent();
   &__socials {
     display: flex;
     gap: 1.25rem;
-  }
-
-  &__cta {
-    margin-top: 1.5rem;
   }
 }
 
