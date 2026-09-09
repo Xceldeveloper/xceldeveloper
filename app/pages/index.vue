@@ -55,9 +55,9 @@ $col-large: 61.8%;
 $col-small: 38.2%;
 
 // Viewport heights
-$header-height: 5vh;
-$body-height: 90vh;
-$footer-height: 5vh;
+$header-height: 8vh;
+$body-height: 82vh;
+$footer-height: 10vh;
 
 .business-card {
   min-height: 100vh;
