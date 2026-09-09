@@ -73,7 +73,7 @@ const experiences = ref([
   }
 
   &__title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(2rem, 4vw, 4rem); // Reduced from 2.5rem, 5vw, 5rem
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;

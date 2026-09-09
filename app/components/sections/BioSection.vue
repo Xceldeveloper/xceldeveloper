@@ -30,54 +30,50 @@ const { bioSegments } = useBioContent();
         </ClientOnly>
       </p>
 
-      <!-- CTAs -->
-      <div class="bio-section__ctas">
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener"
-          class="cta-button cta-button--primary"
-        >
-          Schedule a Call
-        </a>
-        <a href="mailto:overcomer@emiator.com" class="cta-button cta-button--secondary">
-          Contact Me
-        </a>
-      </div>
+      <!-- Social Links & Get in Touch side by side -->
+      <div class="bio-section__footer">
+        <div class="bio-section__socials">
+          <a
+            href="https://linkedin.com/in/overcomer-emiator-5573141b2"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <Icon name="lucide:linkedin" />
+          </a>
+          <a
+            href="https://instagram.com/ovemiator"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <Icon name="lucide:instagram" />
+          </a>
+          <a
+            href="https://github.com/Xceldeveloper"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <Icon name="lucide:github" />
+          </a>
+          <a
+            href="https://twitter.com/xceldeveloper"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <Icon name="simple-icons:x" />
+          </a>
+        </div>
 
-      <!-- Social Links -->
-      <div class="bio-section__socials">
+        <!-- Get in Touch CTA -->
         <a
-          href="https://linkedin.com/in/overcomer-emiator-5573141b2"
-          target="_blank"
-          rel="noopener"
-          class="social-link"
+          href="mailto:overcomer@emiator.com"
+          class="cta-link"
         >
-          <Icon name="lucide:linkedin" />
-        </a>
-        <a
-          href="https://instagram.com/ovemiator"
-          target="_blank"
-          rel="noopener"
-          class="social-link"
-        >
-          <Icon name="lucide:instagram" />
-        </a>
-        <a
-          href="https://github.com/Xceldeveloper"
-          target="_blank"
-          rel="noopener"
-          class="social-link"
-        >
-          <Icon name="lucide:github" />
-        </a>
-        <a
-          href="https://twitter.com/xceldeveloper"
-          target="_blank"
-          rel="noopener"
-          class="social-link"
-        >
-          <Icon name="simple-icons:x" />
+          Get in Touch
+          <Icon name="lucide:arrow-right" class="cta-arrow" />
         </a>
       </div>
     </div>
@@ -93,7 +89,7 @@ const { bioSegments } = useBioContent();
   }
 
   &__title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(2rem, 4vw, 4rem); // Reduced from 2.5rem, 5vw, 5rem
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -106,10 +102,10 @@ const { bioSegments } = useBioContent();
   }
 
   &__text {
-    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    font-size: clamp(0.95rem, 1.15vw, 1.15rem); // Reduced from 1rem, 1.25vw, 1.25rem
     line-height: 1.6;
     color: $text-muted;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 2.75rem 0;
     max-width: 650px;
 
     strong {
@@ -130,53 +126,64 @@ const { bioSegments } = useBioContent();
     }
   }
 
-  &__ctas {
+  &__footer {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0;
+    gap: 1.75rem;
+    flex-wrap: wrap;
   }
 
   &__socials {
     display: flex;
     gap: 1.25rem;
+  }
+
+  &__cta {
     margin-top: 1.5rem;
   }
 }
 
-.cta-button {
+.cta-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-size: 0.938rem;
+  gap: 0.45rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
+  position: relative;
   transition: all 0.3s ease;
-  white-space: nowrap;
 
-  &--primary {
-    background: rgba(255, 255, 255, 0.1);
-    color: $text-color;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease;
   }
 
-  &--secondary {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .cta-arrow {
+    transition: transform 0.3s ease;
+    width: 0.9rem;
+    height: 0.9rem;
+    opacity: 0.7;
+  }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: $text-color;
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+
+    &::after {
+      width: calc(100% - 1.35rem); // Exclude arrow width
+    }
+
+    .cta-arrow {
+      transform: translateX(4px);
+      opacity: 1;
     }
   }
 }
@@ -189,8 +196,8 @@ const { bioSegments } = useBioContent();
   justify-content: center;
 
   :deep(svg) {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75rem; // Increased from 1.5rem
+    height: 1.75rem;
   }
 
   &:hover {

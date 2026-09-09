@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, watch, nextTick } from "vue";
+import { onMounted, ref, onUnmounted, watch, nextTick, computed } from "vue";
 import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
 
-const currentSection = ref<"bio" | "experience">("bio");
+const sections = ["bio", "experience"] as const;
+type Section = (typeof sections)[number];
+
+const currentSection = ref<Section>("bio");
 const contentOffset = ref(0);
 const isDesktop = ref(true);
 const isCalculating = ref(true); // Loading state for drawer
 const shouldCenterAlign = ref(false); // Track if content should be centered
 const isSectionTransitioning = ref(false); // Track section transitions
-const showScrollIndicator = ref(false); // Show scroll hint
 let resizeObserver: ResizeObserver | null = null; // Watch for content size changes
+
+const isLastSection = computed(
+  () => currentSection.value === sections[sections.length - 1],
+);
+const showScrollIndicator = computed(
+  () => !isLastSection.value && !isSectionTransitioning.value,
+);
 
 useHead({
   title: "Overcomer Emiator - Founder & Engineering Leader",
@@ -84,12 +93,6 @@ const calculateContentOffset = () => {
 
       console.log("Center alignment applied");
     }
-
-    // Show scroll indicator on Bio (to hint at Experience section)
-    // or on Experience if it has scrollable content
-    showScrollIndicator.value =
-      currentSection.value === "bio" || // Always show on bio to hint at more sections
-      (currentSection.value === "experience" && needsScroll); // Show on experience if scrollable
 
     // Release loading state ONLY on initial load
     if (isCalculating.value) {
@@ -296,7 +299,22 @@ onUnmounted(() => {
     <!-- Header -->
     <header class="card-header">
       <div class="header-content">
-        <!-- Empty for now -->
+        <Transition name="fade">
+          <h2 v-if="currentSection !== 'bio'" class="header-name">
+            Overcomer Emiator
+          </h2>
+        </Transition>
+
+        <Transition name="fade">
+          <a
+            v-if="currentSection !== 'bio'"
+            href="mailto:overcomer@emiator.com"
+            class="header-cta"
+          >
+            Get in Touch
+            <Icon name="lucide:arrow-right" class="cta-arrow" />
+          </a>
+        </Transition>
       </div>
     </header>
 
@@ -304,6 +322,10 @@ onUnmounted(() => {
     <main class="card-body">
       <!-- Left Side (62%) - Scrollable Sections -->
       <div class="body-left" :class="{ 'eye-level': !shouldCenterAlign }">
+        <!-- Scroll fade overlays for smooth content edges -->
+        <div class="scroll-fade-overlay scroll-fade-top"></div>
+        <div class="scroll-fade-overlay scroll-fade-bottom"></div>
+        
         <div
           class="body-left__content"
           :class="{ transitioning: isSectionTransitioning }"
@@ -320,19 +342,13 @@ onUnmounted(() => {
         <!-- Scroll Indicator -->
         <Transition name="indicator-fade">
           <div
-            v-if="showScrollIndicator && !isSectionTransitioning"
+            v-if="showScrollIndicator"
             class="scroll-indicator"
           >
             <div class="scroll-indicator__icon">
               <Icon name="lucide:chevrons-down" />
             </div>
-            <span class="scroll-indicator__text">
-              {{
-                currentSection === "bio"
-                  ? "Scroll to see more"
-                  : "Scroll to explore"
-              }}
-            </span>
+            <span class="scroll-indicator__text">Scroll</span>
           </div>
         </Transition>
       </div>
@@ -352,9 +368,18 @@ onUnmounted(() => {
     <!-- Footer -->
     <footer class="card-footer">
       <div class="footer-content">
-        <a href="mailto:overcomer@emiator.com" class="footer__email">
-          overcomer@emiator.com
+        <!-- Left: Calendly link -->
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener"
+          class="footer__schedule"
+        >
+          <Icon name="lucide:calendar" class="calendar-icon" />
+          Schedule Me
         </a>
+
+        <!-- Right: Made with love -->
         <p class="footer__attribution">
           Made with <Icon name="lucide:heart" class="heart" /> by
           <a
@@ -388,7 +413,7 @@ $footer-height: 10vh;
 $page-max-width: 1400px;
 
 // Image max-width (prevents it from getting too large on ultra-wide screens)
-$image-max-width: 500px;
+$image-max-width: 420px; // Reduced from 500px
 
 .business-card {
   min-height: 100vh;
@@ -472,6 +497,57 @@ $image-max-width: 500px;
   padding: 0 clamp(2rem, 5vw, 4rem);
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-name {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: $text-color;
+  margin: 0;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin-left: auto;
+
+  .cta-arrow {
+    transition: transform 0.3s ease;
+    width: 0.9rem;
+    height: 0.9rem;
+    opacity: 0.7;
+  }
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+
+    .cta-arrow {
+      transform: translateX(3px);
+      opacity: 1;
+    }
+  }
 }
 
 .header__name {
@@ -514,6 +590,7 @@ $image-max-width: 500px;
   align-items: center; // Center by default for short content
   justify-content: center; // Also center horizontally
   min-height: 100%; // Take full height to enable centering
+  position: relative; // For absolute positioned fade overlays
 
   // Eye-level alignment when content is long (controlled by Vue)
   &.eye-level {
@@ -529,7 +606,7 @@ $image-max-width: 500px;
 
   &__content {
     width: 100%;
-    max-height: 82vh; // Constrain height to allow scrolling
+    max-height: calc(82vh - 2rem); // Reduced slightly to ensure footer is always visible
     overflow-y: auto; // Enable vertical scrolling
     overflow-x: hidden;
     padding-right: 1rem;
@@ -592,28 +669,79 @@ $image-max-width: 500px;
 }
 
 // ============================================
+// SCROLL FADE OVERLAYS (for smooth content edges)
+// ============================================
+.scroll-fade-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-fade-top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.scroll-fade-bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+// ============================================
+// FADE TRANSITION (for header name)
+// ============================================
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+// ============================================
 // SCROLL INDICATOR
 // ============================================
 .scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
+  position: fixed;
+  bottom: calc(#{$footer-height} + 0.75rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   pointer-events: none;
-  z-index: 10;
+  z-index: 100;
   animation: float 2s ease-in-out infinite;
 
   &__icon {
     color: rgba(255, 255, 255, 0.4);
-    font-size: 1.5rem;
+    font-size: 1.25rem; // Slightly smaller
 
     :deep(svg) {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.25rem;
+      height: 1.25rem;
     }
   }
 
@@ -626,7 +754,7 @@ $image-max-width: 500px;
   }
 
   @media (max-width: 1024px) {
-    display: none; // Hide on mobile
+    bottom: calc(#{$footer-height} + 0.5rem);
   }
 }
 
@@ -636,7 +764,7 @@ $image-max-width: 500px;
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(-8px);
+    transform: translateX(-50%) translateY(-6px);
   }
 }
 
@@ -713,7 +841,7 @@ $image-max-width: 500px;
     width: 120%; // Larger area
     height: 120%; // Larger area
     background: radial-gradient(
-      ellipse at 60% 40%,
+      ellipse at 35% 40%, // Moved to LEFT where face is (was 60% 40%)
       rgba(255, 255, 255, 0.04) 0%,
       rgba(255, 255, 255, 0.02) 15%,
       rgba(255, 255, 255, 0.01) 30%,
@@ -780,11 +908,19 @@ $image-max-width: 500px;
   justify-content: space-between;
 }
 
-.footer__email {
+.footer__schedule {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 0.3s ease;
+
+  .calendar-icon {
+    width: 1rem;
+    height: 1rem;
+  }
 
   &:hover {
     color: $text-color;
@@ -810,7 +946,7 @@ $image-max-width: 500px;
 .heart {
   display: inline-block;
   animation: heartbeat 1.5s ease-in-out infinite;
-  color: #ff4444;
+  color: rgba(255, 255, 255, 0.55);
   vertical-align: middle;
 
   :deep(svg) {
