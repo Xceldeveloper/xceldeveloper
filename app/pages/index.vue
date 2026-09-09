@@ -12,8 +12,8 @@
 
     <!-- Footer -->
     <footer class="card-footer">
-      <a href="mailto:hello@xceldeveloper.com" class="footer__email">
-        hello@xceldeveloper.com
+      <a href="mailto:overcomer@emiator.com" class="footer__email">
+        overcomer@emiator.com
       </a>
       <div class="footer__socials">
         <a href="https://linkedin.com/in/overcomer-emiator-5573141b2" target="_blank" rel="noopener" class="social-link">
