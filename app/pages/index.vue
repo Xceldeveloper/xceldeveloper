@@ -55,9 +55,9 @@ $col-large: 61.8%;
 $col-small: 38.2%;
 
 // Viewport heights
-$header-height: 10vh;
-$body-height: 80vh;
-$footer-height: 10vh;
+$header-height: 5vh;
+$body-height: 90vh;
+$footer-height: 5vh;
 
 .business-card {
   min-height: 100vh;
@@ -77,7 +77,6 @@ $footer-height: 10vh;
   display: flex;
   align-items: center;
   padding: 0 clamp(2rem, 5vw, 4rem);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .header__name {
