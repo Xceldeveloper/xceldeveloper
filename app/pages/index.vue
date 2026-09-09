@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, onUnmounted, watch, nextTick, computed } from "vue";
+import { onMounted, ref, onUnmounted, watch, nextTick, computed, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
@@ -51,7 +51,11 @@ const calculateContentOffset = () => {
   if (!isDesktop.value) {
     contentOffset.value = 0;
     shouldCenterAlign.value = false;
-    isCalculating.value = false;
+    if (isCalculating.value) {
+      setTimeout(() => {
+        isCalculating.value = false;
+      }, 1400);
+    }
     return;
   }
 
@@ -94,11 +98,11 @@ const calculateContentOffset = () => {
       console.log("Center alignment applied");
     }
 
-    // Release loading state ONLY on initial load
+    // Hold splash long enough for brand mark to land, then lift curtain
     if (isCalculating.value) {
       setTimeout(() => {
         isCalculating.value = false;
-      }, 300); // Smooth initial reveal
+      }, 1400);
     }
   }
 };
@@ -185,6 +189,11 @@ const handleWheel = (e: WheelEvent) => {
 };
 
 onMounted(() => {
+  // Safety: never leave splash stuck if layout/photo load stalls
+  const splashFallback = window.setTimeout(() => {
+    isCalculating.value = false;
+  }, 4000);
+
   // Light switch effect - make the lighting come alive
   const photoContainer = document.querySelector(".photo-container");
   const profilePhoto = document.querySelector(
@@ -229,6 +238,8 @@ onMounted(() => {
         },
         "-=1.5",
       ); // Overlap with the backlight animation
+  } else {
+    calculateContentOffset();
   }
 
   // Set up ResizeObserver to watch for content size changes
@@ -258,6 +269,10 @@ onMounted(() => {
   // Attach wheel event listener
   window.addEventListener("wheel", handleWheel, { passive: true });
   console.log("Wheel listener attached, isDesktop:", isDesktop.value);
+
+  onBeforeUnmount(() => {
+    window.clearTimeout(splashFallback);
+  });
 });
 
 // Watch for section changes to recalculate alignment (no loader)
@@ -287,11 +302,25 @@ onUnmounted(() => {
 
 <template>
   <div class="business-card">
-    <!-- Loading Drawer (like buque website) -->
-    <Transition name="drawer">
-      <div v-if="isCalculating" class="loading-drawer">
-        <div class="loading-drawer__content">
-          <div class="loading-spinner"></div>
+    <!-- Splash curtain (BIP / Buque pattern) -->
+    <Transition name="curtain">
+      <div
+        v-if="isCalculating"
+        class="app-curtain"
+        role="status"
+        aria-live="polite"
+        aria-label="Loading"
+      >
+        <div class="app-curtain__center">
+          <img
+            class="app-curtain__img"
+            src="/theovercomer.png"
+            alt="The Overcomer"
+            width="280"
+            height="280"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
       </div>
     </Transition>
@@ -426,55 +455,57 @@ $image-max-width: 420px; // Reduced from 500px
 }
 
 // ============================================
-// LOADING DRAWER
+// SPLASH CURTAIN
 // ============================================
-.loading-drawer {
+.app-curtain {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $bg-color;
-  z-index: 9999;
+  inset: 0;
+  z-index: 99999;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: $text-color;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+.app-curtain__center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.app-curtain__img {
+  display: block;
+  width: min(280px, 55vw);
+  height: auto;
+  animation: curtain-logo-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-// Drawer transition - slower and smoother
-.drawer-enter-active {
-  transition: opacity 0.2s ease;
+.curtain-leave-active {
+  transition: transform 0.72s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.drawer-leave-active {
-  transition: opacity 0.4s ease;
-}
-
-.drawer-enter-from,
-.drawer-leave-to {
+.curtain-leave-active .app-curtain__center {
   opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.curtain-leave-to {
+  transform: translateY(-100%);
+}
+
+@keyframes curtain-logo-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 // ============================================
