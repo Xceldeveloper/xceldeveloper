@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   icon: {
     class: "icon",
     serverBundle: {
-      collections: ["mdi", "uil", "lucide"],
+      collections: ["mdi", "uil", "lucide", "simple-icons"],
     },
   },
 
