@@ -26,12 +26,15 @@ useHead({
 
 // Calculate content offset based on image position
 const calculateContentOffset = () => {
-  const profilePhoto = document.querySelector(".profile-photo") as HTMLImageElement;
+  const profilePhoto = document.querySelector(
+    ".profile-photo",
+  ) as HTMLImageElement;
   const contentContainer = document.querySelector(".body-left__content");
   const cardBody = document.querySelector(".card-body");
-  const activeSection = currentSection.value === 'bio' 
-    ? document.querySelector(".bio-section")
-    : document.querySelector(".experience-section");
+  const activeSection =
+    currentSection.value === "bio"
+      ? document.querySelector(".bio-section")
+      : document.querySelector(".experience-section");
   const mediaQuery = window.matchMedia("(min-width: 1025px)");
 
   isDesktop.value = mediaQuery.matches;
@@ -46,13 +49,13 @@ const calculateContentOffset = () => {
   if (profilePhoto && contentContainer && cardBody && activeSection) {
     const photoRect = profilePhoto.getBoundingClientRect();
     const bodyRect = cardBody.getBoundingClientRect();
-    
+
     // Get ACTUAL content height (the section itself, not the container)
     const sectionHeight = activeSection.scrollHeight;
     const availableHeight = bodyRect.height;
-    
+
     // Check if content needs scrolling (content taller than container)
-    const needsScroll = sectionHeight > (availableHeight * 0.8);
+    const needsScroll = sectionHeight > availableHeight * 0.8;
 
     console.log("Content measurement:", {
       sectionHeight,
@@ -64,11 +67,11 @@ const calculateContentOffset = () => {
     if (needsScroll) {
       // Long content: Eye-level alignment (10% below image top)
       const imageTopRelativeToBody = photoRect.top - bodyRect.top;
-      const eyeLevelOffset = imageTopRelativeToBody + (photoRect.height * 0.1); // 10% down from image top
-      
+      const eyeLevelOffset = imageTopRelativeToBody + photoRect.height * 0.1; // 10% down from image top
+
       contentOffset.value = eyeLevelOffset;
       shouldCenterAlign.value = false;
-      
+
       console.log("Eye-level alignment:", {
         imageTop: imageTopRelativeToBody,
         eyeLevelOffset,
@@ -78,13 +81,13 @@ const calculateContentOffset = () => {
       // Short content: Center alignment (no offset needed, CSS handles it)
       contentOffset.value = 0;
       shouldCenterAlign.value = true;
-      
+
       console.log("Center alignment applied");
     }
 
     // Show scroll indicator on Bio (to hint at Experience section)
     // or on Experience if it has scrollable content
-    showScrollIndicator.value = 
+    showScrollIndicator.value =
       currentSection.value === "bio" || // Always show on bio to hint at more sections
       (currentSection.value === "experience" && needsScroll); // Show on experience if scrollable
 
@@ -100,10 +103,18 @@ const calculateContentOffset = () => {
 // Wheel event handler
 let isScrolling = false;
 const handleWheel = (e: WheelEvent) => {
-  console.log("Wheel event fired:", { isScrolling, isDesktop: isDesktop.value, deltaY: e.deltaY });
-  
+  console.log("Wheel event fired:", {
+    isScrolling,
+    isDesktop: isDesktop.value,
+    deltaY: e.deltaY,
+  });
+
   if (isScrolling || !isDesktop.value || isSectionTransitioning.value) {
-    console.log("Wheel blocked:", { isScrolling, isDesktop: isDesktop.value, transitioning: isSectionTransitioning.value });
+    console.log("Wheel blocked:", {
+      isScrolling,
+      isDesktop: isDesktop.value,
+      transitioning: isSectionTransitioning.value,
+    });
     return;
   }
 
@@ -253,7 +264,7 @@ watch(currentSection, () => {
     // Recalculate positioning while faded out
     setTimeout(() => {
       calculateContentOffset();
-      
+
       // End transition (fade back in) after positioning is set
       setTimeout(() => {
         isSectionTransitioning.value = false;
@@ -295,7 +306,7 @@ onUnmounted(() => {
       <div class="body-left" :class="{ 'eye-level': !shouldCenterAlign }">
         <div
           class="body-left__content"
-          :class="{ 'transitioning': isSectionTransitioning }"
+          :class="{ transitioning: isSectionTransitioning }"
           :style="{
             paddingTop:
               isDesktop && contentOffset > 0 ? `${contentOffset}px` : '0',
@@ -305,15 +316,22 @@ onUnmounted(() => {
           <BioSection v-if="currentSection === 'bio'" />
           <ExperienceSection v-if="currentSection === 'experience'" />
         </div>
-        
+
         <!-- Scroll Indicator -->
         <Transition name="indicator-fade">
-          <div v-if="showScrollIndicator && !isSectionTransitioning" class="scroll-indicator">
+          <div
+            v-if="showScrollIndicator && !isSectionTransitioning"
+            class="scroll-indicator"
+          >
             <div class="scroll-indicator__icon">
               <Icon name="lucide:chevrons-down" />
             </div>
             <span class="scroll-indicator__text">
-              {{ currentSection === 'bio' ? 'Scroll to see more' : 'Scroll to explore' }}
+              {{
+                currentSection === "bio"
+                  ? "Scroll to see more"
+                  : "Scroll to explore"
+              }}
             </span>
           </div>
         </Transition>
@@ -516,7 +534,9 @@ $image-max-width: 500px;
     overflow-x: hidden;
     padding-right: 1rem;
     padding-bottom: 2rem;
-    transition: padding-top 0.4s ease, opacity 0.4s ease; // Smooth fade transition
+    transition:
+      padding-top 0.4s ease,
+      opacity 0.4s ease; // Smooth fade transition
     will-change: padding-top, opacity; // Optimize for transitions
     opacity: 1; // Default visible
 
@@ -590,7 +610,7 @@ $image-max-width: 500px;
   &__icon {
     color: rgba(255, 255, 255, 0.4);
     font-size: 1.5rem;
-    
+
     :deep(svg) {
       width: 1.5rem;
       height: 1.5rem;
@@ -611,7 +631,8 @@ $image-max-width: 500px;
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
   50% {
@@ -654,10 +675,9 @@ $image-max-width: 500px;
   justify-content: center;
   position: sticky;
   top: 0;
-  height: auto;
+  height: 100%;
   max-height: $body-height;
   width: min($col-small, $image-max-width); // Use whichever is smaller
-
   @media (max-width: 1024px) {
     flex: 1 1 auto;
     position: relative;
