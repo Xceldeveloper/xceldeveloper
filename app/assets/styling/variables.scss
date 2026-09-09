@@ -1,11 +1,31 @@
-/* Variables */
-$primary-color: #fff;
-$bg-color: #000;
-$text-color: #fff;
-$text-muted: #aaa;
+/* Golden Ratio Variables */
+$phi: 1.618;
+$phi-inverse: 0.618;
 
-/* Breakpoints */
+/* Colors */
+$bg-color: #0a0a0a;
+$bg-secondary: #1a1a1a;
+$bg-tertiary: #151515;
+
+$text-color: #ffffff;
+$text-secondary: #b0b0b0;
+$text-muted: #aaaaaa;
+
+$accent-color: #ffffff;
+$border-color: rgba(255, 255, 255, 0.08);
+
+/* Golden Ratio Spacing */
+$space-xs: 5px;      // Base / φ
+$space-sm: 8px;      // Base
+$space-md: 13px;     // Base × φ
+$space-lg: 21px;     // 13 × φ
+$space-xl: 34px;     // 21 × φ
+$space-2xl: 55px;    // 34 × φ
+$space-3xl: 89px;    // 55 × φ
+
+/* Golden Ratio Breakpoints */
 $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
+$breakpoint-2xl: 1440px;
