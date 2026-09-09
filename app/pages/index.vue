@@ -5,9 +5,26 @@
       <h1 class="header__name">Overcomer Emiator</h1>
     </header>
 
-    <!-- Empty Body (for now) -->
+    <!-- Body with Golden Ratio Split -->
     <main class="card-body">
-      <!-- Content will go here -->
+      <!-- Left Side (61.8%) - Text -->
+      <div class="body-left">
+        <h2 class="body-left__text">
+          I'M Overcomer<br>
+          Emiator
+        </h2>
+      </div>
+
+      <!-- Right Side (38.2%) - Photo -->
+      <div class="body-right">
+        <div class="photo-container">
+          <img 
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=faces,entropy"
+            alt="Side profile placeholder"
+            class="profile-photo"
+          />
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -92,11 +109,59 @@ $footer-height: 10vh;
 .card-body {
   height: $body-height;
   display: flex;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+// Left Side (61.8%)
+.body-left {
+  flex: 0 0 $col-large;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 5vw, 4rem);
-  
-  // Empty for now - content will be added later
+
+  &__text {
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+// Right Side (38.2%)
+.body-right {
+  flex: 0 0 $col-small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-container {
+  width: 100%;
+  height: 100%;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(30%);
+  transition: all 0.5s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+  }
 }
 
 // ============================================
@@ -149,16 +214,19 @@ $footer-height: 10vh;
   .card-body {
     flex-direction: column;
     overflow-y: auto;
-    height: auto;
   }
 
-  .content-left,
-  .content-right {
+  .body-left,
+  .body-right {
     flex: 1 1 auto;
   }
 
+  .body-left__text {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
   .photo-container {
-    height: 300px;
+    max-height: 50vh;
   }
 }
 
