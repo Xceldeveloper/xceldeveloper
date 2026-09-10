@@ -13,34 +13,7 @@ export default defineNuxtConfig({
       meta: [
         { name: "theme-color", content: "#000000" },
         { name: "robots", content: "index, follow" },
-        {
-          name: "description",
-          content:
-            "Overcomer Emiator — builder and solution architect. Founder of Sleekware.",
-        },
-        // Open Graph
-        { property: "og:type", content: "website" },
-        { property: "og:site_name", content: "Overcomer Emiator" },
-        { property: "og:title", content: "Overcomer Emiator" },
-        {
-          property: "og:description",
-          content:
-            "Overcomer Emiator — builder and solution architect. Founder of Sleekware.",
-        },
-        { property: "og:image", content: "/og-image.png" },
-        { property: "og:image:width", content: "1200" },
-        { property: "og:image:height", content: "630" },
-        { property: "og:image:alt", content: "The Overcomer — Overcomer Emiator" },
-        // Twitter / X
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "Overcomer Emiator" },
-        {
-          name: "twitter:description",
-          content:
-            "Overcomer Emiator — builder and solution architect. Founder of Sleekware.",
-        },
-        { name: "twitter:image", content: "/og-image.png" },
-        { name: "twitter:image:alt", content: "The Overcomer — Overcomer Emiator" },
+        // OG / Twitter image tags live in app.vue (absolute URL from request origin)
       ],
       link: [
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
