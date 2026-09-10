@@ -7,17 +7,12 @@
 <script setup lang="ts">
 import {
   PROFILE,
-  PRODUCTION_HOST,
-  SITE_URL,
   contactPoints,
+  resolvePublicOrigin,
 } from "~/utils/seo";
 
-const requestURL = useRequestURL();
-const siteOrigin = computed(() => {
-  const host = requestURL.hostname.replace(/^www\./i, "").toLowerCase();
-  if (host === PRODUCTION_HOST) return SITE_URL;
-  return `${requestURL.protocol}//${requestURL.host}`;
-});
+/** Always production — share cards must not point at localhost / Netlify previews */
+const siteOrigin = computed(() => resolvePublicOrigin());
 
 const title = `${PROFILE.name} | ${PROFILE.jobTitle}`;
 const description = PROFILE.description;

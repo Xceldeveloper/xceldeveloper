@@ -1,9 +1,17 @@
 /** Marketing production host — Netlify previews / localhost stay noindex. */
 export const PRODUCTION_HOST = "overcomeremiator.com";
+/** Public origin for og:url, og:image, canonical, and JSON-LD — never localhost. */
 export const SITE_URL = "https://overcomeremiator.com";
 
 /** Set false to block crawlers site-wide (e.g. pre-launch). */
 export const INDEXING_ENABLED = true;
+
+/**
+ * Origin used in share / SEO tags.
+ * Always the real domain so WhatsApp/Facebook don't canonicalise to
+ * localhost or *.netlify.app when those hosts are scraped.
+ */
+export const resolvePublicOrigin = () => SITE_URL;
 
 /** Shared profile SEO — name search + social identity + contact */
 export const PROFILE = {
