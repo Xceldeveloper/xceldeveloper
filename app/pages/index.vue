@@ -355,9 +355,9 @@ onUnmounted(() => {
               target="_blank"
               rel="noopener"
               class="header-cta header-cta--icon"
-              aria-label="Schedule Me"
+              aria-label="Coffee Chat"
             >
-              <Icon name="lucide:calendar" class="header-cta__icon" />
+              <Icon name="lucide:coffee" class="header-cta__icon" />
             </a>
             <a
               href="mailto:overcomer@emiator.com"
@@ -443,8 +443,8 @@ onUnmounted(() => {
           rel="noopener"
           class="footer__schedule"
         >
-          <Icon name="lucide:calendar" class="calendar-icon" />
-          Schedule Me
+          <Icon name="lucide:coffee" class="calendar-icon" />
+          Coffee Chat
         </a>
 
         <!-- Right: Made with love -->
