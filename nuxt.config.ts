@@ -1,8 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { env } from "node:process";
+
 export default defineNuxtConfig({
   compatibilityDate: "2026-09-09",
   devtools: { enabled: true },
   css: ["@/assets/styling/main.scss"],
+
+  // Netlify sets CONTEXT=production on the production deploy (not previews).
+  runtimeConfig: {
+    public: {
+      allowIndexing: env.CONTEXT === "production",
+    },
+  },
 
   app: {
     head: {
@@ -12,7 +21,7 @@ export default defineNuxtConfig({
       title: "Overcomer Emiator",
       meta: [
         { name: "theme-color", content: "#000000" },
-        // robots set in app.vue (production host only)
+        // robots set in app.vue
       ],
       link: [
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
