@@ -70,6 +70,13 @@ const experiences = ref([
 
   &__content {
     max-width: 650px;
+
+    @media (max-width: 1024px) {
+      position: relative;
+      z-index: 3; // One surface above sticky portrait
+      background: $bg-color;
+      padding: 0.75rem 0 1.5rem;
+    }
   }
 
   &__title {

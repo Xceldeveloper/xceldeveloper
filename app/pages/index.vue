@@ -9,7 +9,11 @@ type Section = (typeof sections)[number];
 
 const currentSection = ref<Section>("bio");
 const contentOffset = ref(0);
-const isDesktop = ref(true);
+const isDesktop = ref(
+  typeof window !== "undefined"
+    ? window.matchMedia("(min-width: 1025px)").matches
+    : true,
+);
 const isCalculating = ref(true); // Loading state for drawer
 const shouldCenterAlign = ref(false); // Track if content should be centered
 const isSectionTransitioning = ref(false); // Track section transitions
@@ -19,8 +23,54 @@ const isLastSection = computed(
   () => currentSection.value === sections[sections.length - 1],
 );
 const showScrollIndicator = computed(
-  () => !isLastSection.value && !isSectionTransitioning.value,
+  () =>
+    isDesktop.value &&
+    !isLastSection.value &&
+    !isSectionTransitioning.value,
 );
+
+/** Mobile: true while the bio hero name is still visible */
+const isBioTitleInView = ref(true);
+let bioTitleObserver: IntersectionObserver | null = null;
+
+const showHeaderName = computed(() => {
+  if (isDesktop.value) return currentSection.value !== "bio";
+  return !isBioTitleInView.value;
+});
+
+const showHeaderCta = computed(() => {
+  if (isDesktop.value) return currentSection.value !== "bio";
+  return true; // Icon CTA always available on mobile
+});
+
+const observeBioTitle = () => {
+  bioTitleObserver?.disconnect();
+  bioTitleObserver = null;
+
+  if (typeof window === "undefined" || isDesktop.value) {
+    isBioTitleInView.value = true;
+    return;
+  }
+
+  const title = document.querySelector(".bio-section__title");
+  if (!title) {
+    isBioTitleInView.value = true;
+    return;
+  }
+
+  bioTitleObserver = new IntersectionObserver(
+    ([entry]) => {
+      isBioTitleInView.value = Boolean(entry?.isIntersecting);
+    },
+    {
+      // Treat as out of view once it scrolls under the fixed header
+      root: null,
+      threshold: 0,
+      rootMargin: "-10% 0px 0px 0px",
+    },
+  );
+  bioTitleObserver.observe(title);
+};
 
 useHead({
   title: "Overcomer Emiator",
@@ -56,8 +106,14 @@ const calculateContentOffset = () => {
         isCalculating.value = false;
       }, 1400);
     }
+    nextTick(() => observeBioTitle());
     return;
   }
+
+  // Leaving mobile — reset header name gate
+  isBioTitleInView.value = true;
+  bioTitleObserver?.disconnect();
+  bioTitleObserver = null;
 
   if (profilePhoto && contentContainer && cardBody && activeSection) {
     const photoRect = profilePhoto.getBoundingClientRect();
@@ -222,6 +278,8 @@ onMounted(() => {
   // Attach wheel event listener
   window.addEventListener("wheel", handleWheel, { passive: true });
 
+  nextTick(() => observeBioTitle());
+
   onBeforeUnmount(() => {
     window.clearTimeout(splashFallback);
   });
@@ -234,6 +292,7 @@ watch(currentSection, () => {
     // Recalculate positioning while faded out
     setTimeout(() => {
       calculateContentOffset();
+      observeBioTitle();
 
       // End transition (fade back in) after positioning is set
       setTimeout(() => {
@@ -249,6 +308,8 @@ onUnmounted(() => {
   if (resizeObserver) {
     resizeObserver.disconnect();
   }
+  bioTitleObserver?.disconnect();
+  bioTitleObserver = null;
 });
 </script>
 
@@ -281,20 +342,40 @@ onUnmounted(() => {
     <header class="card-header">
       <div class="header-content">
         <Transition name="fade">
-          <h2 v-if="currentSection !== 'bio'" class="header-name">
+          <h2 v-if="showHeaderName" class="header-name">
             Overcomer Emiator
           </h2>
         </Transition>
 
         <Transition name="fade">
-          <a
-            v-if="currentSection !== 'bio'"
-            href="mailto:overcomer@emiator.com"
-            class="header-cta"
-          >
-            Get in Touch
-            <Icon name="lucide:arrow-right" class="cta-arrow" />
-          </a>
+          <div v-if="showHeaderCta" class="header-actions">
+            <a
+              v-if="!isDesktop"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="header-cta header-cta--icon"
+              aria-label="Schedule Me"
+            >
+              <Icon name="lucide:calendar" class="header-cta__icon" />
+            </a>
+            <a
+              href="mailto:overcomer@emiator.com"
+              class="header-cta"
+              :class="{ 'header-cta--icon': !isDesktop }"
+              aria-label="Get in Touch"
+            >
+              <Icon
+                v-if="!isDesktop"
+                name="lucide:mail"
+                class="header-cta__icon"
+              />
+              <template v-else>
+                Get in Touch
+                <Icon name="lucide:arrow-right" class="cta-arrow" />
+              </template>
+            </a>
+          </div>
         </Transition>
       </div>
     </header>
@@ -315,9 +396,15 @@ onUnmounted(() => {
               isDesktop && contentOffset > 0 ? `${contentOffset}px` : '0',
           }"
         >
-          <!-- Sections with smooth fade -->
-          <BioSection v-if="currentSection === 'bio'" />
-          <ExperienceSection v-if="currentSection === 'experience'" />
+          <!-- Desktop: one section at a time. Mobile: stack all and page-scroll -->
+          <template v-if="isDesktop">
+            <BioSection v-if="currentSection === 'bio'" />
+            <ExperienceSection v-if="currentSection === 'experience'" />
+          </template>
+          <template v-else>
+            <BioSection />
+            <ExperienceSection class="mobile-stacked-section" />
+          </template>
         </div>
 
         <!-- Scroll Indicator -->
@@ -404,6 +491,13 @@ $image-max-width: 420px; // Reduced from 500px
   background: $bg-color;
   color: $text-color;
   overflow: hidden;
+
+  // Mobile: page can scroll so footer is not locked to the viewport
+  @media (max-width: 1024px) {
+    max-height: none;
+    overflow: visible;
+    padding-top: $header-height; // room for fixed header
+  }
 }
 
 // ============================================
@@ -468,6 +562,15 @@ $image-max-width: 420px; // Reduced from 500px
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: $bg-color;
+  }
+
   @media (max-width: 768px) {
     padding: 0 1.5rem;
   }
@@ -481,7 +584,12 @@ $image-max-width: 420px; // Reduced from 500px
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .header-name {
@@ -492,6 +600,14 @@ $image-max-width: 420px; // Reduced from 500px
   margin: 0;
   opacity: 0.9;
   transition: opacity 0.3s ease;
+  min-width: 0;
+
+  @media (max-width: 1024px) {
+    font-size: clamp(0.95rem, 3.6vw, 1.15rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     opacity: 1;
@@ -512,7 +628,32 @@ $image-max-width: 420px; // Reduced from 500px
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s ease;
   white-space: nowrap;
-  margin-left: auto;
+  flex-shrink: 0;
+
+  @media (max-width: 1024px) {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
+    gap: 0.35rem;
+
+    .cta-arrow {
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+
+    &--icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      justify-content: center;
+      border-radius: 999px;
+    }
+
+    .header-cta__icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      opacity: 0.85;
+    }
+  }
 
   .cta-arrow {
     transition: transform 0.3s ease;
@@ -533,6 +674,13 @@ $image-max-width: 420px; // Reduced from 500px
   }
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
 // ============================================
 // MAIN BODY
 // ============================================
@@ -549,8 +697,11 @@ $image-max-width: 420px; // Reduced from 500px
   width: 100%;
 
   @media (max-width: 1024px) {
+    height: auto;
+    max-height: none;
     flex-direction: column;
-    overflow-y: auto;
+    gap: 0; // Real overlap — gap was canceling the pull-up
+    overflow: visible;
     align-items: center; // Center on mobile
   }
 
@@ -576,8 +727,17 @@ $image-max-width: 420px; // Reduced from 500px
 
   @media (max-width: 1024px) {
     flex: 1 1 auto;
-    align-items: center; // Always center on mobile
-    justify-content: center;
+    min-height: 0;
+    order: 2; // Content after image on mobile
+    align-items: stretch;
+    justify-content: flex-start;
+    // No z-index / isolation — children must interleave with .body-right
+    position: relative;
+    z-index: auto;
+    width: 100%;
+    background: transparent;
+    // Light tuck under portrait
+    margin-top: -2.85rem;
   }
 
   &__content {
@@ -592,6 +752,23 @@ $image-max-width: 420px; // Reduced from 500px
       opacity 0.4s ease; // Smooth fade transition
     will-change: padding-top, opacity; // Optimize for transitions
     opacity: 1; // Default visible
+
+    @media (max-width: 1024px) {
+      max-height: none;
+      overflow: visible;
+      min-height: 0;
+      padding-right: 0;
+      // will-change/opacity stacking context blocks z-index under the image
+      will-change: auto;
+    }
+
+    :deep(.mobile-stacked-section) {
+      @media (max-width: 1024px) {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+    }
 
     // Fade out during transition
     &.transitioning {
@@ -655,6 +832,10 @@ $image-max-width: 420px; // Reduced from 500px
   pointer-events: none;
   z-index: 5;
   transition: opacity 0.3s ease;
+
+  @media (max-width: 1024px) {
+    display: none; // Page scroll replaces inner pane on mobile
+  }
 }
 
 .scroll-fade-top {
@@ -731,6 +912,7 @@ $image-max-width: 420px; // Reduced from 500px
 
   @media (max-width: 1024px) {
     bottom: calc(#{$footer-height} + 0.5rem);
+    display: none; // Page scroll replaces section switching on mobile
   }
 }
 
@@ -783,10 +965,16 @@ $image-max-width: 420px; // Reduced from 500px
   max-height: $body-height;
   width: min($col-small, $image-max-width); // Use whichever is smaller
   @media (max-width: 1024px) {
-    flex: 1 1 auto;
-    position: relative;
+    flex: 0 0 auto;
+    order: 1; // Image first on mobile
+    position: sticky;
+    top: $header-height; // Sit under fixed header
+    z-index: 2; // Above the name, below raised content
     height: auto;
+    max-height: none;
     width: 100%;
+    align-self: stretch;
+    pointer-events: none; // Let taps pass to content under transparent areas
   }
 }
 
@@ -803,8 +991,11 @@ $image-max-width: 420px; // Reduced from 500px
   --light-opacity: 0;
 
   @media (max-width: 1024px) {
-    max-height: 50vh;
-    height: 100%;
+    max-height: min(52vh, 380px);
+    height: auto;
+    background: transparent;
+    justify-content: flex-end; // Push portrait toward the right
+    padding-right: 0.25rem;
   }
 
   // Subtle backlight effect that animates in - very soft, no sharp edges
@@ -853,8 +1044,21 @@ $image-max-width: 420px; // Reduced from 500px
     );
   transition: transform 0.5s ease;
 
+  @media (max-width: 1024px) {
+    max-height: min(52vh, 380px);
+    max-width: min(100%, 380px);
+    margin-left: auto;
+    transform: translateX(8%);
+  }
+
   &:hover {
     transform: scale(1.02);
+  }
+
+  @media (max-width: 1024px) {
+    &:hover {
+      transform: translateX(8%) scale(1.02);
+    }
   }
 }
 
@@ -865,6 +1069,13 @@ $image-max-width: 420px; // Reduced from 500px
   height: $footer-height;
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  // Explicitly in document flow — not fixed/sticky (scrolls away on mobile)
+  position: relative;
+
+  @media (max-width: 1024px) {
+    z-index: 3; // Stay above sticky portrait
+    background: $bg-color;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
