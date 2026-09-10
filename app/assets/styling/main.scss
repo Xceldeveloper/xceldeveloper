@@ -26,6 +26,12 @@ html {
   scroll-behavior: smooth;
 }
 
+html.page-scroll-lock,
+html.page-scroll-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 /* Selection */
 ::selection {
   background: rgba(255, 255, 255, 0.2);

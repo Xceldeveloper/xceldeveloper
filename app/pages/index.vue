@@ -18,6 +18,43 @@ const isCalculating = ref(true); // Loading state for drawer
 const shouldCenterAlign = ref(false); // Track if content should be centered
 const isSectionTransitioning = ref(false); // Track section transitions
 let resizeObserver: ResizeObserver | null = null; // Watch for content size changes
+let photoPinRaf = 0;
+
+/** Pin desktop portrait to the right-column spacer — equal top/bottom gaps */
+const pinDesktopPhoto = () => {
+  if (typeof window === "undefined") return;
+  const slot = document.querySelector(".body-right") as HTMLElement | null;
+  const root = document.documentElement;
+  if (!slot || !window.matchMedia("(min-width: 1025px)").matches) {
+    root.style.removeProperty("--photo-left");
+    root.style.removeProperty("--photo-width");
+    root.style.removeProperty("--photo-height");
+    root.style.removeProperty("--photo-top");
+    return;
+  }
+  const rect = slot.getBoundingClientRect();
+  const headerH =
+    document.querySelector(".card-header")?.getBoundingClientRect().height ?? 0;
+  const footerH =
+    document.querySelector(".card-footer")?.getBoundingClientRect().height ?? 0;
+  // Equal inset above and below inside the band between header and footer
+  const band = Math.max(0, window.innerHeight - headerH - footerH);
+  const gap = Math.round(band * 0.04); // ~4% breathing room, same top & bottom
+  const height = Math.max(200, band - gap * 2);
+  const top = Math.round(headerH + gap);
+  root.style.setProperty("--photo-left", `${Math.round(rect.left)}px`);
+  root.style.setProperty("--photo-width", `${Math.round(rect.width)}px`);
+  root.style.setProperty("--photo-height", `${Math.round(height)}px`);
+  root.style.setProperty("--photo-top", `${top}px`);
+};
+
+const schedulePhotoPin = () => {
+  if (photoPinRaf) cancelAnimationFrame(photoPinRaf);
+  photoPinRaf = requestAnimationFrame(() => {
+    photoPinRaf = 0;
+    pinDesktopPhoto();
+  });
+};
 
 const isLastSection = computed(
   () => currentSection.value === sections[sections.length - 1],
@@ -101,6 +138,7 @@ const calculateContentOffset = () => {
   if (!isDesktop.value) {
     contentOffset.value = 0;
     shouldCenterAlign.value = false;
+    document.documentElement.classList.remove("page-scroll-lock");
     if (isCalculating.value) {
       setTimeout(() => {
         isCalculating.value = false;
@@ -116,28 +154,35 @@ const calculateContentOffset = () => {
   bioTitleObserver = null;
 
   if (profilePhoto && contentContainer && cardBody && activeSection) {
-    const photoRect = profilePhoto.getBoundingClientRect();
-    const bodyRect = cardBody.getBoundingClientRect();
-
     // Get ACTUAL content height (the section itself, not the container)
     const sectionHeight = activeSection.scrollHeight;
-    const availableHeight = bodyRect.height;
+    // Page scroll: compare against viewport body area, not growing card height
+    const availableHeight =
+      window.innerHeight -
+      (document.querySelector(".card-header")?.getBoundingClientRect().height ??
+        0) -
+      (document.querySelector(".card-footer")?.getBoundingClientRect().height ??
+        0);
 
-    // Check if content needs scrolling (content taller than container)
+    // Check if content needs scrolling (content taller than viewport body)
     const needsScroll = sectionHeight > availableHeight * 0.8;
 
     if (needsScroll) {
-      // Long content: Eye-level alignment (10% below image top)
-      const imageTopRelativeToBody = photoRect.top - bodyRect.top;
-      const eyeLevelOffset = imageTopRelativeToBody + photoRect.height * 0.1;
-
-      contentOffset.value = eyeLevelOffset;
+      // Constant eye-level tuck — never derived from live image height
+      // (section swaps would resize the photo slot and make it jump).
+      contentOffset.value = 48;
       shouldCenterAlign.value = false;
     } else {
-      // Short content: Center alignment (CSS handles it)
       contentOffset.value = 0;
       shouldCenterAlign.value = true;
     }
+
+    document.documentElement.classList.toggle(
+      "page-scroll-lock",
+      shouldCenterAlign.value,
+    );
+
+    schedulePhotoPin();
 
     // Hold splash long enough for brand mark to land, then lift curtain
     if (isCalculating.value) {
@@ -148,22 +193,18 @@ const calculateContentOffset = () => {
   }
 };
 
-// Wheel event handler
+// Wheel event handler — page scroll; switch sections at document boundaries
 let isScrolling = false;
 const handleWheel = (e: WheelEvent) => {
   if (isScrolling || !isDesktop.value || isSectionTransitioning.value) {
     return;
   }
 
-  // Get the scrollable content container
-  const contentContainer = document.querySelector(".body-left__content");
-  if (!contentContainer) return;
-
-  const scrollTop = contentContainer.scrollTop;
-  const scrollHeight = contentContainer.scrollHeight;
-  const clientHeight = contentContainer.clientHeight;
-  const isAtTop = scrollTop === 0;
-  const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1;
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const clientHeight = window.innerHeight;
+  const isAtTop = scrollTop <= 1;
+  const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 2;
 
   // Only switch sections when at scroll boundaries
   let shouldSwitch = false;
@@ -194,6 +235,7 @@ const handleWheel = (e: WheelEvent) => {
   // Switch section after a brief moment (during fade-out)
   setTimeout(() => {
     currentSection.value = targetSection;
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, 200);
 
   // Set debounce AFTER switching
@@ -257,28 +299,40 @@ onMounted(() => {
     calculateContentOffset();
   }
 
-  // Set up ResizeObserver to watch for content size changes
-  const contentContainer = document.querySelector(".body-left__content");
-  if (contentContainer) {
+  // Recalculate when the active section's size changes — not the padded
+  // content wrapper (padding updates would feedback-loop and shake sticky).
+  const observeSectionSize = () => {
+    resizeObserver?.disconnect();
+    const section =
+      currentSection.value === "bio"
+        ? document.querySelector(".bio-section")
+        : document.querySelector(".experience-section");
+    if (!section) return;
     resizeObserver = new ResizeObserver(() => {
       calculateContentOffset();
     });
-    resizeObserver.observe(contentContainer);
-  }
+    resizeObserver.observe(section);
+  };
+  observeSectionSize();
 
   // Recalculate on resize (no loader)
   const mediaQuery = window.matchMedia("(min-width: 1025px)");
   mediaQuery.addEventListener("change", () => {
     calculateContentOffset();
+    nextTick(() => observeSectionSize());
   });
   window.addEventListener("resize", () => {
     calculateContentOffset();
+    schedulePhotoPin();
   });
 
   // Attach wheel event listener
   window.addEventListener("wheel", handleWheel, { passive: true });
 
-  nextTick(() => observeBioTitle());
+  nextTick(() => {
+    observeBioTitle();
+    schedulePhotoPin();
+  });
 
   onBeforeUnmount(() => {
     window.clearTimeout(splashFallback);
@@ -289,10 +343,22 @@ onMounted(() => {
 watch(currentSection, () => {
   // Wait for DOM to update with new section
   nextTick(() => {
+    if (isDesktop.value) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
     // Recalculate positioning while faded out
     setTimeout(() => {
       calculateContentOffset();
       observeBioTitle();
+      schedulePhotoPin();
+      const section =
+        currentSection.value === "bio"
+          ? document.querySelector(".bio-section")
+          : document.querySelector(".experience-section");
+      if (resizeObserver && section) {
+        resizeObserver.disconnect();
+        resizeObserver.observe(section);
+      }
 
       // End transition (fade back in) after positioning is set
       setTimeout(() => {
@@ -310,11 +376,20 @@ onUnmounted(() => {
   }
   bioTitleObserver?.disconnect();
   bioTitleObserver = null;
+  if (photoPinRaf) cancelAnimationFrame(photoPinRaf);
+  document.documentElement.classList.remove("page-scroll-lock");
+  document.documentElement.style.removeProperty("--photo-left");
+  document.documentElement.style.removeProperty("--photo-width");
+  document.documentElement.style.removeProperty("--photo-height");
+  document.documentElement.style.removeProperty("--photo-top");
 });
 </script>
 
 <template>
-  <div class="business-card">
+  <div
+    class="business-card"
+    :class="{ 'business-card--fit': isDesktop && shouldCenterAlign }"
+  >
     <!-- Splash curtain (BIP / Buque pattern) -->
     <Transition name="curtain">
       <div
@@ -333,6 +408,9 @@ onUnmounted(() => {
             height="280"
             decoding="async"
             fetchpriority="high"
+            draggable="false"
+            @contextmenu.prevent
+            @dragstart.prevent
           />
         </div>
       </div>
@@ -428,6 +506,9 @@ onUnmounted(() => {
             src="/half-side-profile.png"
             alt="Overcomer Emiator - Side Profile"
             class="profile-photo"
+            draggable="false"
+            @contextmenu.prevent
+            @dragstart.prevent
           />
         </div>
       </div>
@@ -472,10 +553,10 @@ $phi-inverse: 0.618;
 $col-large: 62%; // Left content area
 $col-small: 38%; // Right image area
 
-// Viewport heights
+// Viewport chrome — matched so the portrait can sit with equal top/bottom air
 $header-height: 8vh;
-$body-height: 82vh;
-$footer-height: 10vh;
+$footer-height: 8vh;
+$body-height: 84vh;
 
 // Page max-width
 $page-max-width: 1400px;
@@ -484,19 +565,27 @@ $page-max-width: 1400px;
 $image-max-width: 420px; // Reduced from 500px
 
 .business-card {
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: 100dvh;
+  max-height: none;
   display: flex;
   flex-direction: column;
   background: $bg-color;
   color: $text-color;
-  overflow: hidden;
+  overflow: visible;
+  // Room for fixed header + footer (desktop); mobile footer stays in flow
+  padding-top: $header-height;
+  padding-bottom: $footer-height;
 
-  // Mobile: page can scroll so footer is not locked to the viewport
   @media (max-width: 1024px) {
-    max-height: none;
-    overflow: visible;
-    padding-top: $header-height; // room for fixed header
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+
+  // Short sections (Bio): lock to the viewport so wheel only switches sections
+  &--fit {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
   }
 }
 
@@ -528,6 +617,8 @@ $image-max-width: 420px; // Reduced from 500px
   width: min(280px, 55vw);
   height: auto;
   animation: curtain-logo-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .curtain-leave-active {
@@ -561,15 +652,12 @@ $image-max-width: 420px; // Reduced from 500px
   height: $header-height;
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-  @media (max-width: 1024px) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: $bg-color;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: $bg-color;
 
   @media (max-width: 768px) {
     padding: 0 1.5rem;
@@ -685,23 +773,25 @@ $image-max-width: 420px; // Reduced from 500px
 // MAIN BODY
 // ============================================
 .card-body {
-  height: $body-height;
+  // Fill the area between fixed chrome without exceeding it (avoids bio overscroll)
+  flex: 1 1 auto;
+  min-height: calc(100dvh - #{$header-height} - #{$footer-height});
+  height: auto;
   display: flex;
   gap: 1.5rem;
   padding: clamp(2rem, 4vw, 3rem);
-  align-items: flex-start; // Changed from center to flex-start for eye-level alignment
+  align-items: flex-start;
   justify-content: center;
-  overflow: visible; // Changed from hidden to visible to allow scrolling
+  overflow: visible;
   max-width: $page-max-width;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 1024px) {
-    height: auto;
-    max-height: none;
+    min-height: 0;
     flex-direction: column;
     gap: 0; // Real overlap — gap was canceling the pull-up
-    overflow: visible;
     align-items: center; // Center on mobile
   }
 
@@ -712,12 +802,14 @@ $image-max-width: 420px; // Reduced from 500px
 
 // Left Side (61.8%) - Content Area
 .body-left {
-  flex: 1 1 auto; // Changed from fixed to flexible - takes remaining space
+  flex: 1 1 auto;
   display: flex;
-  align-items: center; // Center by default for short content
-  justify-content: center; // Also center horizontally
-  min-height: 100%; // Take full height to enable centering
-  position: relative; // For absolute positioned fade overlays
+  align-items: center;
+  justify-content: center;
+  // Stretch within card-body only — do not add another viewport min-height
+  align-self: stretch;
+  min-height: 0;
+  position: relative;
 
   // Eye-level alignment when content is long (controlled by Vue)
   &.eye-level {
@@ -742,23 +834,16 @@ $image-max-width: 420px; // Reduced from 500px
 
   &__content {
     width: 100%;
-    max-height: calc(82vh - 2rem); // Reduced slightly to ensure footer is always visible
-    overflow-y: auto; // Enable vertical scrolling
-    overflow-x: hidden;
-    padding-right: 1rem;
-    padding-bottom: 2rem;
-    transition:
-      padding-top 0.4s ease,
-      opacity 0.4s ease; // Smooth fade transition
-    will-change: padding-top, opacity; // Optimize for transitions
-    opacity: 1; // Default visible
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+    padding-bottom: 0;
+    transition: opacity 0.4s ease;
+    opacity: 1;
+    min-height: 0;
 
     @media (max-width: 1024px) {
-      max-height: none;
-      overflow: visible;
-      min-height: 0;
-      padding-right: 0;
-      // will-change/opacity stacking context blocks z-index under the image
+      padding-bottom: 1rem;
       will-change: auto;
     }
 
@@ -775,49 +860,6 @@ $image-max-width: 420px; // Reduced from 500px
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-
-    // Ensure minimum visibility
-    min-height: 300px;
-
-    // Custom scrollbar styling (works on all browsers)
-    // Firefox
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-
-    // Webkit (Chrome, Safari, Edge)
-    &::-webkit-scrollbar {
-      width: 8px; // Slightly wider for better visibility
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
-      margin: 4px 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0.25) 100%
-      );
-      border-radius: 10px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.6) 0%,
-          rgba(255, 255, 255, 0.4) 100%
-        );
-      }
-
-      &:active {
-        background: rgba(255, 255, 255, 0.7);
-      }
-    }
   }
 }
 
@@ -832,10 +874,7 @@ $image-max-width: 420px; // Reduced from 500px
   pointer-events: none;
   z-index: 5;
   transition: opacity 0.3s ease;
-
-  @media (max-width: 1024px) {
-    display: none; // Page scroll replaces inner pane on mobile
-  }
+  display: none; // Page scroll — no inner pane fades
 }
 
 .scroll-fade-top {
@@ -953,62 +992,79 @@ $image-max-width: 420px; // Reduced from 500px
   transform: translateY(-30px);
 }
 
-// Right Side (30%) - Fixed Photo
+// Right Side — desktop: width spacer + fixed photo (constant viewport height)
 .body-right {
-  flex: 0 0 auto; // Changed from $col-small to auto - takes only needed space
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  height: 100%;
-  max-height: $body-height;
-  width: min($col-small, $image-max-width); // Use whichever is smaller
+  flex: 0 0 min(#{$col-small}, #{$image-max-width});
+  width: min(#{$col-small}, #{$image-max-width});
+  align-self: stretch;
+  min-height: 1px;
+  position: relative;
+  pointer-events: none;
+
   @media (max-width: 1024px) {
     flex: 0 0 auto;
-    order: 1; // Image first on mobile
+    order: 1;
     position: sticky;
-    top: $header-height; // Sit under fixed header
-    z-index: 2; // Above the name, below raised content
+    top: $header-height;
+    z-index: 2;
     height: auto;
     max-height: none;
     width: 100%;
     align-self: stretch;
-    pointer-events: none; // Let taps pass to content under transparent areas
+    min-height: 0;
+    pointer-events: none;
   }
 }
 
 .photo-container {
-  width: 100%;
-  height: fit-content;
-  max-height: 85vh;
+  position: fixed;
+  top: var(--photo-top, #{$header-height});
+  left: var(--photo-left, auto);
+  width: var(--photo-width, min(#{$col-small}, #{$image-max-width}));
+  height: var(
+    --photo-height,
+    calc(100dvh - #{$header-height} - #{$footer-height})
+  );
+  max-height: var(
+    --photo-height,
+    calc(100dvh - #{$header-height} - #{$footer-height})
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
   border-radius: 8px;
-  position: relative;
   --light-opacity: 0;
+  z-index: 40;
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   @media (max-width: 1024px) {
-    max-height: min(52vh, 380px);
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
     height: auto;
+    max-height: min(52vh, 380px);
+    z-index: auto;
+    transform: none;
+    backface-visibility: visible;
     background: transparent;
-    justify-content: flex-end; // Push portrait toward the right
+    justify-content: flex-end;
     padding-right: 0.25rem;
   }
 
-  // Subtle backlight effect that animates in - very soft, no sharp edges
   &::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120%; // Larger area
-    height: 120%; // Larger area
+    width: 120%;
+    height: 120%;
     background: radial-gradient(
-      ellipse at 35% 40%, // Moved to LEFT where face is (was 60% 40%)
+      ellipse at 35% 40%,
       rgba(255, 255, 255, 0.04) 0%,
       rgba(255, 255, 255, 0.02) 15%,
       rgba(255, 255, 255, 0.01) 30%,
@@ -1019,21 +1075,22 @@ $image-max-width: 420px; // Reduced from 500px
     pointer-events: none;
     z-index: 1;
     transition: opacity 0.3s ease;
-    filter: blur(40px); // Heavy blur to prevent sharp edges
+    filter: blur(40px);
   }
 }
 
 .profile-photo {
   width: 100%;
-  height: auto;
-  max-height: 82vh;
-  max-width: $image-max-width; // Additional constraint for ultra-wide screens
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
   object-fit: contain;
-  object-position: center top;
+  object-position: center center;
   position: relative;
   z-index: 2;
   --shadow-opacity: 0;
-  // Softer rim light - won't reveal sharp edges
+  user-select: none;
+  -webkit-user-drag: none;
   filter: drop-shadow(
       0 0 calc(60px * var(--shadow-opacity))
         rgba(255, 255, 255, calc(0.03 * var(--shadow-opacity)))
@@ -1042,17 +1099,23 @@ $image-max-width: 420px; // Reduced from 500px
       0 0 calc(30px * var(--shadow-opacity))
         rgba(255, 255, 255, calc(0.015 * var(--shadow-opacity)))
     );
-  transition: transform 0.5s ease;
+  transition: none;
+  pointer-events: none;
 
   @media (max-width: 1024px) {
+    height: auto;
     max-height: min(52vh, 380px);
     max-width: min(100%, 380px);
     margin-left: auto;
+    object-position: center top;
     transform: translateX(8%);
+    transition: transform 0.5s ease;
   }
 
-  &:hover {
-    transform: scale(1.02);
+  @media (min-width: 1025px) {
+    &:hover {
+      transform: none;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -1069,12 +1132,20 @@ $image-max-width: 420px; // Reduced from 500px
   height: $footer-height;
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  // Explicitly in document flow — not fixed/sticky (scrolls away on mobile)
-  position: relative;
+  background: $bg-color;
+
+  // Desktop: fixed while page scrolls. Mobile: stays in document flow.
+  @media (min-width: 1025px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
 
   @media (max-width: 1024px) {
+    position: relative;
     z-index: 3; // Stay above sticky portrait
-    background: $bg-color;
   }
 
   @media (max-width: 768px) {
