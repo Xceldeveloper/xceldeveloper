@@ -561,6 +561,9 @@ $body-height: 84vh;
 // Page max-width
 $page-max-width: 1400px;
 
+// Shared horizontal inset — header, body, and footer must match
+$page-inline-padding: clamp(2rem, 4vw, 3rem);
+
 // Image max-width (prevents it from getting too large on ultra-wide screens)
 $image-max-width: 420px; // Reduced from 500px
 
@@ -658,25 +661,22 @@ $image-max-width: 420px; // Reduced from 500px
   right: 0;
   z-index: 100;
   background: $bg-color;
-
-  @media (max-width: 768px) {
-    padding: 0 1.5rem;
-  }
 }
 
 .header-content {
   max-width: $page-max-width;
   height: 100%;
   margin: 0 auto;
-  padding: 0 clamp(2rem, 5vw, 4rem);
+  padding: 0 $page-inline-padding;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 0;
+    padding: 0 1.5rem;
   }
 }
 
@@ -779,7 +779,7 @@ $image-max-width: 420px; // Reduced from 500px
   height: auto;
   display: flex;
   gap: 1.5rem;
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: $page-inline-padding;
   align-items: flex-start;
   justify-content: center;
   overflow: visible;
@@ -1147,23 +1147,24 @@ $image-max-width: 420px; // Reduced from 500px
     position: relative;
     z-index: 3; // Stay above sticky portrait
   }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-    padding: 0 1.5rem;
-  }
 }
 
 .footer-content {
   max-width: $page-max-width;
   height: 100%;
   margin: 0 auto;
-  padding: 0 clamp(2rem, 5vw, 4rem);
+  padding: 0 $page-inline-padding;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 }
 
 .footer__schedule {
