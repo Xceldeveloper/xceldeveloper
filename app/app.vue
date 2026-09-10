@@ -5,15 +5,25 @@
 </template>
 
 <script setup lang="ts">
-import { PROFILE, contactPoints } from "~/utils/seo";
+import {
+  PROFILE,
+  PRODUCTION_HOST,
+  SITE_URL,
+  contactPoints,
+} from "~/utils/seo";
 
 const requestURL = useRequestURL();
-const siteOrigin = computed(() => requestURL.origin);
+const siteOrigin = computed(() => {
+  const host = requestURL.hostname.replace(/^www\./i, "").toLowerCase();
+  if (host === PRODUCTION_HOST) return SITE_URL;
+  return `${requestURL.protocol}//${requestURL.host}`;
+});
 
 const title = `${PROFILE.name} | ${PROFILE.jobTitle}`;
 const description = PROFILE.description;
 const shareImage = computed(() => `${siteOrigin.value}${PROFILE.imagePath}`);
 const shareAlt = `${PROFILE.name} — ${PROFILE.jobTitle}`;
+const robots = useProductionRobots();
 
 useHead({
   // Don't suffix the site name — page title already includes PROFILE.name
@@ -98,14 +108,15 @@ useSeoMeta({
   ogUrl: siteOrigin,
   ogSiteName: PROFILE.name,
   ogImage: shareImage,
-  ogImageWidth: 1080,
-  ogImageHeight: 1080,
-  ogImageType: "image/jpeg",
+  ogImageWidth: PROFILE.imageWidth,
+  ogImageHeight: PROFILE.imageHeight,
+  ogImageType: PROFILE.imageType,
   ogImageAlt: shareAlt,
   twitterCard: "summary_large_image",
   twitterTitle: title,
   twitterDescription: description,
   twitterImage: shareImage,
   twitterImageAlt: shareAlt,
+  robots,
 });
 </script>

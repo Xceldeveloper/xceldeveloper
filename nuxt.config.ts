@@ -12,14 +12,14 @@ export default defineNuxtConfig({
       title: "Overcomer Emiator",
       meta: [
         { name: "theme-color", content: "#000000" },
-        { name: "robots", content: "index, follow" },
-        // OG / Twitter image tags live in app.vue (absolute URL from request origin)
+        // robots set in app.vue (production host only)
       ],
       link: [
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
         { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
         { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16.png" },
         { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "canonical", href: "https://overcomeremiator.com" },
       ],
     },
   },

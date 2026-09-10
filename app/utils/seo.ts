@@ -1,3 +1,10 @@
+/** Marketing production host — Netlify previews / localhost stay noindex. */
+export const PRODUCTION_HOST = "overcomeremiator.com";
+export const SITE_URL = "https://overcomeremiator.com";
+
+/** Set false to block crawlers site-wide (e.g. pre-launch). */
+export const INDEXING_ENABLED = true;
+
 /** Shared profile SEO — name search + social identity + contact */
 export const PROFILE = {
   name: "Overcomer Emiator",
@@ -11,6 +18,10 @@ export const PROFILE = {
   /** Short line for OG/Twitter when space is tight */
   tagline: "Builder, solution architect, and founder of Sleekware.",
   imagePath: "/og-image.jpg",
+  /** WhatsApp / Facebook large preview standard (same as Buque) */
+  imageWidth: 1200,
+  imageHeight: 630,
+  imageType: "image/jpeg",
   worksFor: [
     {
       name: "Sleekware",
