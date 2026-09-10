@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
 
-const sections = ["bio", "experience"] as const;
+const sections = ["bio", "impact"] as const;
 type Section = (typeof sections)[number];
 
 const currentSection = ref<Section>("bio");
@@ -399,7 +399,7 @@ onUnmounted(() => {
           <!-- Desktop: one section at a time. Mobile: stack all and page-scroll -->
           <template v-if="isDesktop">
             <BioSection v-if="currentSection === 'bio'" />
-            <ExperienceSection v-if="currentSection === 'experience'" />
+            <ExperienceSection v-if="currentSection === 'impact'" />
           </template>
           <template v-else>
             <BioSection />

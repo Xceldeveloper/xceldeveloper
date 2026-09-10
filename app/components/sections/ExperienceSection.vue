@@ -1,12 +1,13 @@
 <script setup lang="ts">
-// Real experience data from LinkedIn
+// Role timeline (shown under Impact)
 const experiences = ref([
   {
     id: 1,
     title: 'Founder & CEO',
     company: 'Sleekware',
     period: 'Present',
-    description: 'Building intentional software systems for ambitious businesses. Leading product development and technical strategy.',
+    description:
+      'Turning ambitious product ideas into intentional software systems—owning strategy, architecture, and delivery so businesses ship what actually moves the needle.',
   },
   {
     id: 2,
@@ -14,28 +15,32 @@ const experiences = ref([
     company: 'Piggyvest',
     period: 'Dec 2021 - Present',
     location: 'Lagos, Nigeria',
-    description: 'Building scalable fintech solutions for one of Africa\'s leading savings platforms. Working with Vue.js, Nuxt.js, and modern web technologies to deliver user-centric financial products.',
+    description:
+      'Helping millions of Africans save and invest with confidence—shipping reliable, user-centric interfaces on one of the continent\'s leading fintech platforms.',
   },
   {
     id: 3,
     title: 'Frontend Developer',
     company: 'TransferXO',
     period: '2020 - 2021',
-    description: 'Led admin frontend application development and marketing website revamp. Built robust interfaces using Vue.js/Nuxt.js, SCSS, and GSAP. Implemented key features for the exchange application.',
+    description:
+      'Rebuilt the admin experience and marketing site so operators could move faster and customers could trust the product—core exchange flows included.',
   },
   {
     id: 4,
     title: 'Frontend Developer',
     company: 'Scelloo',
     period: '2019 - 2020',
-    description: 'Developed user-centric web applications with focus on clean architecture and scalable solutions.',
+    description:
+      'Shipped product surfaces people could actually use—clean architecture that kept features moving without burying the team in accidental complexity.',
   },
   {
     id: 5,
     title: 'Frontend Developer',
     company: 'Mulaa',
     period: '2018 - 2019',
-    description: 'Built responsive web applications and contributed to frontend architecture decisions.',
+    description:
+      'Laid early frontend foundations—responsive apps and architecture choices that made the next wave of product work cheaper and clearer.',
   },
 ]);
 </script>
@@ -44,7 +49,7 @@ const experiences = ref([
   <div class="experience-section">
     <div class="experience-section__content">
       <h2 class="experience-section__title">
-        Experience
+        Impact
       </h2>
 
       <div class="experience-section__timeline">
