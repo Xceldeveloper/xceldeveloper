@@ -192,8 +192,130 @@ const calculateContentOffset = () => {
   }
 };
 
-// Wheel event handler — page scroll; switch sections at document boundaries
+// Wheel / section glass transition (desktop)
 let isScrolling = false;
+let sectionTransitionTl: gsap.core.Timeline | null = null;
+
+const reconnectSectionObserver = () => {
+  const section =
+    currentSection.value === "bio"
+      ? document.querySelector(".bio-section")
+      : document.querySelector(".experience-section");
+  if (resizeObserver && section) {
+    resizeObserver.disconnect();
+    resizeObserver.observe(section);
+  }
+};
+
+/** Header: frosted glass morph. Body: original CSS fade via `.transitioning`. */
+const transitionToSection = (target: Section) => {
+  if (target === currentSection.value) return;
+
+  const headerContent = document.querySelector(
+    ".header-content",
+  ) as HTMLElement | null;
+  const glass = document.querySelector(".section-glass") as HTMLElement | null;
+
+  // Body uses the pre-glass fade (opacity via .transitioning)
+  isSectionTransitioning.value = true;
+  isScrolling = true;
+  sectionTransitionTl?.kill();
+
+  const swapSection = () => {
+    currentSection.value = target;
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  const afterSwapLayout = () => {
+    calculateContentOffset();
+    observeBioTitle();
+    schedulePhotoPin();
+    reconnectSectionObserver();
+  };
+
+  if (!headerContent || !glass) {
+    setTimeout(() => {
+      swapSection();
+      nextTick(() => {
+        afterSwapLayout();
+        setTimeout(() => {
+          isSectionTransitioning.value = false;
+          isScrolling = false;
+        }, 120);
+      });
+    }, 420);
+    return;
+  }
+
+  gsap.set(glass, { opacity: 0 });
+  gsap.set(headerContent, { transformOrigin: "50% 50%" });
+
+  sectionTransitionTl = gsap
+    .timeline({
+      defaults: { ease: "sine.inOut" },
+      onComplete: () => {
+        gsap.set(headerContent, {
+          clearProps: "filter,opacity,transform,transformOrigin",
+        });
+        gsap.set(glass, { opacity: 0 });
+        isSectionTransitioning.value = false;
+        isScrolling = false;
+        sectionTransitionTl = null;
+      },
+    })
+    // Frost appears quickly — fully up before body swap finishes
+    .to(
+      headerContent,
+      {
+        opacity: 0.15,
+        filter: "blur(18px)",
+        duration: 0.28,
+        ease: "power2.in",
+      },
+      0,
+    )
+    .to(
+      glass,
+      {
+        opacity: 1,
+        duration: 0.28,
+        ease: "power2.in",
+      },
+      0,
+    )
+    // Body fade is slower; swap once body is fully gone (~0.5s CSS)
+    .add(() => {
+      swapSection();
+    }, 0.5)
+    .add(() => {
+      afterSwapLayout();
+      gsap.set(headerContent, {
+        opacity: 0.15,
+        filter: "blur(18px)",
+      });
+    }, 0.56)
+    .to({}, { duration: 0.08 })
+    // Clear frost as body fades back in
+    .to(
+      headerContent,
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.45,
+        ease: "sine.out",
+      },
+    )
+    .to(
+      glass,
+      {
+        opacity: 0,
+        duration: 0.4,
+        ease: "sine.out",
+      },
+      "<0.04",
+    );
+};
+
 const handleWheel = (e: WheelEvent) => {
   if (isScrolling || !isDesktop.value || isSectionTransitioning.value) {
     return;
@@ -205,43 +327,21 @@ const handleWheel = (e: WheelEvent) => {
   const isAtTop = scrollTop <= 1;
   const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 2;
 
-  // Only switch sections when at scroll boundaries
-  let shouldSwitch = false;
-  let targetSection: Section = currentSection.value;
+  let targetSection: Section | null = null;
   const currentIndex = sections.indexOf(currentSection.value);
 
   if (e.deltaY > 0) {
-    // Scrolling DOWN — next section when at bottom
     if (isAtBottom && currentIndex < sections.length - 1) {
-      shouldSwitch = true;
       targetSection = sections[currentIndex + 1];
     }
   } else if (e.deltaY < 0) {
-    // Scrolling UP — previous section when at top
     if (isAtTop && currentIndex > 0) {
-      shouldSwitch = true;
       targetSection = sections[currentIndex - 1];
     }
   }
 
-  if (!shouldSwitch) {
-    return;
-  }
-
-  // Start fade-out transition
-  isSectionTransitioning.value = true;
-
-  // Switch section after a brief moment (during fade-out)
-  setTimeout(() => {
-    currentSection.value = targetSection;
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, 200);
-
-  // Set debounce AFTER switching
-  isScrolling = true;
-  setTimeout(() => {
-    isScrolling = false;
-  }, 800);
+  if (!targetSection) return;
+  transitionToSection(targetSection);
 };
 
 onMounted(() => {
@@ -340,29 +440,16 @@ onMounted(() => {
 
 // Watch for section changes to recalculate alignment (no loader)
 watch(currentSection, () => {
-  // Wait for DOM to update with new section
   nextTick(() => {
     if (isDesktop.value) {
       window.scrollTo({ top: 0, behavior: "auto" });
     }
-    // Recalculate positioning while faded out
     setTimeout(() => {
       calculateContentOffset();
       observeBioTitle();
       schedulePhotoPin();
-      const section =
-        currentSection.value === "bio"
-          ? document.querySelector(".bio-section")
-          : document.querySelector(".experience-section");
-      if (resizeObserver && section) {
-        resizeObserver.disconnect();
-        resizeObserver.observe(section);
-      }
-
-      // End transition (fade back in) after positioning is set
-      setTimeout(() => {
-        isSectionTransitioning.value = false;
-      }, 100);
+      reconnectSectionObserver();
+      // Glass timeline owns isSectionTransitioning on desktop switches
     }, 50);
   });
 });
@@ -370,6 +457,8 @@ watch(currentSection, () => {
 onUnmounted(() => {
   window.removeEventListener("resize", calculateContentOffset);
   window.removeEventListener("wheel", handleWheel);
+  sectionTransitionTl?.kill();
+  sectionTransitionTl = null;
   if (resizeObserver) {
     resizeObserver.disconnect();
   }
@@ -417,6 +506,8 @@ onUnmounted(() => {
 
     <!-- Header -->
     <header class="card-header">
+      <!-- Frosted glass veil during Bio ↔ Impact swap -->
+      <div class="section-glass" aria-hidden="true"></div>
       <div class="header-content">
         <Transition name="fade">
           <h2 v-if="showHeaderName" class="header-name">
@@ -464,7 +555,7 @@ onUnmounted(() => {
         <!-- Scroll fade overlays for smooth content edges -->
         <div class="scroll-fade-overlay scroll-fade-top"></div>
         <div class="scroll-fade-overlay scroll-fade-bottom"></div>
-        
+
         <div
           class="body-left__content"
           :class="{ transitioning: isSectionTransitioning }"
@@ -660,9 +751,12 @@ $image-max-width: 420px; // Reduced from 500px
   right: 0;
   z-index: 100;
   background: $bg-color;
+  overflow: hidden;
 }
 
 .header-content {
+  position: relative;
+  z-index: 2;
   max-width: $page-max-width;
   height: 100%;
   margin: 0 auto;
@@ -854,11 +948,29 @@ $image-max-width: 420px; // Reduced from 500px
       }
     }
 
-    // Fade out during transition
+    // Original section fade — a bit slower so frost can land first
     &.transitioning {
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
     }
+  }
+}
+
+// Frosted glass veil — lives in the header for section swaps
+.section-glass {
+  display: none;
+
+  @media (min-width: 1025px) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
   }
 }
 
