@@ -89,23 +89,24 @@ const experiences = ref([
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin: 0 0 2.5rem 0; // More spacing below title
+    margin: 0 0 2.55rem 0;
     text-transform: uppercase;
 
     @media (max-width: 1024px) {
       font-size: clamp(2.5rem, 8vw, 4rem);
+      margin-bottom: 2.35rem;
     }
   }
 
   &__timeline {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem; // Increased spacing between items
+    gap: 2.6rem;
   }
 }
 
 .timeline-item {
-  padding-bottom: 2rem;
+  padding-bottom: 2.05rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
   &:last-child {
@@ -131,14 +132,14 @@ const experiences = ref([
   &__period {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 1rem; // More space before description
+    margin-bottom: 1.05rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   &__description {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.72;
     color: $text-muted;
     margin: 0;
   }

@@ -129,7 +129,7 @@ onUnmounted(() => {
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.6rem 0;
     text-transform: uppercase;
 
     @media (max-width: 1024px) {
@@ -137,6 +137,7 @@ onUnmounted(() => {
       position: relative;
       z-index: 1; // At rest: under sticky portrait
       padding-top: 0.35rem;
+      margin-bottom: 1.5rem;
     }
   }
 
@@ -173,9 +174,9 @@ onUnmounted(() => {
 
   &__text {
     font-size: clamp(0.95rem, 1.15vw, 1.15rem);
-    line-height: 1.6;
+    line-height: 1.68;
     color: $text-muted;
-    margin: 0 0 2.75rem 0;
+    margin: 0 0 2.85rem 0;
     max-width: 650px;
 
     strong {
@@ -201,13 +202,13 @@ onUnmounted(() => {
     align-items: center;
     justify-content: flex-start;
     margin-top: 0;
-    gap: 1.75rem;
+    gap: 1.8rem;
     flex-wrap: wrap;
   }
 
   &__socials {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.3rem;
   }
 }
 

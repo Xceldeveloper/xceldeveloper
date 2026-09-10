@@ -764,8 +764,8 @@ $image-max-width: 420px; // Reduced from 500px
 
     :deep(.mobile-stacked-section) {
       @media (max-width: 1024px) {
-        margin-top: 3rem;
-        padding-top: 1.5rem;
+        margin-top: 3.1rem;
+        padding-top: 1.55rem;
         border-top: 1px solid rgba(255, 255, 255, 0.06);
       }
     }
