@@ -25,7 +25,7 @@ export const PROFILE = {
   worksFor: [
     {
       name: "Sleekware",
-      url: "https://sleekware.com",
+      url: "https://sleekware.io",
       role: "Founder & CEO",
     },
     {

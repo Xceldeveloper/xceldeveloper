@@ -612,7 +612,7 @@ onUnmounted(() => {
         <p class="footer__attribution">
           Made with <Icon name="lucide:heart" class="heart" /> by
           <a
-            href="https://sleekware.com"
+            href="https://sleekware.io"
             target="_blank"
             rel="noopener"
             class="footer__link"
