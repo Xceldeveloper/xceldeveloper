@@ -168,9 +168,8 @@ const calculateContentOffset = () => {
     const needsScroll = sectionHeight > availableHeight * 0.8;
 
     if (needsScroll) {
-      // Constant eye-level tuck — never derived from live image height
-      // (section swaps would resize the photo slot and make it jump).
-      contentOffset.value = 48;
+      // Eye-level start for Impact — slightly below the portrait's visual center line
+      contentOffset.value = Math.round(window.innerHeight * 0.16);
       shouldCenterAlign.value = false;
     } else {
       contentOffset.value = 0;
