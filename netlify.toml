@@ -1,0 +1,3 @@
+# Nuxt 4 / @clack need Node 20.12+ (styleText). Pin 22 to match package.json engines.
+[build.environment]
+  NODE_VERSION = "22"
