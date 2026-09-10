@@ -4,10 +4,11 @@
   # Index when this is the production deploy; *.netlify.app stays noindex in app robots.
   NUXT_PUBLIC_ALLOW_INDEXING = "true"
 
-# Send the default Netlify subdomain to the real domain (helps Google drop it).
+# Send Netlify subdomains to the real domain (helps Google drop them).
+# Keep the old site name so leftover Google listings still 301 after rename.
 [[redirects]]
   from = "/*"
   to = "https://overcomeremiator.com/:splat"
   status = 301
   force = true
-  conditions = {Host = ["xceldeveloper.netlify.app"]}
+  conditions = {Host = ["overcomeremiator.netlify.app", "xceldeveloper.netlify.app"]}

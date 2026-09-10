@@ -31,7 +31,7 @@ function isLocalHost(host: string) {
 
 /**
  * Index only the real domain. Always noindex *.netlify.app so Google
- * stops ranking xceldeveloper.netlify.app ahead of overcomeremiator.com.
+ * stops ranking *.netlify.app ahead of overcomeremiator.com.
  */
 export function useProductionRobots() {
   const config = useRuntimeConfig();
