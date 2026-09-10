@@ -6,10 +6,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["@/assets/styling/main.scss"],
 
-  // Netlify sets CONTEXT=production on the production deploy (not previews).
+  // Netlify: CONTEXT=production on the production branch, or force via env.
   runtimeConfig: {
     public: {
-      allowIndexing: env.CONTEXT === "production",
+      allowIndexing:
+        env.CONTEXT === "production" ||
+        env.NUXT_PUBLIC_ALLOW_INDEXING === "true",
     },
   },
 

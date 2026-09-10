@@ -1,5 +1,5 @@
 # Nuxt 4 / @clack need Node 20.12+ (styleText). Pin 22 to match package.json engines.
 [build.environment]
   NODE_VERSION = "22"
-  # Ensures allowIndexing is true for the production site (not deploy previews).
-  # Netlify also sets CONTEXT=production automatically on production deploys.
+  # Ready to be crawled — index even if this branch is a Netlify branch-deploy.
+  NUXT_PUBLIC_ALLOW_INDEXING = "true"
