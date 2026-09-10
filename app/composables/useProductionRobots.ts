@@ -7,34 +7,56 @@ function normalizeHost(raw: string | undefined | null): string | null {
   return host.replace(/^www\./, "").split(":")[0] || null;
 }
 
-export function useIsProductionSite() {
+function collectHosts() {
   const url = useRequestURL();
   const headers = useRequestHeaders(["host", "x-forwarded-host"]);
+  return [
+    normalizeHost(url.hostname),
+    normalizeHost(headers.host),
+    normalizeHost(headers["x-forwarded-host"]),
+  ].filter(Boolean) as string[];
+}
 
-  return computed(() => {
-    const candidates = [
-      normalizeHost(url.hostname),
-      normalizeHost(headers.host),
-      normalizeHost(headers["x-forwarded-host"]),
-    ].filter(Boolean);
+export function useIsProductionSite() {
+  return computed(() => collectHosts().includes(PRODUCTION_HOST));
+}
 
-    return candidates.includes(PRODUCTION_HOST);
-  });
+function isNetlifySubdomain(host: string) {
+  return host.endsWith(".netlify.app");
+}
+
+function isLocalHost(host: string) {
+  return host === "localhost" || host === "127.0.0.1";
 }
 
 /**
- * Allow crawl on Netlify production deploys (CONTEXT=production) or when
- * the request host is overcomeremiator.com. Local / deploy-previews stay noindex.
+ * Index only the real domain. Always noindex *.netlify.app so Google
+ * stops ranking xceldeveloper.netlify.app ahead of overcomeremiator.com.
  */
 export function useProductionRobots() {
   const config = useRuntimeConfig();
-  const isProductionHost = useIsProductionSite();
 
   return computed(() => {
     if (!INDEXING_ENABLED) return "noindex, nofollow";
-    if (config.public.allowIndexing || isProductionHost.value) {
+
+    const hosts = collectHosts();
+    const onProductionHost = hosts.includes(PRODUCTION_HOST);
+    const onNetlifyApp = hosts.some(isNetlifySubdomain);
+    const onLocal = hosts.some(isLocalHost);
+
+    // Hard rule: never let the Netlify subdomain stay in Google
+    if (onNetlifyApp && !onProductionHost) {
+      return "noindex, nofollow";
+    }
+
+    if (onLocal && !onProductionHost) {
+      return "noindex, nofollow";
+    }
+
+    if (onProductionHost || config.public.allowIndexing) {
       return "index, follow";
     }
+
     return "noindex, nofollow";
   });
 }

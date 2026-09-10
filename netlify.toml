@@ -1,5 +1,13 @@
 # Nuxt 4 / @clack need Node 20.12+ (styleText). Pin 22 to match package.json engines.
 [build.environment]
   NODE_VERSION = "22"
-  # Ready to be crawled — index even if this branch is a Netlify branch-deploy.
+  # Index when this is the production deploy; *.netlify.app stays noindex in app robots.
   NUXT_PUBLIC_ALLOW_INDEXING = "true"
+
+# Send the default Netlify subdomain to the real domain (helps Google drop it).
+[[redirects]]
+  from = "/*"
+  to = "https://overcomeremiator.com/:splat"
+  status = 301
+  force = true
+  conditions = {Host = ["xceldeveloper.netlify.app"]}
