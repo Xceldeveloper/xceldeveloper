@@ -80,6 +80,8 @@ const showHeaderCta = computed(() => {
   return true; // Icon CTA always available on mobile
 });
 
+const { calHref, openCoffeeChat } = useCalEmbed();
+
 const observeBioTitle = () => {
   bioTitleObserver?.disconnect();
   bioTitleObserver = null;
@@ -519,11 +521,10 @@ onUnmounted(() => {
           <div v-if="showHeaderCta" class="header-actions">
             <a
               v-if="!isDesktop"
-              href="#"
-              target="_blank"
-              rel="noopener"
+              :href="calHref"
               class="header-cta header-cta--icon"
               aria-label="Coffee Chat"
+              @click="openCoffeeChat"
             >
               <Icon name="lucide:coffee" class="header-cta__icon" />
             </a>
@@ -607,12 +608,11 @@ onUnmounted(() => {
     <!-- Footer -->
     <footer class="card-footer">
       <div class="footer-content">
-        <!-- Left: Calendly link -->
+        <!-- Coffee Chat → Cal.com popup embed -->
         <a
-          href="#"
-          target="_blank"
-          rel="noopener"
+          :href="calHref"
           class="footer__schedule"
+          @click="openCoffeeChat"
         >
           <Icon name="lucide:coffee" class="calendar-icon" />
           Coffee Chat
