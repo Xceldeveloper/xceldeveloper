@@ -3,6 +3,7 @@ import { onMounted, ref, onUnmounted, watch, nextTick, computed, onBeforeUnmount
 import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
+import { PROFILE } from "~/utils/seo";
 
 const sections = ["bio", "impact"] as const;
 type Section = (typeof sections)[number];
@@ -110,17 +111,6 @@ const observeBioTitle = () => {
   );
   bioTitleObserver.observe(title);
 };
-
-useHead({
-  title: "Overcomer Emiator",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Overcomer Emiator — builder and solution architect. Founder of Sleekware.",
-    },
-  ],
-});
 
 // Calculate content offset based on image position
 const calculateContentOffset = () => {
@@ -529,7 +519,7 @@ onUnmounted(() => {
               <Icon name="lucide:coffee" class="header-cta__icon" />
             </a>
             <a
-              href="mailto:overcomer@emiator.com"
+              :href="`mailto:${PROFILE.email}`"
               class="header-cta"
               :class="{ 'header-cta--icon': !isDesktop }"
               aria-label="Get in Touch"

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
+import { socialLinks, PROFILE } from "~/utils/seo";
 
 const { bioSegments } = useBioContent();
 
@@ -36,10 +37,10 @@ onUnmounted(() => {
       :class="{ 'bio-section__content--raised': isTitleRaised }"
     >
       <div class="bio-section__stack">
-        <h2 class="bio-section__title">
+        <h1 class="bio-section__title">
           Overcomer<br />
           Emiator
-        </h2>
+        </h1>
 
         <div class="bio-section__body">
           <p class="bio-section__text">
@@ -70,42 +71,19 @@ onUnmounted(() => {
           <div class="bio-section__footer">
             <div class="bio-section__socials">
               <a
-                href="https://linkedin.com/in/overcomer-emiator-5573141b2"
+                v-for="link in socialLinks"
+                :key="link.href"
+                :href="link.href"
+                :aria-label="link.label"
                 target="_blank"
-                rel="noopener"
+                rel="me noopener noreferrer"
                 class="social-link"
               >
-                <Icon name="lucide:linkedin" />
-              </a>
-              <a
-                href="https://instagram.com/ovemiator"
-                target="_blank"
-                rel="noopener"
-                class="social-link"
-              >
-                <Icon name="lucide:instagram" />
-              </a>
-              <a
-                href="https://github.com/Xceldeveloper"
-                target="_blank"
-                rel="noopener"
-                class="social-link"
-                aria-label="GitHub"
-              >
-                <Icon name="lucide:github" />
-              </a>
-              <a
-                href="https://x.com/ovemiator"
-                target="_blank"
-                rel="noopener"
-                class="social-link"
-                aria-label="X"
-              >
-                <Icon name="simple-icons:x" />
+                <Icon :name="link.icon" />
               </a>
             </div>
 
-            <a href="mailto:overcomer@emiator.com" class="cta-link">
+            <a :href="`mailto:${PROFILE.email}`" class="cta-link">
               Get in Touch
               <Icon name="lucide:arrow-right" class="cta-arrow" />
             </a>

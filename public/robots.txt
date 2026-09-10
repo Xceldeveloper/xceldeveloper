@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Single-page personal site — sitemap is just the home URL once deployed.

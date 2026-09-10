@@ -1,7 +1,11 @@
-const CAL_LINK = "overcomeremiator/coffee-chat";
+import { PROFILE } from "~/utils/seo";
+
 const CAL_NAMESPACE = "coffee-chat";
 const CAL_ORIGIN = "https://cal.com";
 const CAL_EMBED_JS = "https://app.cal.com/embed/embed.js";
+
+/** Path after cal.com/ — from shared PROFILE.coffeeChatUrl */
+const CAL_LINK = PROFILE.coffeeChatUrl.replace(/^https?:\/\/cal\.com\//, "");
 
 declare global {
   interface Window {
