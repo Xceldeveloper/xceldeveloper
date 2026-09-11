@@ -35,7 +35,15 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/icon", "@nuxt/fonts", "@vueuse/nuxt"],
+  modules: ["@nuxt/icon", "@nuxt/fonts", "@vueuse/nuxt", "nuxt-umami"],
+
+  umami: {
+    id: "aade3632-bb4d-463a-91e3-ead390db0ff4",
+    host: "https://cloud.umami.is",
+    autoTrack: true,
+    ignoreLocalhost: true,
+    domains: ["overcomeremiator.com", "www.overcomeremiator.com"],
+  },
 
   icon: {
     class: "icon",
