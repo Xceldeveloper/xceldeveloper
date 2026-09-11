@@ -44,22 +44,22 @@ export const PROFILE = {
   ],
   /** Public profiles Google can associate with this Person */
   sameAs: [
-    "https://www.linkedin.com/in/overcomer-emiator-5573141b2",
+    "https://www.linkedin.com/in/overcomeremiator",
     "https://github.com/Xceldeveloper",
     "https://x.com/ovemiator",
-    "https://www.instagram.com/ovemiator",
+    "https://www.instagram.com/overcomeremiator",
     "https://cal.com/overcomeremiator/coffee-chat",
   ],
 } as const;
 
 export const socialLinks = [
   {
-    href: "https://www.linkedin.com/in/overcomer-emiator-5573141b2",
+    href: "https://www.linkedin.com/in/overcomeremiator",
     label: "LinkedIn",
     icon: "lucide:linkedin",
   },
   {
-    href: "https://www.instagram.com/ovemiator",
+    href: "https://www.instagram.com/overcomeremiator",
     label: "Instagram",
     icon: "lucide:instagram",
   },

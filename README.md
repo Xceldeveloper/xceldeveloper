@@ -25,5 +25,6 @@ Runs at [http://localhost:3050](http://localhost:3050).
 ## Contact
 
 - Email: [overcomer@emiator.com](mailto:overcomer@emiator.com)
-- LinkedIn: [overcomeremiator](https://linkedin.com/in/overcomer-emiator-5573141b2)
-- X / Instagram: [@ovemiator](https://x.com/ovemiator)
+- LinkedIn: [overcomeremiator](https://www.linkedin.com/in/overcomeremiator)
+- Instagram: [@overcomeremiator](https://www.instagram.com/overcomeremiator)
+- X: [@ovemiator](https://x.com/ovemiator)
