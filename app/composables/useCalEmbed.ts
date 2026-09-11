@@ -79,6 +79,7 @@ export const useCalEmbed = () => {
 
   const openCoffeeChat = (event?: Event) => {
     event?.preventDefault();
+    trackAction("coffee_chat_open");
     ensureCalEmbed();
 
     const ns = window.Cal?.ns?.[CAL_NAMESPACE];

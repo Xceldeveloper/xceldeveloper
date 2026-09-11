@@ -6,6 +6,7 @@ export const useContactEmail = () => {
 
   const contactViaEmail = async (event?: Event) => {
     event?.preventDefault();
+    trackAction("contact_email");
 
     const email = PROFILE.email;
     const isDesktop =

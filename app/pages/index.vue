@@ -81,6 +81,49 @@ const showHeaderCta = computed(() => true);
 
 const { calHref, openCoffeeChat } = useCalEmbed();
 const { mailtoHref, contactViaEmail } = useContactEmail();
+const { trackViewSection } = useAnalytics();
+
+/** Landing section — no view_* event (pageview already covers it). */
+const LANDING_SECTION: Section = "bio";
+
+const querySection = (id: Section) =>
+  document.querySelector(`[data-section="${id}"]`);
+
+let sectionViewObserver: IntersectionObserver | null = null;
+
+/** Mobile: fire view_* once when any non-landing section enters the viewport. */
+const observeTrackedSections = () => {
+  sectionViewObserver?.disconnect();
+  sectionViewObserver = null;
+  if (typeof window === "undefined") return;
+
+  // Desktop: section views fire from transitionToSection
+  if (window.matchMedia("(min-width: 1025px)").matches) return;
+
+  const targets = sections
+    .filter((id) => id !== LANDING_SECTION)
+    .map((id) => querySection(id))
+    .filter((el): el is Element => Boolean(el));
+
+  if (!targets.length) return;
+
+  sectionViewObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const id = (entry.target as HTMLElement).dataset.section as
+          | Section
+          | undefined;
+        if (!id || id === LANDING_SECTION) continue;
+        trackViewSection(id);
+        sectionViewObserver?.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.35 },
+  );
+
+  for (const el of targets) sectionViewObserver.observe(el);
+};
 
 const observeBioTitle = () => {
   bioTitleObserver?.disconnect();
@@ -118,10 +161,7 @@ const calculateContentOffset = () => {
   ) as HTMLImageElement;
   const contentContainer = document.querySelector(".body-left__content");
   const cardBody = document.querySelector(".card-body");
-  const activeSection =
-    currentSection.value === "bio"
-      ? document.querySelector(".bio-section")
-      : document.querySelector(".experience-section");
+  const activeSection = querySection(currentSection.value);
   const mediaQuery = window.matchMedia("(min-width: 1025px)");
 
   isDesktop.value = mediaQuery.matches;
@@ -188,10 +228,7 @@ let isScrolling = false;
 let sectionTransitionTl: gsap.core.Timeline | null = null;
 
 const reconnectSectionObserver = () => {
-  const section =
-    currentSection.value === "bio"
-      ? document.querySelector(".bio-section")
-      : document.querySelector(".experience-section");
+  const section = querySection(currentSection.value);
   if (resizeObserver && section) {
     resizeObserver.disconnect();
     resizeObserver.observe(section);
@@ -201,6 +238,8 @@ const reconnectSectionObserver = () => {
 /** Header: frosted glass morph. Body: original CSS fade via `.transitioning`. */
 const transitionToSection = (target: Section) => {
   if (target === currentSection.value) return;
+
+  if (target !== LANDING_SECTION) trackViewSection(target);
 
   const headerContent = document.querySelector(
     ".header-content",
@@ -408,10 +447,7 @@ onMounted(() => {
   // content wrapper (padding updates would feedback-loop and shake sticky).
   const observeSectionSize = () => {
     resizeObserver?.disconnect();
-    const section =
-      currentSection.value === "bio"
-        ? document.querySelector(".bio-section")
-        : document.querySelector(".experience-section");
+    const section = querySection(currentSection.value);
     if (!section) return;
     resizeObserver = new ResizeObserver(() => {
       calculateContentOffset();
@@ -424,7 +460,10 @@ onMounted(() => {
   const mediaQuery = window.matchMedia("(min-width: 1025px)");
   mediaQuery.addEventListener("change", () => {
     calculateContentOffset();
-    nextTick(() => observeSectionSize());
+    nextTick(() => {
+      observeSectionSize();
+      observeTrackedSections();
+    });
   });
   window.addEventListener("resize", () => {
     calculateContentOffset();
@@ -436,11 +475,14 @@ onMounted(() => {
 
   nextTick(() => {
     observeBioTitle();
+    observeTrackedSections();
     schedulePhotoPin();
   });
 
   onBeforeUnmount(() => {
     window.clearTimeout(splashFallback);
+    sectionViewObserver?.disconnect();
+    sectionViewObserver = null;
   });
 });
 

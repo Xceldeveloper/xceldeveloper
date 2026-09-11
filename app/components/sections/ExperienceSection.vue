@@ -46,7 +46,7 @@ const experiences = ref([
 </script>
 
 <template>
-  <div class="experience-section">
+  <div class="experience-section" data-section="impact">
     <div class="experience-section__content">
       <h2 class="experience-section__title">
         Impact

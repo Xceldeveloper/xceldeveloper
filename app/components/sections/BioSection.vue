@@ -4,6 +4,12 @@ import { socialLinks } from "~/utils/seo";
 
 const { bioSegments } = useBioContent();
 const { mailtoHref, contactViaEmail } = useContactEmail();
+const { trackAction } = useAnalytics();
+
+const onSocialClick = (label: string) => {
+  const key = label.toLowerCase().replace(/\s+/g, "_");
+  trackAction(`social_${key}`);
+};
 
 /** Mobile: name sits under portrait at rest; rises above once scrolling */
 const isTitleRaised = ref(false);
@@ -32,7 +38,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="bio-section">
+  <div class="bio-section" data-section="bio">
     <div
       class="bio-section__content"
       :class="{ 'bio-section__content--raised': isTitleRaised }"
@@ -79,6 +85,7 @@ onUnmounted(() => {
                 target="_blank"
                 rel="me noopener noreferrer"
                 class="social-link"
+                @click="onSocialClick(link.label)"
               >
                 <Icon :name="link.icon" />
               </a>
