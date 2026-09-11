@@ -3,7 +3,6 @@ import { onMounted, ref, onUnmounted, watch, nextTick, computed, onBeforeUnmount
 import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
-import { PROFILE } from "~/utils/seo";
 
 const sections = ["bio", "impact"] as const;
 type Section = (typeof sections)[number];
@@ -78,12 +77,10 @@ const showHeaderName = computed(() => {
   return !isBioTitleInView.value;
 });
 
-const showHeaderCta = computed(() => {
-  if (isDesktop.value) return currentSection.value !== "bio";
-  return true; // Icon CTA always available on mobile
-});
+const showHeaderCta = computed(() => true);
 
 const { calHref, openCoffeeChat } = useCalEmbed();
+const { mailtoHref, contactViaEmail } = useContactEmail();
 
 const observeBioTitle = () => {
   bioTitleObserver?.disconnect();
@@ -536,10 +533,11 @@ onUnmounted(() => {
               <Icon name="lucide:coffee" class="header-cta__icon" />
             </a>
             <a
-              :href="`mailto:${PROFILE.email}`"
+              :href="mailtoHref"
               class="header-cta"
               :class="{ 'header-cta--icon': !isDesktop }"
               aria-label="Get in Touch"
+              @click="contactViaEmail"
             >
               <Icon
                 v-if="!isDesktop"
@@ -1163,6 +1161,13 @@ $image-max-width: 420px; // Reduced from 500px
   transform: translateZ(0);
   backface-visibility: hidden;
 
+  // Descendants default to auto and can steal clicks over the left column
+  *,
+  *::before,
+  *::after {
+    pointer-events: none !important;
+  }
+
   @media (max-width: 1024px) {
     position: relative;
     top: auto;
@@ -1208,6 +1213,7 @@ $image-max-width: 420px; // Reduced from 500px
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
   // Visible under the curtain, parked slightly to the right until reveal
   opacity: 1;
   transform: translateX(2.25rem);

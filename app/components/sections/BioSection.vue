@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
-import { socialLinks, PROFILE } from "~/utils/seo";
+import { socialLinks } from "~/utils/seo";
 
 const { bioSegments } = useBioContent();
+const { mailtoHref, contactViaEmail } = useContactEmail();
 
 /** Mobile: name sits under portrait at rest; rises above once scrolling */
 const isTitleRaised = ref(false);
@@ -83,7 +84,11 @@ onUnmounted(() => {
               </a>
             </div>
 
-            <a :href="`mailto:${PROFILE.email}`" class="cta-link">
+            <a
+              :href="mailtoHref"
+              class="cta-link"
+              @click="contactViaEmail"
+            >
               Get in Touch
               <Icon name="lucide:arrow-right" class="cta-arrow" />
             </a>
@@ -199,6 +204,8 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
   position: relative;
+  z-index: 2;
+  pointer-events: auto;
   transition: all 0.3s ease;
 
   &::after {
