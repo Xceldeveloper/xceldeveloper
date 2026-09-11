@@ -16,6 +16,8 @@ const isDesktop = ref(
     : true,
 );
 const isCalculating = ref(true); // Loading state for drawer
+/** Portrait slides in from the right after the splash curtain lifts */
+const portraitRevealed = ref(false);
 const shouldCenterAlign = ref(false); // Track if content should be centered
 const isSectionTransitioning = ref(false); // Track section transitions
 let resizeObserver: ResizeObserver | null = null; // Watch for content size changes
@@ -336,23 +338,56 @@ const handleWheel = (e: WheelEvent) => {
   transitionToSection(targetSection);
 };
 
+const revealPortrait = () => {
+  if (portraitRevealed.value) return;
+  portraitRevealed.value = true;
+
+  const photoContainer = document.querySelector(".photo-container");
+  const profilePhoto = document.querySelector(
+    ".profile-photo",
+  ) as HTMLImageElement | null;
+  if (!photoContainer || !profilePhoto) return;
+
+  gsap.set(photoContainer, { "--light-opacity": 0 });
+  gsap.set(profilePhoto, { "--shadow-opacity": 0 });
+
+  gsap
+    .timeline({ delay: 0.08 })
+    .to(photoContainer, {
+      "--light-opacity": 1,
+      duration: 1.8,
+      ease: "power2.inOut",
+    })
+    .to(
+      profilePhoto,
+      {
+        "--shadow-opacity": 1,
+        duration: 1.8,
+        ease: "power2.inOut",
+      },
+      "-=1.4",
+    );
+};
+
+// Curtain leave is ~0.72s — wait until it's mostly clear of the photo, then slide
+watch(isCalculating, (loading) => {
+  if (loading) return;
+  window.setTimeout(() => {
+    revealPortrait();
+  }, 420);
+});
+
 onMounted(() => {
   // Safety: never leave splash stuck if layout/photo load stalls
   const splashFallback = window.setTimeout(() => {
     isCalculating.value = false;
   }, 4000);
 
-  // Light switch effect - make the lighting come alive
-  const photoContainer = document.querySelector(".photo-container");
   const profilePhoto = document.querySelector(
     ".profile-photo",
   ) as HTMLImageElement;
 
-  if (photoContainer && profilePhoto) {
-    // Start with no light
-    gsap.set(photoContainer, { "--light-opacity": 0 });
-    gsap.set(profilePhoto, { "--shadow-opacity": 0 });
-
+  if (profilePhoto) {
     // Wait for image to load before calculating
     if (profilePhoto.complete) {
       // Use requestAnimationFrame to ensure layout is complete
@@ -368,24 +403,6 @@ onMounted(() => {
         }, 100);
       });
     }
-
-    // After 1 second, turn on the light with a soft fade
-    gsap
-      .timeline({ delay: 1 })
-      .to(photoContainer, {
-        "--light-opacity": 1,
-        duration: 2,
-        ease: "power2.inOut",
-      })
-      .to(
-        profilePhoto,
-        {
-          "--shadow-opacity": 1,
-          duration: 2,
-          ease: "power2.inOut",
-        },
-        "-=1.5",
-      ); // Overlap with the backlight animation
   } else {
     calculateContentOffset();
   }
@@ -583,14 +600,19 @@ onUnmounted(() => {
       <!-- Right Side (38%) - Fixed Photo -->
       <div class="body-right">
         <div class="photo-container">
-          <img
-            src="/half-side-profile.png"
-            alt="Overcomer Emiator - Side Profile"
-            class="profile-photo"
-            draggable="false"
-            @contextmenu.prevent
-            @dragstart.prevent
-          />
+          <div
+            class="photo-reveal"
+            :class="{ 'photo-reveal--in': portraitRevealed }"
+          >
+            <img
+              src="/half-side-profile.png"
+              alt="Overcomer Emiator - Side Profile"
+              class="profile-photo"
+              draggable="false"
+              @contextmenu.prevent
+              @dragstart.prevent
+            />
+          </div>
         </div>
       </div>
     </main>
@@ -1177,6 +1199,36 @@ $image-max-width: 420px; // Reduced from 500px
     z-index: 1;
     transition: opacity 0.3s ease;
     filter: blur(40px);
+  }
+}
+
+.photo-reveal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Visible under the curtain, parked slightly to the right until reveal
+  opacity: 1;
+  transform: translateX(2.25rem);
+
+  &--in {
+    transform: translateX(0);
+    transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: flex-end;
+    height: auto;
+
+    &:not(.photo-reveal--in) {
+      transform: translateX(1.75rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
   }
 }
 
