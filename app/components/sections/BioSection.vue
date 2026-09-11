@@ -168,12 +168,16 @@ onUnmounted(() => {
     }
 
     .power-word {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: help;
-      padding: 2px 4px;
+      padding: 0;
       border-radius: 3px;
+      transition:
+        background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
+        padding: 2px 4px;
         background-color: #ffffff;
         color: #000000;
       }

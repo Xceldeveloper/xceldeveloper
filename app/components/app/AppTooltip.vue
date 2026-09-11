@@ -40,9 +40,9 @@ const maxWidthStyle = computed(() => {
     :delay="delay"
     :show-caret="true"
     border-radius="8px"
-    box-shadow="0 4px 20px rgba(0, 0, 0, 0.4)"
-    border="1px solid rgba(255, 255, 255, 0.15)"
-    caret-background-color="#0a0a0a"
+    box-shadow="0 8px 28px rgba(0, 0, 0, 0.18)"
+    border="1px solid rgba(0, 0, 0, 0.08)"
+    caret-background-color="#ffffff"
     :location-allowance="8"
   >
     <template #trigger="{ props: triggerProps }">
@@ -70,10 +70,10 @@ const maxWidthStyle = computed(() => {
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.78);
   max-width: v-bind(maxWidthStyle);
   width: auto;
-  background-color: #0a0a0a;
+  background-color: #ffffff;
   border-radius: 8px;
   word-wrap: break-word;
   overflow-wrap: break-word;
