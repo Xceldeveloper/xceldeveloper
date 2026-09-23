@@ -35,6 +35,16 @@ const experiences = ref<Experience[]>([
   },
   {
     id: 3,
+    title: 'Software Engineer',
+    company: 'SpendRule',
+    period: '2026',
+    description: [
+      'Engaged remotely as a software engineer at SpendRule, a platform based in the USA that helps health systems enforce purchased-services contracts before invoices get paid.',
+      'I work full stack. I build and maintain the customer-facing applications and dashboards where teams review mismatches and act. I build out the shared UI library those surfaces run on. I ship custom demos that make the product clear to show. I own issues and features end to end, and I help tighten how the team builds so what ships is more reliable.',
+    ],
+  },
+  {
+    id: 4,
     title: 'Technical Co-founder',
     company: 'Property',
     period: '2024 - 2025',
@@ -45,7 +55,7 @@ const experiences = ref<Experience[]>([
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: 'Frontend Architect',
     company: 'Hyphen',
     period: '2021 - 2024',
@@ -57,7 +67,7 @@ const experiences = ref<Experience[]>([
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: 'Frontend Engineer',
     company: 'TransferXO',
     period: '2022',
@@ -68,7 +78,7 @@ const experiences = ref<Experience[]>([
     ],
   },
   {
-    id: 6,
+    id: 7,
     title: 'Frontend Engineer',
     company: 'Scelloo',
     period: '2020 - 2021',
