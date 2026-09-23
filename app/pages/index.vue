@@ -1027,21 +1027,27 @@ $image-max-width: 420px; // Reduced from 500px
 }
 
 // ============================================
-// SCROLL FADE OVERLAYS (for smooth content edges)
+// SCROLL FADE OVERLAYS (soft edges under fixed chrome)
 // ============================================
 .scroll-fade-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 60px;
+  display: none;
   pointer-events: none;
-  z-index: 5;
+  z-index: 90; // Under header/footer (100), over scrolling copy
+  height: 60px;
   transition: opacity 0.3s ease;
-  display: none; // Page scroll — no inner pane fades
+
+  // Page scroll: pin to the content band so fades stay at chrome edges
+  @media (min-width: 1025px) {
+    display: block;
+    position: fixed;
+    left: 0;
+    // Stop before the fixed portrait (measured --photo-left)
+    width: var(--photo-left, 62%);
+  }
 }
 
 .scroll-fade-top {
-  top: 0;
+  top: $header-height;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
@@ -1051,7 +1057,7 @@ $image-max-width: 420px; // Reduced from 500px
 }
 
 .scroll-fade-bottom {
-  bottom: 0;
+  bottom: $footer-height;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 1) 0%,
