@@ -177,16 +177,18 @@ onUnmounted(() => {
     .power-word {
       cursor: help;
       padding: 0;
-      border-radius: 3px;
+      border-radius: 2px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
       transition:
         background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
         color 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-        padding 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
-        padding: 2px 4px;
         background-color: #ffffff;
         color: #000000;
+        box-shadow: 0 0 0 2px #ffffff;
       }
     }
   }
