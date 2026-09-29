@@ -18,13 +18,13 @@ export const PROFILE = {
   name: "Overcomer Emiator",
   givenName: "Overcomer",
   familyName: "Emiator",
-  jobTitle: "Builder & Solution Architect",
+  jobTitle: "Builder",
   email: "overcomer@emiator.com",
   coffeeChatUrl: "https://cal.com/overcomeremiator/coffee-chat",
   description:
-    "Overcomer Emiator is a builder and solution architect, and founder of Sleekware. He designs and ships software systems for real-world constraints—currently founding Sleekware and building at Piggyvest.",
+    "Overcomer Emiator is a builder. He sees a problem and steps in to be part of the solution, turning ideas into technology that works for humanity, in any field.",
   /** Short line for OG/Twitter when space is tight */
-  tagline: "Builder, solution architect, and founder of Sleekware.",
+  tagline: "A builder who sees a problem and steps in to be part of the solution.",
   imagePath: "/og-image.jpg",
   /** WhatsApp / Facebook large preview standard (same as Buque) */
   imageWidth: 1200,
@@ -39,7 +39,12 @@ export const PROFILE = {
     {
       name: "Piggyvest",
       url: "https://www.piggyvest.com",
-      role: "Frontend Engineer",
+      role: "Senior Frontend Engineer",
+    },
+    {
+      name: "SpendRule",
+      url: "https://www.spendrule.com",
+      role: "Software Engineer",
     },
   ],
   /** Public profiles Google can associate with this Person */

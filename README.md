@@ -1,6 +1,6 @@
 # Overcomer Emiator
 
-Personal site — a digital card for **Overcomer Emiator**: builder, solution architect, and founder of [Sleekware](https://sleekware.io).
+Personal site, a digital card for **Overcomer Emiator**, a builder.
 
 ## Stack
 
