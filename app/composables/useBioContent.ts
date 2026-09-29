@@ -12,47 +12,39 @@ export const useBioContent = () => {
       text: "builder",
       type: "power-word",
       tooltip:
-        "Someone who doesn't just design—builds from scratch, ships working software, and owns the full journey from concept to production.",
+        "He can think a thing through and still roll up his sleeves to make it. He brings the right people along and stays with it until it actually works.",
     },
-    { text: " and ", type: "text" },
+    { text: " who sees a problem and steps in to be ", type: "text" },
     {
-      text: "solution architect",
+      text: "part of the solution",
       type: "power-word",
       tooltip:
-        "Designing systems that solve real business problems while accounting for technical constraints, team capabilities, and future growth.",
-    },
-    { text: " specializing in ", type: "text" },
-    {
-      text: "software systems",
-      type: "power-word",
-      tooltip:
-        "End-to-end software platforms: APIs, databases, distributed systems, frontend applications—the complete stack that powers products.",
-    },
-    { text: ". He architects solutions that work in the ", type: "text" },
-    {
-      text: "real world",
-      type: "power-word",
-      tooltip:
-        "Built for actual users, actual constraints, and actual business needs—not just theoretical perfection on paper.",
-    },
-    { text: "—designed for real constraints, built to ", type: "text" },
-    {
-      text: "scale",
-      type: "power-word",
-      tooltip:
-        "Systems designed from day one to handle growth in users, data, and complexity without breaking or requiring rewrites.",
+        "The world moves forward when each person plays their part. His is to build: to take the problems he sees and turn them into things that work.",
     },
     {
-      text: ", engineered to last. Proven expertise transforming complex technical challenges into elegant, ",
+      text: ". It started with one thing he wanted fixed, and fixing it showed him that software could take an idea and turn it into a system that works for humanity, in any field. He believes in a future driven by technology and ",
       type: "text",
     },
     {
-      text: "intentional",
+      text: "used for good",
       type: "power-word",
       tooltip:
-        "Every architectural decision is deliberate—no accidental complexity, no cargo-cult patterns, just purposeful design that serves the goal.",
+        "Technology is a tool. What matters is what it is used for, and who it serves.",
     },
-    { text: " outcomes across multiple domains.", type: "text" },
+    {
+      text: ", where what we imagine can be turned into solutions that matter. Given a clear problem and the will to see it through, ",
+      type: "text",
+    },
+    {
+      text: "anything can be built",
+      type: "power-word",
+      tooltip:
+        "He does not start from what seems possible. He starts from what should exist.",
+    },
+    {
+      text: ". He is about being remembered not for what he gained, but for what he gave, and for work that keeps doing good long after he has moved on.",
+      type: "text",
+    },
   ];
 
   return {
