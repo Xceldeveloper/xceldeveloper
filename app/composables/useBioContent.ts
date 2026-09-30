@@ -22,7 +22,7 @@ export const useBioContent = () => {
         "The world moves forward when each person plays their part. His is to build: to take the problems he sees and turn them into things that work.",
     },
     {
-      text: ". It started with one thing he wanted fixed, and fixing it showed him that software could take an idea and turn it into a system that works for humanity, in any field. He believes in a future driven by technology and ",
+      text: ". It started with one thing he wanted fixed, and fixing it showed him that technology could take an idea and turn it into a system that works for humanity, in any field. He believes in a future driven by technology and ",
       type: "text",
     },
     {
