@@ -3,6 +3,7 @@ import { onMounted, ref, onUnmounted, watch, nextTick, computed, onBeforeUnmount
 import { gsap } from "gsap";
 import BioSection from "~/components/sections/BioSection.vue";
 import ExperienceSection from "~/components/sections/ExperienceSection.vue";
+import { socialLinks } from "~/utils/seo";
 
 const sections = ["bio", "impact"] as const;
 type Section = (typeof sections)[number];
@@ -81,7 +82,11 @@ const showHeaderCta = computed(() => true);
 
 const { calHref, openCoffeeChat } = useCalEmbed();
 const { mailtoHref, contactViaEmail } = useContactEmail();
-const { trackViewSection } = useAnalytics();
+const { trackViewSection, trackAction } = useAnalytics();
+
+const onSocialClick = (label: string) => {
+  trackAction(`social_${label.toLowerCase().replace(/\s+/g, "_")}`);
+};
 
 /** Landing section — no view_* event (pageview already covers it). */
 const LANDING_SECTION: Section = "bio";
@@ -566,13 +571,14 @@ onUnmounted(() => {
         <Transition name="fade">
           <div v-if="showHeaderCta" class="header-actions">
             <a
-              v-if="!isDesktop"
               :href="calHref"
-              class="header-cta header-cta--icon"
+              class="header-cta"
+              :class="{ 'header-cta--icon': !isDesktop }"
               aria-label="Coffee Chat"
               @click="openCoffeeChat"
             >
-              <Icon name="lucide:coffee" class="header-cta__icon" />
+              <Icon name="lucide:calendar" class="header-cta__icon" />
+              <template v-if="isDesktop">Coffee Chat</template>
             </a>
             <a
               :href="mailtoHref"
@@ -581,15 +587,8 @@ onUnmounted(() => {
               aria-label="Get in Touch"
               @click="contactViaEmail"
             >
-              <Icon
-                v-if="!isDesktop"
-                name="lucide:mail"
-                class="header-cta__icon"
-              />
-              <template v-else>
-                Get in Touch
-                <Icon name="lucide:arrow-right" class="cta-arrow" />
-              </template>
+              <Icon name="lucide:mail" class="header-cta__icon" />
+              <template v-if="isDesktop">Get in Touch</template>
             </a>
           </div>
         </Transition>
@@ -660,13 +659,28 @@ onUnmounted(() => {
     <!-- Footer -->
     <footer class="card-footer">
       <div class="footer-content">
-        <!-- Coffee Chat → Cal.com popup embed -->
+        <!-- Desktop: socials. Mobile: Coffee Chat (socials live in the bio) -->
+        <div class="footer__socials">
+          <a
+            v-for="link in socialLinks"
+            :key="link.href"
+            :href="link.href"
+            :aria-label="link.label"
+            target="_blank"
+            rel="me noopener noreferrer"
+            class="footer__social"
+            @click="onSocialClick(link.label)"
+          >
+            <Icon :name="link.icon" />
+          </a>
+        </div>
+
         <a
           :href="calHref"
           class="footer__schedule"
           @click="openCoffeeChat"
         >
-          <Icon name="lucide:coffee" class="calendar-icon" />
+          <Icon name="lucide:calendar" class="calendar-icon" />
           Coffee Chat
         </a>
 
@@ -863,15 +877,16 @@ $image-max-width: 420px; // Reduced from 500px
   white-space: nowrap;
   flex-shrink: 0;
 
+  .header-cta__icon {
+    width: 0.95rem;
+    height: 0.95rem;
+    opacity: 0.8;
+  }
+
   @media (max-width: 1024px) {
     padding: 0.4rem 0.85rem;
     font-size: 0.75rem;
     gap: 0.35rem;
-
-    .cta-arrow {
-      width: 0.8rem;
-      height: 0.8rem;
-    }
 
     &--icon {
       width: 2.25rem;
@@ -888,21 +903,16 @@ $image-max-width: 420px; // Reduced from 500px
     }
   }
 
-  .cta-arrow {
-    transition: transform 0.3s ease;
-    width: 0.9rem;
-    height: 0.9rem;
-    opacity: 0.7;
-  }
-
   &:hover {
     color: rgba(255, 255, 255, 0.95);
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.22);
+  }
 
-    .cta-arrow {
-      transform: translateX(3px);
-      opacity: 1;
+  @media (min-width: 1025px) {
+    &,
+    &:hover {
+      border-color: transparent;
     }
   }
 }
@@ -1374,6 +1384,35 @@ $image-max-width: 420px; // Reduced from 500px
   }
 }
 
+.footer__socials {
+  display: none;
+  align-items: center;
+  gap: 1.1rem;
+
+  @media (min-width: 1025px) {
+    display: flex;
+  }
+}
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+
+  :deep(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  &:hover {
+    color: $text-color;
+    transform: translateY(-2px);
+  }
+}
+
 .footer__schedule {
   display: flex;
   align-items: center;
@@ -1382,6 +1421,10 @@ $image-max-width: 420px; // Reduced from 500px
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 0.3s ease;
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
 
   .calendar-icon {
     width: 1rem;

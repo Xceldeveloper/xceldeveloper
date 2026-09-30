@@ -169,6 +169,10 @@ onUnmounted(() => {
     margin: 0 0 2.85rem 0;
     max-width: 650px;
 
+    @media (min-width: 1025px) {
+      margin-bottom: 0;
+    }
+
     strong {
       font-weight: 600;
       color: $text-color;
@@ -200,6 +204,10 @@ onUnmounted(() => {
     margin-top: 0;
     gap: 1.8rem;
     flex-wrap: wrap;
+
+    @media (min-width: 1025px) {
+      display: none;
+    }
   }
 
   &__socials {
