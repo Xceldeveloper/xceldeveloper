@@ -42,7 +42,7 @@ export const useBioContent = () => {
         "He does not start from what seems possible. He starts from what should exist.",
     },
     {
-      text: ". He is about being remembered not for what he gained, but for what he gave, and for work that keeps doing good long after he has moved on.",
+      text: ". He is about being remembered not for what he gained, but for what he gave, and for work that keeps doing good for those we never meet.",
       type: "text",
     },
   ];
