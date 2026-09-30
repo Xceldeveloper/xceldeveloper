@@ -96,8 +96,8 @@ onUnmounted(() => {
               class="cta-link"
               @click="contactViaEmail"
             >
+              <Icon name="lucide:mail" class="cta-icon" />
               Get in Touch
-              <Icon name="lucide:arrow-right" class="cta-arrow" />
             </a>
           </div>
         </div>
@@ -233,15 +233,15 @@ onUnmounted(() => {
     content: "";
     position: absolute;
     bottom: -2px;
-    left: 0;
+    left: 1.35rem;
     width: 0;
     height: 1px;
     background: rgba(255, 255, 255, 0.5);
     transition: width 0.3s ease;
   }
 
-  .cta-arrow {
-    transition: transform 0.3s ease;
+  .cta-icon {
+    transition: opacity 0.3s ease;
     width: 0.9rem;
     height: 0.9rem;
     opacity: 0.7;
@@ -254,8 +254,7 @@ onUnmounted(() => {
       width: calc(100% - 1.35rem);
     }
 
-    .cta-arrow {
-      transform: translateX(4px);
+    .cta-icon {
       opacity: 1;
     }
   }
