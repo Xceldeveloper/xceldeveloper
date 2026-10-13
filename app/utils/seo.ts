@@ -52,7 +52,7 @@ export const PROFILE = {
   sameAs: [
     "https://www.linkedin.com/in/overcomeremiator",
     "https://github.com/Xceldeveloper",
-    "https://x.com/ovemiator",
+    // "https://x.com/ovemiator",
     "https://www.instagram.com/overcomeremiator",
     "https://cal.com/overcomeremiator/coffee-chat",
   ],
@@ -74,11 +74,12 @@ export const socialLinks = [
     label: "GitHub",
     icon: "lucide:github",
   },
-  {
-    href: "https://x.com/ovemiator",
-    label: "X",
-    icon: "simple-icons:x",
-  },
+  // Hidden for now; restore with the X entry in PROFILE.sameAs.
+  // {
+  //   href: "https://x.com/ovemiator",
+  //   label: "X",
+  //   icon: "simple-icons:x",
+  // },
 ] as const;
 
 /** schema.org ContactPoint nodes for email + scheduling */
