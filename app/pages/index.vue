@@ -84,9 +84,6 @@ const { calHref, openCoffeeChat } = useCalEmbed();
 const { mailtoHref, contactViaEmail } = useContactEmail();
 const { trackViewSection, trackAction } = useAnalytics();
 
-/** Hidden while job hunting; restore with the Sleekware Impact entry. */
-const showSleekwareCredit = false;
-
 const onSocialClick = (label: string) => {
   trackAction(`social_${label.toLowerCase().replace(/\s+/g, "_")}`);
 };
@@ -687,7 +684,7 @@ onUnmounted(() => {
           Coffee Chat
         </a>
 
-        <p v-if="showSleekwareCredit" class="footer__attribution">
+        <p class="footer__attribution">
           Made with <Icon name="lucide:heart" class="heart" /> by
           <a
             href="https://sleekware.io"

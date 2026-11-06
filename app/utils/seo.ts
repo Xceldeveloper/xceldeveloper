@@ -31,12 +31,11 @@ export const PROFILE = {
   imageHeight: 630,
   imageType: "image/jpeg",
   worksFor: [
-    // Hidden while job hunting; restore with the Sleekware Impact entry.
-    // {
-    //   name: "Sleekware",
-    //   url: "https://sleekware.io",
-    //   role: "Founder & CEO",
-    // },
+    {
+      name: "Sleekware",
+      url: "https://sleekware.io",
+      role: "Founder & CEO",
+    },
     {
       name: "Piggyvest",
       url: "https://www.piggyvest.com",
