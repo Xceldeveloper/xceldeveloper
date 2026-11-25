@@ -10,17 +10,18 @@ type Experience = {
 
 // Role timeline (shown under Impact)
 const experiences = ref<Experience[]>([
-  {
-    id: 1,
-    title: 'Founder & CEO',
-    company: 'Sleekware',
-    period: 'Present',
-    description: [
-      'The force behind Sleekware, a software agency that partners with growing and established organisations to build systems that simplify complexity and give teams clarity to scale.',
-      'The company runs end to end from this seat: the work we take on, how we deliver, who we bring in, and how we show up for clients. Product and engineering direction, design standards, client conversations, and staying close enough to the build that what ships matches what the business actually needed.',
-      'Websites, applications, operational products. Brand and product design beside the engineering. Same point every time: turn a real business problem into software people can run.',
-    ],
-  },
+  // Hidden while job hunting; restore when the founder role should be public again.
+  // {
+  //   id: 1,
+  //   title: 'Founder & CEO',
+  //   company: 'Sleekware',
+  //   period: 'Present',
+  //   description: [
+  //     'The force behind Sleekware, a software agency that partners with growing and established organisations to build systems that simplify complexity and give teams clarity to scale.',
+  //     'The company runs end to end from this seat: the work we take on, how we deliver, who we bring in, and how we show up for clients. Product and engineering direction, design standards, client conversations, and staying close enough to the build that what ships matches what the business actually needed.',
+  //     'Websites, applications, operational products. Brand and product design beside the engineering. Same point every time: turn a real business problem into software people can run.',
+  //   ],
+  // },
   {
     id: 2,
     title: 'Senior Frontend Engineer',
